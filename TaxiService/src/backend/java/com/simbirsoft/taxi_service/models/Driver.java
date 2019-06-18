@@ -60,4 +60,7 @@ public class Driver {
 
     @Column(name = "telegram_login", unique = true, length = 32)
     private String telegramLogin;
+
+    @Column(name = "rating")
+    private Integer rating;
 }
