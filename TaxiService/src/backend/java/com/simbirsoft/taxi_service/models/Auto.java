@@ -52,7 +52,6 @@ public class Auto {
     private String description;
 
     @OneToOne
-    @Column(name = "driver_id")
     private Driver driver;
 
     @Column(name = "kilometrage", nullable = false)
