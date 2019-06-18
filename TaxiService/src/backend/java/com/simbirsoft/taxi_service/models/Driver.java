@@ -25,7 +25,7 @@ public class Driver {
     @Column(name = "drivers_license_series", nullable = false, length = 4)
     private Integer driversLicenseSeries;
 
-    @Column(name = "drivers_license_series", nullable = false, length = 6)
+    @Column(name = "drivers_license_number", nullable = false, length = 6)
     private Integer driversLicenseNumber;
 
     @Column(name = "date_of_driver_license_issue", nullable = false)
