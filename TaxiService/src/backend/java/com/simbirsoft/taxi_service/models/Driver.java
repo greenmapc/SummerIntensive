@@ -55,7 +55,7 @@ public class Driver {
     @Column(name = "phone_number", nullable = false, length = 11)
     private String phoneNumber;
 
-    @Column(name = "black_list", nullable = false)
+    @Column(name = "black_list")
     private Boolean blackList;
 
     @Column(name = "telegram_login", unique = true, length = 32)
