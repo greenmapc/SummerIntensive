@@ -25,9 +25,12 @@
             <p>${auto.year}</p>
             <br>
         </#list>
-    <#else >
+    <#else>
         <h4>Нет автомобилей</h4>
     </#if>
+    <form action="/operator/create_auto" method="get">
+        <button class="form-container__form--button flex__element" type="submit">Добавить авто</button>
+    </form>
 </div>
 </body>
 </html>
