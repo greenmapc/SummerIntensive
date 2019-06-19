@@ -14,7 +14,7 @@ public class UserController {
 
     @Autowired
     public UserController(UserService userService) {
-        this.userService = userService;  //примитивно, Матвей, приди, порядок наведи
+        this.userService = userService;
     }
 
     @GetMapping("/registrateOperator")
@@ -23,16 +23,16 @@ public class UserController {
     }
 
     @PostMapping("/registrateOperator")
-    public String registrateOperator(@ModelAttribute OperatorForm form, ModelMap model) {
-        System.out.println(true);
+    public String registrateOperator(@ModelAttribute OperatorForm form,
+                                     @RequestParam("isOperator") Boolean isOperator,
+                                     ModelMap model) {
         try {
+            form.setOperator(isOperator);
             userService.registrateOperator(form);
         } catch (IllegalArgumentException ex) {
             model.addAttribute("operatorForm", form);
             return "registrateOperator";
         }
-        return "redirect:/drivers";
+        return "login";
     }
-
-
 }
