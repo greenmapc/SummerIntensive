@@ -20,6 +20,6 @@ public class DriverController {
     @GetMapping
     public String getAll(ModelMap model) {
         model.addAttribute("drivers", driverService.getAll());
-        return "allDrivers";
+        return "drivers/list";
     }
 }
