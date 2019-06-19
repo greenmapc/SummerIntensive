@@ -16,4 +16,5 @@ public class OperatorForm {
     private String email;
     private String password;
     private String repeatPassword;
+    private boolean isOperator;
 }
