@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>TaxiService. Список водителей</title>
-    <link href="../../app.css" rel="stylesheet">
-    <link href="css/form-flex.css" rel="stylesheet">
+    <link href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
+    <link href="${springMacroRequestContext.contextPath}/css/form-flex.css" rel="stylesheet">
 </head>
 <body class="site">
     <div class="site-header">
         <div class="layout-positioner">
-            <img class="site-header__logo" src="../../src/img/logo.png" alt="Логотип">
+            <img class="site-header__logo" src="/img/logo.png" alt="Логотип">
         </div>
     </div>
     <div class="form-container flex__container layout-positioner">
