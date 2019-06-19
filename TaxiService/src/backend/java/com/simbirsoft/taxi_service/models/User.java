@@ -1,5 +1,6 @@
 package com.simbirsoft.taxi_service.models;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @Data
+@Builder
 public class User {
     @Id
     @GeneratedValue

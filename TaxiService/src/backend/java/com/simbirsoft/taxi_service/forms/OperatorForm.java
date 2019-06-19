@@ -1,0 +1,19 @@
+package com.simbirsoft.taxi_service.forms;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+public class OperatorForm {
+    private String firstName;
+    private String lastName;
+    private String patronymic;
+    private String email;
+    private String password;
+    private String repeatPassword;
+}
