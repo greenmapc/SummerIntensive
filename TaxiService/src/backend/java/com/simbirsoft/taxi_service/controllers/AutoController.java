@@ -20,6 +20,6 @@ public class AutoController {
     @GetMapping
     public String getAll(ModelMap model) {
         model.addAttribute("autos", autoService.getAll());
-        return "allAutos";
+        return "autos/list";
     }
 }
