@@ -1,6 +1,7 @@
 package com.simbirsoft.taxi_service.controllers;
 
 import com.simbirsoft.taxi_service.forms.AutoForm;
+import com.simbirsoft.taxi_service.forms.DriverForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,5 +26,19 @@ public class OperatorController {
                              BindingResult bindingResult) {
 
         return "redirect:/autos";
+    }
+
+    @GetMapping("/create_driver")
+    public String createDriverPage(Model model) {
+        model.addAttribute("form", new DriverForm());
+        return "operator/create_driver";
+    }
+
+    @PostMapping("/create_driver")
+    public String createDriver(@ModelAttribute("form") AutoForm form,
+                               Model model,
+                               BindingResult bindingResult) {
+
+        return "redirect:/drivers";
     }
 }
