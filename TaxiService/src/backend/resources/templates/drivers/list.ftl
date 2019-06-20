@@ -9,7 +9,7 @@
     <link href="${springMacroRequestContext.contextPath}/css/form-flex.css" rel="stylesheet">
 </head>
 <body class="site">
-<#include "../header/basicHeader.ftl">
+<#include "../header/newHeader.ftl">
 <div class="form-container flex__container layout-positioner">
     <h1 class="form-container__h1 flex__element">Список водителей</h1>
     <#list drivers as driver>

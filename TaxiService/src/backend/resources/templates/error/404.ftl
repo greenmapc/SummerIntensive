@@ -10,7 +10,7 @@
     <link href="${springMacroRequestContext.contextPath}/css/form-flex.css" rel="stylesheet">
 </head>
 <body>
-<#include "../header/basicHeader.ftl">
+<#include "../header/newHeader.ftl">
 <h1> Not found ;( </h1>
 </body>
 </html>

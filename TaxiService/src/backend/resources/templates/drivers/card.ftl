@@ -6,7 +6,7 @@
     <link href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
 </head>
 <body class="site">
-<#include "../header/basicHeader.ftl">
+<#include "../header/newHeader.ftl">
 
 <div class="layout-positioner">
         <h1>База данных водителей такси > Водитель ${driver.id}</h1>
