@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -23,10 +24,10 @@ public class Auto {
     @Column(name = "model", nullable = false, length = 128)
     private String model;
 
-    @Column(name = "gos_number", nullable = false, length = 8)
+    @Column(name = "gos_number", nullable = false, length = 8, unique = true)
     private String gosNumber;
 
-    @Column(name = "vin_number", nullable = false, length = 17)
+    @Column(name = "vin_number", nullable = false, length = 17, unique = true)
     private String vinNumber;
 
     @Column(name = "year", nullable = false, length = 4)
@@ -38,12 +39,9 @@ public class Auto {
     @Column(name = "engine_power", nullable = false)
     private Integer enginePower;
 
-    @Column(name = "transmission_type", nullable = false, length = 8)
-    private String transmissionType;
+    @Column(name = "transmission", nullable = false, length = 8)
+    private String transmission;
 
-    /**
-     * Drive of the car. This field may be take a values like "front", "back" or "full"
-     * */
     @Column(name = "drive", nullable = false, length = 32)
     private String drive;
 

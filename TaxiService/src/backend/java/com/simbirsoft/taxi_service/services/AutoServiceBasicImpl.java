@@ -5,7 +5,6 @@ import com.simbirsoft.taxi_service.models.Auto;
 import com.simbirsoft.taxi_service.repositories.AutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -48,7 +47,7 @@ public class AutoServiceBasicImpl implements AutoService {
                 .vinNumber(form.getVinNumber())
                 .year(form.getYear())
                 .volume(form.getVolume())
-                .transmissionType(form.getTransmissionType())
+                .transmission(form.getTransmissionType())
                 .model(form.getModel())
                 .kilometrage(form.getKilometrage())
                 .build();
