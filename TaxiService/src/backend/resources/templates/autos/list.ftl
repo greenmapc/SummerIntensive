@@ -7,15 +7,10 @@
     <link href="${springMacroRequestContext.contextPath}/css/form-flex.css" rel="stylesheet">
 </head>
 <body class="site">
-<div class="site-header">
-    <div class="layout-positioner">
-        <img class="site-header__logo" src="${springMacroRequestContext.contextPath}/img/logo.png" alt="Логотип">
-    </div>
-</div>
+<#include "../header/basicHeader.ftl">
 <div class="form-container flex__container layout-positioner">
     <h1 class="form-container__h1 flex__element">Список автомобилей</h1>
     <#list autos as auto>
-        <h2>Автомобиль 1</h2>
         <h3>Марка/бренд</h3>
         <p>${auto.brand}</p>
         <h3>Модельный ряд</h3>

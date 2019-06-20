@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AutoService {
     List<Auto> getAll();
+    Auto getOne(Long id);
 }
