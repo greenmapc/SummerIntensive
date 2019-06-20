@@ -1,5 +1,6 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
+    <#import "/spring.ftl" as spring>
 <@l.layout "TaxiService">
     <@n.navbar/>
     <div class="form-container flex__container layout-positioner">
@@ -18,10 +19,13 @@
                    name="model"
                    placeholder="Введите модель автомобиля" required><br>
 
-            <label for="auto__gos_number">Государственный номер</label><br>
+            <#--<label for="auto__gos_number">Государственный номер</label><br>
             <input class="form-container__form--input flex__element" type="text" id="auto__gos_number"
                    name="gosNumber"
-                   placeholder="Введите Гос.номер ТС" required><br>
+                   placeholder="Введите Гос.номер ТС" required><br>-->
+
+            <@spring.formInput "form.gosNumber" "placeholder='Введите Гос.номер ТС'"/>
+            <@spring.showErrors "form.gosNumber"/>
 
             <label for="auto__vin_number">VIN номер</label><br>
             <input class="form-container__form--input flex__element" type="text" id="auto__vin_number"
