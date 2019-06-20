@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>TaxiService. Вход в базу</title>
-    <link href="../../app.css" rel="stylesheet">
+    <link href="../../src/css/app.css" rel="stylesheet">
+    <link href="../../src/css/site-header.css" rel="stylesheet">
     <link href="css/form-flex.css" rel="stylesheet">
 </head>
 <body class="site">
     <div class="site-header">
         <div class="layout-positioner">
-            <img class="site-header__logo" src="../../src/img/logo.png" alt="Логотип">
+            <div class="flex__header--container">
+                <img class="site-header__logo" src="../../src/img/logo.png" alt="Логотип">
+                <div class="flex__header--button">
+                    <button class="site-header__button site-header__button--admin  flex__element">Панель администратора</button>
+                    <button class="site-header__button site-header__button--driver flex__element">База водителей</button>
+                    <button class="site-header__button site-header__button--auto flex__element">База автомобилей</button>
+                    <button class="site-header__button site-header__button--login flex__element">Вход/выход</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-container flex__container layout-positioner">
+    <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Вход в базу данных</h1>
         <form class="form-container__form">
             <input class="form-container__form--input flex__element" type="email" placeholder="Введите email"><br>
