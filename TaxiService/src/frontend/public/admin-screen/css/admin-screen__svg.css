@@ -17,7 +17,7 @@
 .admin-screen__svg--driver {
     position: absolute;
     margin-top: 20px;
-    margin-left: -10px;
+    margin-left: -0px;
     width: 150px;
     height: 150px;
 }
@@ -36,4 +36,12 @@
     margin-left: -5px;
     width: 160px;
     height: 160px;
+}
+
+.admin-screen__svg--document {
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 22px;
+    width: 130px;
+    height: 130px;
 }
