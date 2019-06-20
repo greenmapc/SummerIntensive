@@ -5,7 +5,7 @@
                 <img class="site-header__logo" src="${springMacroRequestContext.contextPath}/img/logo.png"
                      alt="Логотип">
                 <div class="flex__header--button">
-                    <form action="/admin">
+                    <form action="/admin/panel">
                         <button class="site-header__button site-header__button--admin  flex__element">Панель
                             администратора
                         </button>

@@ -43,4 +43,9 @@ public class AdminController {
         model.addAttribute("success", "Оператор успешно добавлен в систему!");
         return "admin/create_operator";
     }
+
+    @GetMapping("/panel")
+    public String adminPage(Model model) {
+        return "admin/admin";
+    }
 }
