@@ -1,4 +1,4 @@
-package com.simbirsoft.taxi_service.validation;
+package com.simbirsoft.taxi_service.validators;
 
 
 import com.simbirsoft.taxi_service.forms.AutoForm;
@@ -27,10 +27,10 @@ public class AutoFormValidator implements Validator {
             errors.rejectValue("model", "autoform.field.empty");
         }
         if (!checkGosNumber(form.getGosNumber())) {
-            errors.reject("gosNumber", "autoform.gosnumber");
+            errors.rejectValue("gosNumber", "autoform.gosnumber");
         }
         if (form.getVinNumber().length() != 17) {
-            errors.reject("vinNumber", "autoform.vinnumber");
+            errors.rejectValue("vinNumber", "autoform.vinnumber");
         }
         if (form.getYear() > LocalDateTime.now().getYear() || form.getYear() < 1960) {
             errors.rejectValue("year", "autoform.year");
