@@ -1,10 +1,12 @@
 package com.simbirsoft.taxi_service.forms;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 public class DriverForm {
     private String firstName;
     private String lastName;

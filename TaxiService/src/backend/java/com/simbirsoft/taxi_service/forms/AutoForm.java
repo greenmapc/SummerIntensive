@@ -1,8 +1,10 @@
 package com.simbirsoft.taxi_service.forms;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class AutoForm {
     private String brand;
     private String model;

@@ -13,7 +13,6 @@ import java.sql.Date;
 @Entity
 @Table(name = "driver")
 @Data
-
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

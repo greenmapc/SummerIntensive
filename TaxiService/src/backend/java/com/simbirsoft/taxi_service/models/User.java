@@ -1,19 +1,22 @@
 package com.simbirsoft.taxi_service.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @Data
+@NoArgsConstructor
 public class User implements UserDetails {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "email", unique = true, nullable = false, length = 256)
@@ -37,11 +40,7 @@ public class User implements UserDetails {
     @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Roles> roles;
-
-    public User() {
-
-    }
+    private Set<Roles> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

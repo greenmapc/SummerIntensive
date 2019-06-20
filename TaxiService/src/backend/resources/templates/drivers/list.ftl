@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -21,6 +22,8 @@
 </body>
 </html>
 =======
+=======
+>>>>>>> 5e32b3e6b6ef748fc8b213d9ae10c568b1817f82
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <@l.layout "TaxiService">
@@ -36,5 +39,9 @@
 
 
     </div>
+<<<<<<< HEAD
 </@l.layout>
 >>>>>>> 374aae2ec7a0113f47fcb59857a96bf025da26d6
+=======
+</@l.layout>
+>>>>>>> 5e32b3e6b6ef748fc8b213d9ae10c568b1817f82
