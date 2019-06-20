@@ -1,14 +1,18 @@
 package com.simbirsoft.taxi_service.controllers;
 
+import com.simbirsoft.taxi_service.controllers.util.ControllerUtils;
 import com.simbirsoft.taxi_service.forms.AutoForm;
 import com.simbirsoft.taxi_service.forms.DriverForm;
+import com.simbirsoft.taxi_service.validation.AutoFormValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.DataBinder;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/operator")
@@ -21,10 +25,17 @@ public class OperatorController {
     }
 
     @PostMapping("/create_auto")
-    public String createAuto(@ModelAttribute("form") AutoForm form,
-                             Model model,
-                             BindingResult bindingResult) {
+    public String createAuto(@Validated @ModelAttribute("form") AutoForm form,
+                             BindingResult bindingResult,
+                             Model model) {
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(x -> System.out.println(x.getDefaultMessage()));
+            /*Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errorsMap);
+            model.addAttribute("form", form);*/
 
+            return "operator/create_auto";
+        }
         return "redirect:/autos";
     }
 
@@ -40,5 +51,10 @@ public class OperatorController {
                                BindingResult bindingResult) {
 
         return "redirect:/drivers";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(new AutoFormValidator());
     }
 }
