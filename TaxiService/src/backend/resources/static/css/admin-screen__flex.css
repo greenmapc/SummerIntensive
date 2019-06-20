@@ -1,0 +1,26 @@
+.admin-screen__flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.admin-screen__flex--bar {
+    margin: 10px;
+    height: 200px;
+    max-width: 480px;
+    min-width: 300px;
+    text-align: center;
+    background-color: lightskyblue;
+    border-radius: 15px;
+}
+
+.admin-screen__flex--bar-create {
+    background-color: yellowgreen;
+}
+
+.admin-screen__a {
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    vertical-align: center;
+}

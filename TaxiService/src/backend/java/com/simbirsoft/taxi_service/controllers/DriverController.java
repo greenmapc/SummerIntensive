@@ -29,11 +29,7 @@ public class DriverController {
 
     @GetMapping("/{id}")
     public String getOne(@PathVariable Long id, ModelMap model) {
-        try {
-            model.addAttribute("driver", driverService.getOne(id));
-        } catch (EntityNotFoundException ex) {
-            return "error/404";
-        }
+        model.addAttribute("driver", driverService.getOne(id));
         return "drivers/card";
     }
 }

@@ -28,11 +28,7 @@ public class AutoController {
 
     @GetMapping("/{id}")
     public String getOne(@PathVariable Long id, ModelMap model) {
-        try {
-            model.addAttribute("auto", autoService.getOne(id));
-        } catch (EntityNotFoundException ex) {
-            return "error/404";
-        }
+        model.addAttribute("auto", autoService.getOne(id));
         return "autos/card";
     }
 
