@@ -1,12 +1,14 @@
 package com.simbirsoft.taxi_service.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "auto")
 @Data
+@NoArgsConstructor
 public class Auto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
