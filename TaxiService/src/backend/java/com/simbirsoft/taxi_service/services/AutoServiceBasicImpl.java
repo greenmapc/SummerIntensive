@@ -9,6 +9,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AutoServiceBasicImpl implements AutoService {
@@ -26,17 +27,16 @@ public class AutoServiceBasicImpl implements AutoService {
 
     @Override
     public Auto getOne(Long id) {
-        Auto auto = repository.getOne(id);
-        try{
-            auto.getBodyType();
-        } catch (EntityNotFoundException e) {
-            throw new IllegalArgumentException("not found");
+        Optional<Auto> candidate = repository.findById(id);
+        if (candidate.isPresent()) {
+            return candidate.get();
+        } else {
+            throw new EntityNotFoundException();
         }
-        return auto;
     }
 
     @Override
-    public void registrateAuto(AutoForm form) {
+    public void createAuto(AutoForm form) {
         Auto auto = Auto.builder()
                 .bodyType(form.getBodyType())
                 .brand(form.getBrand())

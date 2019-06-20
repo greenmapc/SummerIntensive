@@ -8,5 +8,5 @@ import java.util.List;
 public interface DriverService {
     List<Driver> getAll();
     Driver getOne(Long id);
-    void registrateDriver(DriverForm form);
+    void createDriver(DriverForm form);
 }

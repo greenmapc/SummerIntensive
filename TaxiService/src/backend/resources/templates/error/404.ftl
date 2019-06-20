@@ -1,16 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Not found</title>
-    <link href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
-    <link href="${springMacroRequestContext.contextPath}/css/form-flex.css" rel="stylesheet">
-</head>
-<body>
-<#include "../header/newHeader.ftl">
-<h1> Not found ;( </h1>
-</body>
-</html>
+<#import "../macros/layout.ftl" as l>
+<#import "../macros/navbar.ftl" as n>
+<@l.layout "Список всех авто | TaxiService">
+    <@n.navbar/>
+    <h1> 404 Not Found </h1>
+</@l.layout>

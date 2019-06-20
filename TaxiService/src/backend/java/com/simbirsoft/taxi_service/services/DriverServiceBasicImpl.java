@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DriverServiceBasicImpl implements DriverService {
@@ -26,22 +27,21 @@ public class DriverServiceBasicImpl implements DriverService {
 
     @Override
     public Driver getOne(Long id) {
-        Driver driver = repository.getOne(id);
-        try{
-            driver.getFirstName();
-        } catch (EntityNotFoundException e) {
-            throw new IllegalArgumentException("not found");
+        Optional<Driver> candidate = repository.findById(id);
+        if (candidate.isPresent()) {
+            return candidate.get();
+        } else {
+            throw new EntityNotFoundException();
         }
-        return driver;
     }
 
     @Override
-    public void registrateDriver(DriverForm form) {
+    public void createDriver(DriverForm form) {
         Driver driver = Driver.builder()
                 .actualAddress(form.getActualAddress())
                 .blackList(false)
                 .dateOfDriverLicenseExpiry(new java.sql.Date(form.getDateOfDriverLicenseExpiry().getTime()))
-                .dateOfDriverLicenseIssue( new java.sql.Date(form.getDateOfDriverLicenseIssue().getTime()))
+                .dateOfDriverLicenseIssue(new java.sql.Date(form.getDateOfDriverLicenseIssue().getTime()))
                 .dateOfPassportIssue(new java.sql.Date(form.getDateOfPassportIssue().getTime()))
                 .driversLicenseNumber(form.getDriversLicenseNumber())
                 .driversLicenseSeries(form.getDriversLicenseSeries())

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.persistence.EntityNotFoundException;
+
 @RequestMapping("/drivers")
 @Controller
 public class DriverController {
@@ -24,11 +26,12 @@ public class DriverController {
         return "drivers/list";
 
     }
+
     @GetMapping("/{id}")
     public String getOne(@PathVariable Long id, ModelMap model) {
         try {
-            model.addAttribute("driver",driverService.getOne(id));
-        } catch (IllegalArgumentException ex) {
+            model.addAttribute("driver", driverService.getOne(id));
+        } catch (EntityNotFoundException ex) {
             return "error/404";
         }
         return "drivers/card";

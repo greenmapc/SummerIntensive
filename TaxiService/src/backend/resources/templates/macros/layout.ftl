@@ -8,6 +8,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
         <link href="${springMacroRequestContext.contextPath}/css/form-flex.css" rel="stylesheet">
+        <link href="${springMacroRequestContext.contextPath}/css/data__p--margin-left.css" rel="stylesheet">
+        <link href="${springMacroRequestContext.contextPath}/css/site-header.css" rel="stylesheet">
         <title>${title}</title>
     </head>
     <body class="site">

@@ -8,5 +8,5 @@ import java.util.List;
 public interface AutoService {
     List<Auto> getAll();
     Auto getOne(Long id);
-    void registrateAuto(AutoForm form);
+    void createAuto(AutoForm form);
 }

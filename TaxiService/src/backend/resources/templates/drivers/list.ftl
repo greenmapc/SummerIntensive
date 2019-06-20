@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>TaxiService. Список водителей</title>
-    <link href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
-    <link href="${springMacroRequestContext.contextPath}/css/form-flex.css" rel="stylesheet">
-</head>
-<body class="site">
-<#include "../header/newHeader.ftl">
-<div class="form-container flex__container layout-positioner">
-    <h1 class="form-container__h1 flex__element">Список водителей</h1>
-    <#list drivers as driver>
-        <h3>ФИО</h3>
-        <p>${driver.lastName} ${driver.firstName} ${driver.patronymic}</p>
-        <h3>Рейтинг из 5 баллов</h3>
-        <p>${driver.raiting!5}</p>
-    </#list>
-</div>
-</body>
-</html>
-=======
-=======
->>>>>>> 5e32b3e6b6ef748fc8b213d9ae10c568b1817f82
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <@l.layout "TaxiService">
@@ -36,12 +10,5 @@
         <p>Иванов Иван Иванович</p>
         <h3>Рейтинг из 5 баллов</h3>
         <p>4,7</p>
-
-
     </div>
-<<<<<<< HEAD
 </@l.layout>
->>>>>>> 374aae2ec7a0113f47fcb59857a96bf025da26d6
-=======
-</@l.layout>
->>>>>>> 5e32b3e6b6ef748fc8b213d9ae10c568b1817f82
