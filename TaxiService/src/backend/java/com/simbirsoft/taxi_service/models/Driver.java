@@ -1,13 +1,19 @@
 package com.simbirsoft.taxi_service.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "driver")
 @Data
+
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +61,7 @@ public class Driver {
     @Column(name = "phone_number", nullable = false, length = 11)
     private String phoneNumber;
 
-    @Column(name = "black_list", nullable = false)
+    @Column(name = "black_list")
     private Boolean blackList;
 
     @Column(name = "telegram_login", unique = true, length = 32)

@@ -1,5 +1,6 @@
 package com.simbirsoft.taxi_service.services;
 
+import com.simbirsoft.taxi_service.forms.AutoForm;
 import com.simbirsoft.taxi_service.models.Auto;
 import com.simbirsoft.taxi_service.repositories.AutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,25 @@ public class AutoServiceBasicImpl implements AutoService {
             throw new IllegalArgumentException("not found");
         }
         return auto;
+    }
+
+    @Override
+    public void registrateAuto(AutoForm form) {
+        Auto auto = Auto.builder()
+                .bodyType(form.getBodyType())
+                .brand(form.getBrand())
+                .color(form.getColor())
+                .description(form.getDescription())
+                .drive(form.getDrive())
+                .enginePower(form.getEnginePower())
+                .gosNumber(form.getGosNumber())
+                .vinNumber(form.getVinNumber())
+                .year(form.getYear())
+                .volume(form.getVolume())
+                .transmissionType(form.getTransmissionType())
+                .model(form.getModel())
+                .kilometrage(form.getKilometrage())
+                .build();
+        repository.save(auto);
     }
 }

@@ -1,14 +1,11 @@
 package com.simbirsoft.taxi_service.models;
 
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,6 +30,9 @@ public class User implements UserDetails {
 
     @Column(name = "patronymic", nullable = false, length = 64)
     private String patronymic;
+
+    @Column(name = "phone_number", length = 11)
+    private String phoneNumber;
 
     @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))

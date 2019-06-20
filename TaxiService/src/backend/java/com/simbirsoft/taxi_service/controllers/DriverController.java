@@ -22,6 +22,7 @@ public class DriverController {
     public String getAll(ModelMap model) {
         model.addAttribute("drivers", driverService.getAll());
         return "drivers/list";
+
     }
     @GetMapping("/{id}")
     public String getOne(@PathVariable Long id, ModelMap model) {
