@@ -14,7 +14,5 @@ public class OperatorForm {
     private String lastName;
     private String patronymic;
     private String email;
-    private String password;
-    private String repeatPassword;
-    private boolean isOperator;
+    private String phoneNumber;
 }

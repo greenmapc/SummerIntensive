@@ -23,17 +23,15 @@ public class UserServiceBasicImpl implements UserService {
     }
 
     @Override
-    public void registrateOperator(OperatorForm form) {
-        if (!form.getPassword().equals(form.getRepeatPassword())) {
-            throw new IllegalArgumentException("Passwords are not equal");
-        }
+    public void createOperator(OperatorForm form) {
         User user = new User();
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
         user.setPatronymic(form.getPatronymic());
-        user.setRoles(Collections.singleton(form.isOperator() ? Roles.OPERATOR : Roles.ADMIN));
-        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        user.setPassword(form.getPhoneNumber());
+        user.setRoles(Collections.singleton(Roles.OPERATOR));
+        user.setPassword(passwordEncoder.encode("qwerty"));
         repository.save(user);
     }
 }
