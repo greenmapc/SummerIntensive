@@ -33,11 +33,11 @@ public class Driver {
     @Column(name = "drivers_license_number", nullable = false, length = 6)
     private Integer driversLicenseNumber;
 
-    @Column(name = "date_of_driver_license_issue", nullable = false)
-    private Date dateOfDriverLicenseIssue;
+    @Column(name = "date_of_license_issue", nullable = false)
+    private Date dateOfLicenseIssue;
 
-    @Column(name = "date_of_driver_license_expiry", nullable = false)
-    private Date dateOfDriverLicenseExpiry;
+    @Column(name = "date_of_license_expiry", nullable = false)
+    private Date dateOfLicenseExpiry;
 
     @Column(name = "passport_series", nullable = false)
     private Integer passportSeries;

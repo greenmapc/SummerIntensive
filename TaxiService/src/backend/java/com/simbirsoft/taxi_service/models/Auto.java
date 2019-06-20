@@ -24,7 +24,7 @@ public class Auto {
     @Column(name = "model", nullable = false, length = 128)
     private String model;
 
-    @Column(name = "gos_number", nullable = false, length = 8, unique = true)
+    @Column(name = "gos_number", nullable = false, length = 10, unique = true)
     private String gosNumber;
 
     @Column(name = "vin_number", nullable = false, length = 17, unique = true)
