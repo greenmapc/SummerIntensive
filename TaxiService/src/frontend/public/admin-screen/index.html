@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TaxiService. Экран администратора"</title>
+    <link href="../../src/css/app.css" rel="stylesheet">
+    <link href="../../src/css/site-header.css" rel="stylesheet">
+    <link href="css/form-flex.css" rel="stylesheet">
+    <link href="css/admin-screen__flex.css" rel="stylesheet">
+    <link href="css/admin-screen__svg.css" rel="stylesheet">
+</head>
+<body class="site">
+    <div class="site-header">
+        <div class="layout-positioner">
+            <div class="flex__header--container">
+                <img class="site-header__logo" src="../../src/img/logo.png" alt="Логотип">
+                <div class="flex__header--button">
+                    <button class="site-header__button site-header__button--admin  flex__element">Панель администратора</button>
+                    <button class="site-header__button site-header__button--driver flex__element">База водителей</button>
+                    <button class="site-header__button site-header__button--auto flex__element">База автомобилей</button>
+                    <button class="site-header__button site-header__button--login flex__element">Вход/выход</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="admin-screen layout-positioner">
+        <h1 class="admin-screen__h1 form-container__h1 flex__element">Экран администратора</h1>
+        <div class="admin-screen__flex form-container__form">
+            <a class="admin-screen__a" href="">
+                <div class="admin-screen__flex--bar admin-screen__flex--bar-create">
+                    Создать оператора
+                    <img class="admin-screen__svg--operator" src="css/operator.svg" alt="Изображение оператора">
+                </div>
+            </a>
+            <a class="admin-screen__a" href=""><div class="admin-screen__flex--bar admin-screen__flex--bar-create">Создать автомобиль</div></a>
+            <a class="admin-screen__a" href=""><div class="admin-screen__flex--bar admin-screen__flex--bar-create">Создать водителя</div></a>
+            <a class="admin-screen__a" href=""><div class="admin-screen__flex--bar">Изменить данные</div></a>
+            <a class="admin-screen__a" href=""><div class="admin-screen__flex--bar">Действия операторов</div></a>
+        </div>
+    </div>
+</body>
+</html>
