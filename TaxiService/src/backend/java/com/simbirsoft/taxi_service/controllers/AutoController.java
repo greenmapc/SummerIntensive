@@ -1,11 +1,15 @@
 package com.simbirsoft.taxi_service.controllers;
 
+import com.simbirsoft.taxi_service.models.Auto;
 import com.simbirsoft.taxi_service.services.AutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.persistence.EntityNotFoundException;
 
 @RequestMapping("/autos")
 @Controller
@@ -22,4 +26,15 @@ public class AutoController {
         model.addAttribute("autos", autoService.getAll());
         return "autos/list";
     }
+
+    @GetMapping("/{id}")
+    public String getOne(@PathVariable Long id, ModelMap model) {
+        try {
+            model.addAttribute("auto",autoService.getOne(id));
+        } catch (IllegalArgumentException ex) {
+            return "error/404";
+        }
+        return "autos/card";
+    }
+
 }

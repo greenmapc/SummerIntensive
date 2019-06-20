@@ -22,4 +22,5 @@ public class DriverForm {
     private String residenceAddress;
     private String actualAddress;
     private String phoneNumber;
+    private String telegramLogin;
 }

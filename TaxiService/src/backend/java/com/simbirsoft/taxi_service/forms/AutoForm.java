@@ -10,13 +10,13 @@ public class AutoForm {
     private String model;
     private String gosNumber;
     private String vinNumber;
-    private String year;
+    private Integer year;
     private Double volume;
     private Integer enginePower;
     private String transmissionType;
     private String drive;
     private String bodyType;
     private String color;
-    private String kilometrage;
+    private Integer kilometrage;
     private String description;
 }

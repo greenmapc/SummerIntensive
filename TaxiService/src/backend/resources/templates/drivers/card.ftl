@@ -3,35 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>TaxiService. Карта водителя</title>
-    <link href="../../app.css" rel="stylesheet">
+    <link href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
 </head>
 <body class="site">
-    <div class="site-header">
-        <div class="layout-positioner">
-            <img class="site-header__logo" src="../../src/img/logo.png" alt="Логотип">
-        </div>
-    </div>
-    <div class="layout-positioner">
-        <h1>База данных водителей такси > Водитель 1</h1>
-        <h2>Водитель 1</h2>
+<#include "../header/newHeader.ftl">
+
+<div class="layout-positioner">
+        <h1>База данных водителей такси > Водитель ${driver.id}</h1>
 
         <h3>ФИО водителя</h3>
-        <p>Иванов Иван Иванович</p>
+        <p>${driver.lastName} ${driver.firstName} ${driver.patronymic}</p>
 
         <h3>Паспортные данные</h3>
         <h4>Серия и номер</h4>
-        <p>ХХ ХХ ХХХХХХ</p>
+        <p>${driver.passportSeries} ${driver.passportNumber}</p>
         <h4>Орган выдачи</h4>
-        <p>ОУФМ России…</p>
+        <p>${driver.placeOfPassportIssue}</p>
         <h4>Дата выдачи</h4>
-        <p>ДД.ММ.ГГГГ</p>
+        <p>${driver.dateOfPassportIssue}</p>
         <a href="">Предпросмотр паспортных данных</a>
 
         <h3>Водительское  удостоверение</h3>
-        <p>ХХ ХХ ХХХХХХ</p>
+        <p>${driver.driversLicenseSeries} ${driver.driversLicenseNumber}</p>
 
         <h3>Контакты</h3>
-        <p>voditel@ya.ru; +X (XXX) XXX-XX-XX</p>
+        <p>${driver.phoneNumber}</p>
 
         <h3>История поездок</h3>
         <h4>Поездка 1</h4>
@@ -47,7 +43,12 @@
         <a href="">Предпросмотр договора</a>
 
         <h3>Черный список</h3>
-        <p>Нет</p>
+        <p><#if driver.blackList?? && driver.blackList>
+                Забанен
+            <#else >
+                Нет
+            </#if>
+        </p>
 
         <h3>Генератор акта передачи на  текущую дату данному водителю</h3>
         <button type="button">Создать акт передачи</button>

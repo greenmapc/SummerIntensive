@@ -1,6 +1,6 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
-<@l.layout "TaxiService">
+<@l.layout "Список всех авто | TaxiService">
     <@n.navbar/>
     <div class="form-container flex__container layout-positioner">
         <h1 class="form-container__h1 flex__element">Список автомобилей</h1>
