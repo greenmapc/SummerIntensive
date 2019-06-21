@@ -11,12 +11,18 @@ import javax.persistence.EntityNotFoundException;
 
 @Aspect
 @Component
-public class UserLoggingAspect {
-    private final Logger logger = LoggerFactory.getLogger(UserLoggingAspect.class);
+public class EntityActionLoggingAspect {
+    private final Logger logger = LoggerFactory.getLogger(EntityActionLoggingAspect.class);
+
+    @AfterThrowing(pointcut = "execution(* com.simbirsoft.taxi_service.service.impl.AutoServiceImpl.findOneById(..))",
+                   throwing = "exception")
+    public void failedFindingAutoById(EntityNotFoundException exception) {
+        logger.error(exception.getMessage());
+    }
 
     @AfterThrowing(pointcut = "execution(* com.simbirsoft.taxi_service.service.impl.DriverServiceImpl.findOneById(..))",
                    throwing = "exception")
-    public void failedFindingAutoById(EntityNotFoundException exception) {
+    public void failedFindingDriverById(EntityNotFoundException exception) {
         logger.error(exception.getMessage());
     }
 }
