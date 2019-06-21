@@ -3,6 +3,8 @@ package com.simbirsoft.taxi_service.forms;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -23,4 +25,5 @@ public class DriverForm {
     private String actualAddress;
     private String phoneNumber;
     private String telegramLogin;
+    private LocalDate birthday;
 }

@@ -10,12 +10,6 @@ values ('admin@admin.com', 'Илья', 'Шумский', '$2a$08$30N7d9UIfzkpEM3
        ('qwerty123@mail.ru', 'Алена', 'Иванова', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
         'Вячеславовна');
 
-insert into user_role (user_id, roles)
-values (1, 'OPERATOR'),
-       (2, 'OPERATOR'),
-       (3, 'OPERATOR'),
-       (4, 'OPERATOR');
-
 insert into auto (body_type, brand, color, description, drive, engine_power, gos_number, kilometrage, model, state,
                   transmission, vin_number, volume, year)
 values ('седан', 'Mercedes', 'черный', '', 'полный', '250', 'А777РУ112', 10000, 'AMG200', true, 'автомат',

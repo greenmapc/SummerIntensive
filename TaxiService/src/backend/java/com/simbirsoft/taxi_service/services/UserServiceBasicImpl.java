@@ -29,7 +29,6 @@ public class UserServiceBasicImpl implements UserService {
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
         user.setPatronymic(form.getPatronymic());
-        user.setPassword(form.getPhoneNumber());
         user.setRoles(Collections.singleton(Roles.OPERATOR));
         user.setPassword(passwordEncoder.encode("qwerty"));
         repository.save(user);

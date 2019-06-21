@@ -14,5 +14,4 @@ public class OperatorForm {
     private String lastName;
     private String patronymic;
     private String email;
-    private String phoneNumber;
 }

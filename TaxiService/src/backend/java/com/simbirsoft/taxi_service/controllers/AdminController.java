@@ -4,20 +4,26 @@ import com.simbirsoft.taxi_service.forms.OperatorForm;
 import com.simbirsoft.taxi_service.models.Roles;
 import com.simbirsoft.taxi_service.models.User;
 import com.simbirsoft.taxi_service.services.UserService;
+import com.simbirsoft.taxi_service.validators.OperatorFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
+
+    @InitBinder("form")
+    public void initBinder(WebDataBinder dataBinder) {
+        dataBinder.addValidators(new OperatorFormValidator());
+    }
 
     @Autowired
     public AdminController(UserService userService) {
@@ -31,11 +37,12 @@ public class AdminController {
     }
 
     @PostMapping("/create_operator")
-    public String createOperator(@ModelAttribute("form") OperatorForm form,
-                                 Model model,
-                                 BindingResult bindingResult) {
+    public String createOperator(@Validated @ModelAttribute("form") OperatorForm form,
+                                 BindingResult bindingResult,
+                                 Model model) {
         if (bindingResult.hasErrors()) {
             //TODO: обработка ошибок
+            return "admin/create_operator";
         }
         try {
             userService.createOperator(form);
@@ -43,7 +50,6 @@ public class AdminController {
             model.addAttribute("form", form);
             return "admin/create_operator";
         }
-        model.addAttribute("success", "Оператор успешно добавлен в систему!");
         return "admin/create_operator";
     }
 
@@ -52,9 +58,9 @@ public class AdminController {
                             Model model) {
         model.addAttribute("user", user);
 
-        if(user.getAuthorities().contains(Roles.ADMIN)) {
+        if (user.getAuthorities().contains(Roles.ADMIN)) {
             return "admin/admin";
-        } else  {
+        } else {
             // return redirect to operator panel
             return null;
         }
