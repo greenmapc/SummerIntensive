@@ -3,6 +3,7 @@ package com.simbirsoft.taxi_service.controllers;
 import com.simbirsoft.taxi_service.forms.AutoForm;
 import com.simbirsoft.taxi_service.forms.DriverForm;
 import com.simbirsoft.taxi_service.validators.AutoFormValidator;
+import com.simbirsoft.taxi_service.validators.DriverFormValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,20 +37,27 @@ public class OperatorController {
 
     @GetMapping("/create_driver")
     public String createDriverPage(Model model) {
-        model.addAttribute("form", new DriverForm());
+        model.addAttribute("driverForm", new DriverForm());
         return "operator/create_driver";
     }
 
     @PostMapping("/create_driver")
-    public String createDriver(@ModelAttribute("form") AutoForm form,
-                               Model model,
-                               BindingResult bindingResult) {
-
+    public String createDriver(@Validated @ModelAttribute("driverForm") AutoForm form,
+                               BindingResult bindingResult,
+                               Model model) {
+        if (bindingResult.hasErrors()) {
+            return "operator/create_driver";
+        }
         return "redirect:/drivers";
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
+    @InitBinder("form")
+    public void initAutoFormBinder(WebDataBinder binder) {
         binder.addValidators(new AutoFormValidator());
+    }
+
+    @InitBinder("driverForm")
+    public void initDriverFormBinder(WebDataBinder binder) {
+        binder.addValidators(new DriverFormValidator());
     }
 }
