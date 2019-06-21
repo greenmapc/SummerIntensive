@@ -1,25 +1,26 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
+
 <@l.layout "Экран администратора | TaxiService">
     <@n.navbar/>
     <div class="admin-screen layout-positioner">
         <h1 class="admin-screen__h1 form-container__h1 flex__element">Экран администратора</h1>
         <div class="admin-screen__flex form-container__form">
-            <a class="admin-screen__a" href="">
+            <a class="admin-screen__a" href="/admin/create_operator">
                 <div class="admin-screen__flex--bar admin-screen__flex--bar-create">
                     <p class="admin-screen__p">Создать оператора</p>
                     <img class="admin-screen__svg--operator"
                          src="${springMacroRequestContext.contextPath}/img/operator.svg" alt="Иконка оператора">
                 </div>
             </a>
-            <a class="admin-screen__a" href="">
+            <a class="admin-screen__a" href="/operator/create_auto">
                 <div class="admin-screen__flex--bar admin-screen__flex--bar-create">
                     <p class="admin-screen__p">Создать автомобиль</p>
                     <img class="admin-screen__svg--car" src="${springMacroRequestContext.contextPath}/img/car.svg"
                          alt="Иконка автомобиля">
                 </div>
             </a>
-            <a class="admin-screen__a" href="">
+            <a class="admin-screen__a" href="/operator/create_driver">
                 <div class="admin-screen__flex--bar admin-screen__flex--bar-create">
                     <p class="admin-screen__p">Создать водителя</p>
                     <img class="admin-screen__svg--driver" src="${springMacroRequestContext.contextPath}/img/driver.svg"

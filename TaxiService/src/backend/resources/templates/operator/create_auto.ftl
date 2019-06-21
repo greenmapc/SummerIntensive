@@ -2,7 +2,7 @@
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
 
-<@l.layout "TaxiService">
+<@l.layout "Создание карты авто | TaxiService">
     <@n.navbar/>
     <div class="form-container flex__container layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание нового автомобиля</h1>

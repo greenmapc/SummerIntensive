@@ -1,5 +1,6 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
+
 <@l.layout "Зарегистрировать нового оператора | TaxiService">
     <@n.navbar/>
     <div class="form-container flex__container layout-positioner">

@@ -1,8 +1,11 @@
 package com.simbirsoft.taxi_service.controllers;
 
 import com.simbirsoft.taxi_service.forms.OperatorForm;
+import com.simbirsoft.taxi_service.models.Roles;
+import com.simbirsoft.taxi_service.models.User;
 import com.simbirsoft.taxi_service.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,7 +48,15 @@ public class AdminController {
     }
 
     @GetMapping("/panel")
-    public String adminPage(Model model) {
-        return "admin/admin";
+    public String adminPage(@AuthenticationPrincipal User user,
+                            Model model) {
+        model.addAttribute("user", user);
+
+        if(user.getAuthorities().contains(Roles.ADMIN)) {
+            return "admin/admin";
+        } else  {
+            // return redirect to operator panel
+            return null;
+        }
     }
 }

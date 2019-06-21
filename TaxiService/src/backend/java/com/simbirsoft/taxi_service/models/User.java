@@ -68,4 +68,14 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public Set<String> getStringRoles() {
+        Set<String> set = new HashSet<>();
+
+        for(Roles roles : roles) {
+            set.add(roles.getAuthority());
+        }
+
+        return set;
+    }
 }

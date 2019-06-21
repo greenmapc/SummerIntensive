@@ -25,7 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .anyRequest().permitAll()
+                .antMatchers("/login", "/img/**", "/font/**", "/css/**", "/errors/*").permitAll()
+                .anyRequest().authenticated()
 //                .antMatchers("/admin/createOperator", "/registration", "/login")
 //                .permitAll()
 //                .anyRequest().authenticated()
@@ -33,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/admin/panel", true)
                 .permitAll()
                 .and()
                 .logout()
