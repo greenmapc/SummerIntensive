@@ -17,7 +17,7 @@ public class Act {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "auto_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "auto", referencedColumnName = "id", nullable = false)
     private Auto auto;
 
     @Column(name = "lease_start_date")

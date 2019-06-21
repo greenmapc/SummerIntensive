@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -68,4 +70,11 @@ public class Driver {
 
     @Column(name = "rating")
     private Integer rating;
+
+    @OneToMany(mappedBy = "driver_renter")
+    private List<Act> rentList;
+
+    @OneToMany(mappedBy = "driver")
+    private List<Document> documents;
+
 }

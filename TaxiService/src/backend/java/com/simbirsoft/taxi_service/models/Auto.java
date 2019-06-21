@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -62,4 +63,12 @@ public class Auto {
 
     @Column(name = "state", nullable = false)
     private Boolean state;
+
+
+    @OneToMany(mappedBy = "auto")
+    private List<Act> actList;
+
+    @OneToMany(mappedBy = "auto")
+    private List<Document> documents;
+
 }
