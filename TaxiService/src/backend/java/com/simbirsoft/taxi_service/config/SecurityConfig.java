@@ -1,6 +1,6 @@
 package com.simbirsoft.taxi_service.config;
 
-import com.simbirsoft.taxi_service.services.security.UserDetailsServiceImpl;
+import com.simbirsoft.taxi_service.service.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,11 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/img/**", "/font/**", "/css/**", "/errors/*").permitAll()
+                .antMatchers("/login", "/img/**", "/font/**", "/css/**", "/error/*").permitAll()
                 .anyRequest().authenticated()
-//                .antMatchers("/admin/createOperator", "/registration", "/login")
-//                .permitAll()
-//                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
