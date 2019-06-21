@@ -1,12 +1,14 @@
-insert into users (id, email, first_name, last_name, hash_password, patronymic, phone_number)
-values (1, 'matwego@mail.ru', 'Андрей', 'Петров', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
-        'Сергеевич', '89991231230'),
-       (2, 'matw@mail.ru', 'Андрей', 'Владимиров', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
-        'Владимирович', '89991231231'),
-       (3, 'qwerty@mail.ru', 'Анна', 'Кузьмина', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
-        'Сергеевна', '89991231232'),
-       (4, 'qwerty123@mail.ru', 'Алена', 'Иванова', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
-        'Вячеславовна', '89991231233');
+insert into users (email, first_name, last_name, hash_password, patronymic)
+values ('admin@admin.com', 'Илья', 'Шумский', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
+        'Сергеевич'),
+       ('matwego@mail.ru', 'Андрей', 'Петров', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
+        'Сергеевич'),
+       ('matw@mail.ru', 'Андрей', 'Владимиров', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
+        'Владимирович'),
+       ('qwerty@mail.ru', 'Анна', 'Кузьмина', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
+        'Сергеевна'),
+       ('qwerty123@mail.ru', 'Алена', 'Иванова', '$2a$08$30N7d9UIfzkpEM3JC.3DkOhy955ZCqFKAb5C.7ATxTomgL1OW4Q.K',
+        'Вячеславовна');
 
 insert into user_role (user_id, roles)
 values (1, 'OPERATOR'),
@@ -29,7 +31,7 @@ values ('седан', 'Mercedes', 'черный', '', 'полный', '250', 'А
        ('пикап', 'Toyota', 'черный', '', 'задний', '250', 'А771РУ112', 10200, 'Camry', true, 'механика',
         'AFWQWRWQW12523QMK', 3, 2012);
 
-insert into driver (actual_address, black_list, date_of_passport_issue, drivers_license_number, drivers_license_series,
+insert into driver (actual_address, black_list, date_of_passport_issue, drivers_license_series, drivers_license_number,
                     first_name, last_name, passport_number, passport_series, patronymic, phone_number,
                     place_of_passport_issue, rating, residence_address, date_of_license_expiry, date_of_license_issue)
 values ('ул Ямашева д.3', false, date '2010-05-10', 1234, 123456, 'Иван', 'Иванов', 432456,
@@ -47,3 +49,10 @@ values ('ул Ямашева д.3', false, date '2010-05-10', 1234, 123456, 'И�
        ('ул Ленина д.12', false, date '2016-01-15', 1534, 153456, 'Сергей', 'Сергеев', 432656,
         1236, 'Николаевич', '79991234162', 'МВД города Самары', 0, 'ул Ленина д.12', date '2029-06-14',
         date '2019-06-14');
+
+insert into user_role(user_id, roles)
+VALUES (1, 'ADMIN'),
+       (2, 'OPERATOR'),
+       (3, 'OPERATOR'),
+       (4, 'OPERATOR'),
+       (5, 'OPERATOR');
