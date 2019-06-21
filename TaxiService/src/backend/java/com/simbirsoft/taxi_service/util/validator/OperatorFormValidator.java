@@ -1,7 +1,7 @@
-package com.simbirsoft.taxi_service.validators;
+package com.simbirsoft.taxi_service.util.validators;
 
-import com.simbirsoft.taxi_service.forms.OperatorForm;
-import com.simbirsoft.taxi_service.utils.ValidatorConstraints;
+import com.simbirsoft.taxi_service.form.OperatorForm;
+import com.simbirsoft.taxi_service.util.ValidatorConstraints;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

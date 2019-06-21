@@ -8,14 +8,13 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
 
-
 @Aspect
 @Component
 public class UserLoggingAspect {
     private final Logger logger = LoggerFactory.getLogger(UserLoggingAspect.class);
 
     @AfterThrowing(pointcut = "execution(* com.simbirsoft.taxi_service.service.impl.DriverServiceImpl.findOneById(..))",
-                   throwing = "exception")
+            throwing = "exception")
     public void failedFindingAutoById(EntityNotFoundException exception) {
         logger.error(exception.getMessage());
     }
