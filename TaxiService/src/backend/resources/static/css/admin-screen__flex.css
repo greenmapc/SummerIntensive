@@ -7,6 +7,7 @@
 .admin-screen__flex--bar {
     margin: 10px;
     height: 200px;
+    overflow: hidden;
     max-width: 480px;
     min-width: 300px;
     text-align: center;
@@ -23,4 +24,10 @@
     text-decoration: none;
     color: white;
     vertical-align: center;
+}
+
+.admin-screen__p {
+    margin: 0;
+    padding-top: 10px;
+    color: white;
 }

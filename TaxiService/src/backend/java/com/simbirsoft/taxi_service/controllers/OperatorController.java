@@ -26,10 +26,6 @@ public class OperatorController {
                              BindingResult bindingResult,
                              Model model) {
         if (bindingResult.hasErrors()) {
-            /*Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
-            model.mergeAttributes(errorsMap);
-            model.addAttribute("form", form);*/
-//            model.addAttribute("form", form);
             return "operator/create_auto";
         }
         return "redirect:/autos";
