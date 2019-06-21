@@ -24,7 +24,7 @@ public class ActServiceImpl implements ActService {
     @Override
     public void createActFromDriverToDriver(ActForm form) {
         // parse form, save to db
-        pdfActCreatorService.createPdfActFromCompanyToDriver(form);
+        pdfActCreatorService.createPdfActFromDriverToDriver(form);
     }
 
     @Override
