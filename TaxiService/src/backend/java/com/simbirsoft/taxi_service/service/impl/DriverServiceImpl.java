@@ -23,13 +23,10 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver getOne(Long id) {
+    public Driver findOneById(Long id) throws EntityNotFoundException {
         Optional<Driver> candidate = repository.findById(id);
-        if (candidate.isPresent()) {
-            return candidate.get();
-        } else {
-            throw new EntityNotFoundException();
-        }
+        return candidate.orElseThrow(
+                () -> new EntityNotFoundException("Auto with id = " + id + " not found"));
     }
 
     @Override

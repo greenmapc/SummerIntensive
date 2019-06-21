@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface AutoService {
     List<Auto> getAll();
-    Auto getOne(Long id);
+    Auto findOneById(Long id);
     void createAuto(AutoForm form);
 }

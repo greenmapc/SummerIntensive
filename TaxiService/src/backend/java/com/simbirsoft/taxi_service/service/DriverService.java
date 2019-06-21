@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface DriverService {
     List<Driver> getAll();
-    Driver getOne(Long id);
+    Driver findOneById(Long id);
     void createDriver(DriverForm form);
 }

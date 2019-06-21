@@ -23,13 +23,10 @@ public class AutoServiceImpl implements AutoService {
     }
 
     @Override
-    public Auto getOne(Long id) {
+    public Auto findOneById(Long id) throws EntityNotFoundException {
         Optional<Auto> candidate = repository.findById(id);
-        if (candidate.isPresent()) {
-            return candidate.get();
-        } else {
-            throw new EntityNotFoundException();
-        }
+        return candidate.orElseThrow(
+                () -> new EntityNotFoundException("Auto with id = " + id + " not found"));
     }
 
     @Override

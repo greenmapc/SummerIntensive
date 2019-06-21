@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.persistence.EntityNotFoundException;
+
 @RequestMapping("/autos")
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -28,7 +30,11 @@ public class AutoController {
     @GetMapping("/{id}")
     public String getOne(@AuthenticationPrincipal User user,
                          @PathVariable Long id, ModelMap model) {
-        model.addAttribute("auto", autoService.getOne(id));
+        try {
+            model.addAttribute("auto", autoService.findOneById(id));
+        } catch (EntityNotFoundException e) {
+            // ToDo: handle not found
+        }
         model.addAttribute("user", user);
         return "autos/card";
     }
