@@ -59,10 +59,10 @@ public class AutoFormValidator implements Validator {
     }
 
     private boolean checkGosNumber(String gosNumber) {
-        Pattern patternTaxi = Pattern.compile("[АВЕКМНОРСТУХ]{2}\\d{3}(?<!000)\\d{2,3}");
-        Matcher matcherTaxi = patternTaxi.matcher(gosNumber);
-        Pattern patternAuto = Pattern.compile("[АВЕКМНОРСТУХ]\\d{3}(?<!000)[АВЕКМНОРСТУХ]{2}\\d{2,3}");
-        Matcher matcherAuto = patternAuto.matcher(gosNumber);
+        Pattern pattern = Pattern.compile("[АВЕКМНОРСТУХ]{2}\\d{3}(?<!000)\\d{2,3}");
+        Matcher matcherTaxi = pattern.matcher(gosNumber);
+        pattern = Pattern.compile("[АВЕКМНОРСТУХ]\\d{3}(?<!000)[АВЕКМНОРСТУХ]{2}\\d{2,3}");
+        Matcher matcherAuto = pattern.matcher(gosNumber);
         return matcherTaxi.lookingAt() || matcherAuto.lookingAt();
     }
 }

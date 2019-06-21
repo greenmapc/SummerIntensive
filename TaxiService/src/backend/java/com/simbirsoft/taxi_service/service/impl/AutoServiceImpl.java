@@ -1,8 +1,10 @@
-package com.simbirsoft.taxi_service.service;
+package com.simbirsoft.taxi_service.service.impl;
 
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.repository.AutoRepository;
+import com.simbirsoft.taxi_service.service.AutoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +13,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AutoServiceBasicImpl implements AutoService {
-    private AutoRepository repository;
-
-    @Autowired
-    public AutoServiceBasicImpl(AutoRepository repository) {
-        this.repository = repository;
-    }
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class AutoServiceImpl implements AutoService {
+    private final AutoRepository repository;
 
     @Override
     public List<Auto> getAll() {

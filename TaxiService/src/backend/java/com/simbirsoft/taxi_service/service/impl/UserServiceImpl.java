@@ -1,9 +1,11 @@
-package com.simbirsoft.taxi_service.service;
+package com.simbirsoft.taxi_service.service.impl;
 
 import com.simbirsoft.taxi_service.form.OperatorForm;
 import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.UserRepository;
+import com.simbirsoft.taxi_service.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,16 +13,10 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 
 @Service
-public class UserServiceBasicImpl implements UserService {
-    private UserRepository repository;
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserServiceBasicImpl(UserRepository repository,
-                                PasswordEncoder passwordEncoder) {
-        this.repository = repository;
-        this.passwordEncoder = passwordEncoder;
-    }
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class UserServiceImpl implements UserService {
+    private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void createOperator(OperatorForm form) {

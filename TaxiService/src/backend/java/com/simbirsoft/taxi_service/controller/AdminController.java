@@ -4,6 +4,7 @@ import com.simbirsoft.taxi_service.form.OperatorForm;
 import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,16 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AdminController {
     private final UserService userService;
 
-    @Autowired
-    public AdminController(UserService userService) {
-        this.userService = userService;
-    }
-
     @GetMapping("/create_operator")
-    public String createOperatorPage(Model model) {
+    public String createOperatorPage(@AuthenticationPrincipal User user,
+                                     Model model) {
+        model.addAttribute("user", user);
         model.addAttribute("form", new OperatorForm());
         return "admin/create_operator";
     }
@@ -33,7 +32,8 @@ public class AdminController {
     @PostMapping("/create_operator")
     public String createOperator(@ModelAttribute("form") OperatorForm form,
                                  Model model,
-                                 BindingResult bindingResult) {
+                                 BindingResult bindingResult,
+                                 @AuthenticationPrincipal User user) {
         if (bindingResult.hasErrors()) {
             //TODO: обработка ошибок
         }
@@ -43,7 +43,10 @@ public class AdminController {
             model.addAttribute("form", form);
             return "admin/create_operator";
         }
+
         model.addAttribute("success", "Оператор успешно добавлен в систему!");
+        model.addAttribute("user", user);
+
         return "admin/create_operator";
     }
 

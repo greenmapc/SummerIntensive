@@ -2,6 +2,7 @@ package com.simbirsoft.taxi_service.controller;
 
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.AutoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,13 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/autos")
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AutoController {
-    private AutoService autoService;
-
-    @Autowired
-    public AutoController(AutoService autoService) {
-        this.autoService = autoService;
-    }
+    private final AutoService autoService;
 
     @GetMapping
     public String getAll(@AuthenticationPrincipal User user,

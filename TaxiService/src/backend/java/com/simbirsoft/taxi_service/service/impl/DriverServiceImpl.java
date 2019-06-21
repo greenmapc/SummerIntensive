@@ -1,8 +1,10 @@
-package com.simbirsoft.taxi_service.service;
+package com.simbirsoft.taxi_service.service.impl;
 
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.repository.DriverRepository;
+import com.simbirsoft.taxi_service.service.DriverService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +13,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DriverServiceBasicImpl implements DriverService {
-    private DriverRepository repository;
-
-    @Autowired
-    public DriverServiceBasicImpl(DriverRepository repository) {
-        this.repository = repository;
-    }
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class DriverServiceImpl implements DriverService {
+    private final DriverRepository repository;
 
     @Override
     public List<Driver> getAll() {

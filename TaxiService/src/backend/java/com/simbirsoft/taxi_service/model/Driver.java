@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor
@@ -70,6 +71,9 @@ public class Driver {
 
     @Column(name = "rating")
     private Integer rating;
+
+    @Column(name = "birth_date", nullable = false, columnDefinition = "date")
+    private LocalDate birthDate;
 
     @OneToMany(mappedBy = "driverRenter")
     private List<Act> rentList;

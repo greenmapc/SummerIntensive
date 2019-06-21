@@ -15,7 +15,17 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/operator")
-public class OperatorController {
+public class UserController {
+    @InitBinder("form")
+    public void initAutoFormBinder(WebDataBinder binder) {
+        binder.addValidators(new AutoFormValidator());
+    }
+
+    @InitBinder("driverForm")
+    public void initDriverFormBinder(WebDataBinder binder) {
+        binder.addValidators(new DriverFormValidator());
+    }
+
 
     @GetMapping("/create_auto")
     public String createAutoPage(@AuthenticationPrincipal User user,
@@ -28,10 +38,16 @@ public class OperatorController {
 
     @PostMapping("/create_auto")
     public String createAuto(@Validated @ModelAttribute("form") AutoForm form,
-                             BindingResult bindingResult) {
+                             BindingResult bindingResult,
+                             @AuthenticationPrincipal User user,
+                             Model model) {
         if (bindingResult.hasErrors()) {
             return "operator/create_auto";
         }
+        // ToDo AutoService.create
+
+        model.addAttribute("user", user);
+
         return "redirect:/autos";
     }
 
@@ -40,26 +56,23 @@ public class OperatorController {
                                    Model model) {
         model.addAttribute("driverForm", new DriverForm());
         model.addAttribute("user", user);
+
         return "operator/create_driver";
     }
 
     @PostMapping("/create_driver")
     public String createDriver(@Validated @ModelAttribute("driverForm") AutoForm form,
                                BindingResult bindingResult,
-                               Model model) {
+                               Model model,
+                               @AuthenticationPrincipal User user) {
         if (bindingResult.hasErrors()) {
             return "operator/create_driver";
         }
+
+        //ToDo driverService.create
+
+        model.addAttribute("user", user);
         return "redirect:/drivers";
     }
 
-    @InitBinder("form")
-    public void initAutoFormBinder(WebDataBinder binder) {
-        binder.addValidators(new AutoFormValidator());
-    }
-
-    @InitBinder("driverForm")
-    public void initDriverFormBinder(WebDataBinder binder) {
-        binder.addValidators(new DriverFormValidator());
-    }
 }
