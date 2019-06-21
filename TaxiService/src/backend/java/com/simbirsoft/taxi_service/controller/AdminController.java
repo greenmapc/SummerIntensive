@@ -1,12 +1,12 @@
 package com.simbirsoft.taxi_service.controller;
 
-import com.simbirsoft.taxi_service.forms.OperatorForm;
-import com.simbirsoft.taxi_service.models.Roles;
-import com.simbirsoft.taxi_service.models.User;
-import com.simbirsoft.taxi_service.services.UserService;
-import com.simbirsoft.taxi_service.validators.OperatorFormValidator;
+import com.simbirsoft.taxi_service.form.OperatorForm;
+import com.simbirsoft.taxi_service.model.Roles;
+import com.simbirsoft.taxi_service.model.User;
+import com.simbirsoft.taxi_service.service.UserService;
+import com.simbirsoft.taxi_service.util.validators.OperatorFormValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +24,6 @@ public class AdminController {
     @InitBinder("form")
     public void initBinder(WebDataBinder dataBinder) {
         dataBinder.addValidators(new OperatorFormValidator());
-    }
-
-    @Autowired
-    public AdminController(UserService userService) {
-        this.userService = userService;
     }
 
     @GetMapping("/create_operator")
@@ -68,7 +63,7 @@ public class AdminController {
 
         if (user.getAuthorities().contains(Roles.ADMIN)) {
             return "admin/admin";
-        } else  {
+        } else {
             // ToDo: return redirect to operator panel
             return null;
         }
