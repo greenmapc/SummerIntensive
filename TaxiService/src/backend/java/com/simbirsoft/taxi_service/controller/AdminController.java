@@ -1,25 +1,35 @@
 package com.simbirsoft.taxi_service.controller;
 
-import com.simbirsoft.taxi_service.form.OperatorForm;
-import com.simbirsoft.taxi_service.model.Roles;
-import com.simbirsoft.taxi_service.model.User;
-import com.simbirsoft.taxi_service.service.UserService;
-import lombok.RequiredArgsConstructor;
+import com.simbirsoft.taxi_service.forms.OperatorForm;
+import com.simbirsoft.taxi_service.models.Roles;
+import com.simbirsoft.taxi_service.models.User;
+import com.simbirsoft.taxi_service.services.UserService;
+import com.simbirsoft.taxi_service.validators.OperatorFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AdminController {
     private final UserService userService;
+
+    @InitBinder("form")
+    public void initBinder(WebDataBinder dataBinder) {
+        dataBinder.addValidators(new OperatorFormValidator());
+    }
+
+    @Autowired
+    public AdminController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/create_operator")
     public String createOperatorPage(@AuthenticationPrincipal User user,
@@ -30,12 +40,13 @@ public class AdminController {
     }
 
     @PostMapping("/create_operator")
-    public String createOperator(@ModelAttribute("form") OperatorForm form,
-                                 Model model,
+    public String createOperator(@Validated @ModelAttribute("form") OperatorForm form,
                                  BindingResult bindingResult,
+                                 Model model,
                                  @AuthenticationPrincipal User user) {
         if (bindingResult.hasErrors()) {
             //TODO: обработка ошибок
+            return "admin/create_operator";
         }
         try {
             userService.createOperator(form);
@@ -55,7 +66,7 @@ public class AdminController {
                             Model model) {
         model.addAttribute("user", user);
 
-        if(user.getAuthorities().contains(Roles.ADMIN)) {
+        if (user.getAuthorities().contains(Roles.ADMIN)) {
             return "admin/admin";
         } else  {
             // ToDo: return redirect to operator panel

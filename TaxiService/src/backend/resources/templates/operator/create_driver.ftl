@@ -85,6 +85,13 @@
             <@spring.showErrors "driverForm.dateOfPassportIssue"/>
             <br>
 
+            <label for="driver__birthday">Дата рождения *</label><br>
+            <@spring.formInput "driverForm.birthday" 'class="form-container__form--input flex__element"
+                            id="driver__birthday" type="date" placeholder="Введите дату рождения" required'/>
+            <br>
+            <@spring.showErrors "driverForm.birthday"/>
+            <br>
+
             <label for="driver__residence_address">Адрес прописки *</label><br>
             <@spring.formInput "driverForm.residenceAddress" 'class="form-container__form--input flex__element"
                             id="driver__residence_address" placeholder="Введите адрес прописки" required'/>

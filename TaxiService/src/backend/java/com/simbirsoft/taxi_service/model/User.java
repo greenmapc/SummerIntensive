@@ -72,7 +72,7 @@ public class User implements UserDetails {
     public Set<String> getStringRoles() {
         Set<String> set = new HashSet<>();
 
-        for(Roles roles : roles) {
+        for (Roles roles : roles) {
             set.add(roles.getAuthority());
         }
 
