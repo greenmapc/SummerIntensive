@@ -71,7 +71,7 @@ public class Driver {
     @Column(name = "rating")
     private Integer rating;
 
-    @OneToMany(mappedBy = "driver_renter")
+    @OneToMany(mappedBy = "driverRenter")
     private List<Act> rentList;
 
     @OneToMany(mappedBy = "driver")
