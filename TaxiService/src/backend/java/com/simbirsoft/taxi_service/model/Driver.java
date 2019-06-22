@@ -37,10 +37,10 @@ public class Driver {
     private Integer driversLicenseNumber;
 
     @Column(name = "date_of_license_issue", nullable = false)
-    private Date dateOfLicenseIssue;
+    private LocalDate dateOfLicenseIssue;
 
     @Column(name = "date_of_license_expiry", nullable = false)
-    private Date dateOfLicenseExpiry;
+    private LocalDate dateOfLicenseExpiry;
 
     @Column(name = "passport_series", nullable = false)
     private Integer passportSeries;
@@ -52,7 +52,7 @@ public class Driver {
     private String placeOfPassportIssue;
 
     @Column(name = "date_of_passport_issue", nullable = false)
-    private Date dateOfPassportIssue;
+    private LocalDate dateOfPassportIssue;
 
     @Column(name = "residence_address", nullable = false, length = 256)
     private String residenceAddress;

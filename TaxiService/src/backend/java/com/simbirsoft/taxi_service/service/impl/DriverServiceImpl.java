@@ -46,13 +46,13 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public void createDriver(DriverForm form) {
+    public Driver createDriver(DriverForm form) {
         Driver driver = Driver.builder()
                 .actualAddress(form.getActualAddress())
                 .blackList(false)
-                .dateOfLicenseExpiry(new java.sql.Date(form.getDateOfDriverLicenseExpiry().getTime()))
-                .dateOfLicenseIssue(new java.sql.Date(form.getDateOfDriverLicenseIssue().getTime()))
-                .dateOfPassportIssue(new java.sql.Date(form.getDateOfPassportIssue().getTime()))
+                .dateOfLicenseExpiry(form.getDateOfDriverLicenseExpiry())
+                .dateOfLicenseIssue(form.getDateOfDriverLicenseIssue())
+                .dateOfPassportIssue(form.getDateOfPassportIssue())
                 .driversLicenseNumber(form.getDriversLicenseNumber())
                 .driversLicenseSeries(form.getDriversLicenseSeries())
                 .firstName(form.getFirstName())
@@ -66,7 +66,7 @@ public class DriverServiceImpl implements DriverService {
                 .residenceAddress(form.getResidenceAddress())
                 .telegramLogin(form.getTelegramLogin())
                 .build();
-        repository.save(driver);
+        return repository.save(driver);
     }
 
 }

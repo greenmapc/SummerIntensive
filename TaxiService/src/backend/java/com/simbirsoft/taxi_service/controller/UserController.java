@@ -22,6 +22,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
@@ -41,7 +42,6 @@ public class UserController {
     public void initDriverFormBinder(WebDataBinder binder) {
         binder.addValidators(new DriverFormValidator());
     }
-
 
     @GetMapping("/create_auto")
     public String createAutoPage(@AuthenticationPrincipal User user,
@@ -80,16 +80,14 @@ public class UserController {
     }
 
     @PostMapping("/create_driver")
-    public String createDriver(@Validated @ModelAttribute("driverForm") AutoForm form,
+    public String createDriver(@Validated @ModelAttribute("driverForm") DriverForm form,
                                BindingResult bindingResult,
                                Model model,
                                @AuthenticationPrincipal User user) {
         if (bindingResult.hasErrors()) {
             return "operator/create_driver";
         }
-
-        //ToDo driverService.create
-
+        driverService.createDriver(form);
         model.addAttribute("user", user);
         return "redirect:/drivers";
     }

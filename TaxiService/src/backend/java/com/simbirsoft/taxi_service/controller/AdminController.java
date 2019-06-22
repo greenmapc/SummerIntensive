@@ -4,7 +4,7 @@ import com.simbirsoft.taxi_service.form.OperatorForm;
 import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.UserService;
-import com.simbirsoft.taxi_service.util.validators.OperatorFormValidator;
+import com.simbirsoft.taxi_service.util.validator.OperatorFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

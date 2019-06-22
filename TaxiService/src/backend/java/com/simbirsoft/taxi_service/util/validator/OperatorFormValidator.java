@@ -1,4 +1,4 @@
-package com.simbirsoft.taxi_service.util.validators;
+package com.simbirsoft.taxi_service.util.validator;
 
 import com.simbirsoft.taxi_service.form.OperatorForm;
 import com.simbirsoft.taxi_service.util.ValidatorConstraints;
