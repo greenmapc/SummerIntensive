@@ -30,7 +30,7 @@ public class AutoServiceImpl implements AutoService {
     }
 
     @Override
-    public void createAuto(AutoForm form) {
+    public Auto createAuto(AutoForm form) {
         Auto auto = Auto.builder()
                 .bodyType(form.getBodyType())
                 .brand(form.getBrand())
@@ -46,7 +46,7 @@ public class AutoServiceImpl implements AutoService {
                 .model(form.getModel())
                 .kilometrage(form.getKilometrage())
                 .build();
-        repository.save(auto);
+        return repository.save(auto);
     }
 
     @Override

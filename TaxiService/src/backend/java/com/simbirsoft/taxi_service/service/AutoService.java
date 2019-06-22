@@ -8,6 +8,6 @@ import java.util.List;
 public interface AutoService {
     List<Auto> getAll();
     Auto findOneById(Long id);
-    void createAuto(AutoForm form);
+    Auto createAuto(AutoForm form);
     List<Auto> findAllFree();
 }
