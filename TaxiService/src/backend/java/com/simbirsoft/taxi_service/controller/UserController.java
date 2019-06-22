@@ -3,8 +3,10 @@ package com.simbirsoft.taxi_service.controller;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.User;
+import com.simbirsoft.taxi_service.util.SelectCreator;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,7 @@ public class UserController {
                                  Model model) {
         model.addAttribute("form", new AutoForm());
         model.addAttribute("user", user);
+        fillAutoSelectFields(model);
 
         return "operator/create_auto";
     }
@@ -42,6 +45,8 @@ public class UserController {
                              @AuthenticationPrincipal User user,
                              Model model) {
         if (bindingResult.hasErrors()) {
+            fillAutoSelectFields(model);
+
             return "operator/create_auto";
         }
         // ToDo AutoService.create
@@ -108,5 +113,12 @@ public class UserController {
     @PostMapping("/create_act_from_driver_to_driver")
     public String createActFromDriverToDriver(Model model) {
         return "redirect:operator/acts";
+    }
+
+
+    private void fillAutoSelectFields(Model model) {
+        model.addAttribute("bodyType", SelectCreator.bodyTypeCreate());
+        model.addAttribute("driveType", SelectCreator.driveTypeCreate());
+        model.addAttribute("transmissionType", SelectCreator.transmissionType());
     }
 }

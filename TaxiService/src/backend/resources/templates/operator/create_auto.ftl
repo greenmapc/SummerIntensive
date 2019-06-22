@@ -55,19 +55,19 @@
             <br>
 
             <label for="auto__transmission_type">КПП</label><br>
-            <@spring.formInput "form.transmissionType" 'class="form-container__form--input flex__element"
+            <@spring.formSingleSelect "form.transmissionType" transmissionType 'class="form-container__form--input flex__element"
                             id="auto__transmission_type" placeholder="Введите тип КПП" required'/><br>
             <@spring.showErrors "form.transmissionType"/>
 
             <label for="auto__drive">Привод автомобиля</label><br>
-            <@spring.formInput "form.drive" 'class="form-container__form--input flex__element"
+            <@spring.formSingleSelect "form.drive" driveType 'class="form-container__form--input flex__element"
                             id="auto__drive" placeholder="Введите привод автомобиля" required'/><br>
             <@spring.showErrors "form.drive"/>
             <br>
 
             <label for="auto__body_type">Тип кузова</label><br>
-            <@spring.formInput "form.bodyType" 'class="form-container__form--input flex__element"
-                            id="auto__body_type" placeholder="Введите тип кузова" required'/><br>
+            <@spring.formSingleSelect "form.bodyType" bodyType 'class="form-container__form--input flex__element"-->
+                            <#--id="auto__body_type" placeholder="Введите тип кузова" required'/>
             <@spring.showErrors "form.bodyType"/>
             <br>
 
