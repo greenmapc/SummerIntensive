@@ -9,4 +9,5 @@ public interface AutoService {
     List<Auto> getAll();
     Auto findOneById(Long id);
     void createAuto(AutoForm form);
+    List<Auto> findAllFree();
 }

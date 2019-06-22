@@ -48,4 +48,9 @@ public class AutoServiceImpl implements AutoService {
                 .build();
         repository.save(auto);
     }
+
+    @Override
+    public List<Auto> findAllFree() {
+        return repository.findAllFree();
+    }
 }

@@ -3,13 +3,12 @@ package com.simbirsoft.taxi_service.controller;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
-import com.simbirsoft.taxi_service.model.Auto;
-import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.service.DriverService;
-import com.simbirsoft.taxi_service.util.SelectCreator;
+import com.simbirsoft.taxi_service.util.freemaker_select_creator.CreateActSelectCreator;
+import com.simbirsoft.taxi_service.util.freemaker_select_creator.CreateAutoSelectCreator;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +23,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/operator")
@@ -109,8 +105,10 @@ public class UserController {
     public String actFromCompanyToDriverPage(@AuthenticationPrincipal User user,
                                              Model model) {
         model.addAttribute("formCD", new CompanyToDriverActForm());
-        model.addAttribute("drivers", fillDriverSelectFields(driverService.getAllSorted()));
-        model.addAttribute("autos", fillAutoSelectFields(autoService.getAll()));
+        model.addAttribute("drivers",
+                CreateActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+        model.addAttribute("autos",
+                CreateActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
         model.addAttribute("user", user);
 
         return "acts/company_to_driver";
@@ -162,32 +160,9 @@ public class UserController {
     }
 
 
-
     private void fillAutoSelectFields(Model model) {
-        model.addAttribute("bodyType", SelectCreator.bodyTypeCreate());
-        model.addAttribute("driveType", SelectCreator.driveTypeCreate());
-        model.addAttribute("transmissionType", SelectCreator.transmissionType());
-    }
-
-    private Map<String, String> fillDriverSelectFields(List<Driver> drivers) {
-        Map<String, String> map = new HashMap<>();
-        for (Driver driver : drivers) {
-            map.put(driver.getId().toString(), driver.getLastName() + " " +
-                    driver.getFirstName() + " " +
-                    driver.getPatronymic() + ", " +
-                    driver.getBirthDate());
-        }
-        return map;
-    }
-
-    private Map<String, String> fillAutoSelectFields(List<Auto> autos) {
-        Map<String, String> map = new HashMap<>();
-        for (Auto auto : autos) {
-            map.put(auto.getId().toString(), auto.getBrand() + ", " +
-                    auto.getModel() + ", " +
-                    auto.getYear() + ", " +
-                    auto.getGosNumber());
-        }
-        return map;
+        model.addAttribute("bodyType", CreateAutoSelectCreator.bodyTypeCreate());
+        model.addAttribute("driveType", CreateAutoSelectCreator.driveTypeCreate());
+        model.addAttribute("transmissionType", CreateAutoSelectCreator.transmissionType());
     }
 }
