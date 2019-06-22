@@ -1,5 +1,6 @@
 package com.simbirsoft.taxi_service.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

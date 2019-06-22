@@ -5,6 +5,7 @@ import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.UserRepository;
 import com.simbirsoft.taxi_service.service.UserService;
+import com.simbirsoft.taxi_service.util.PasswordGeneration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,14 +20,18 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void createOperator(OperatorForm form) {
+    public User createOperator(OperatorForm form) {
+        String password = PasswordGeneration.generatePassword();
+
         User user = new User();
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
         user.setPatronymic(form.getPatronymic());
         user.setRoles(Collections.singleton(Roles.OPERATOR));
-        user.setPassword(passwordEncoder.encode("qwerty"));
+        user.setPassword(passwordEncoder.encode(password));
+
         repository.save(user);
+        return user;
     }
 }
