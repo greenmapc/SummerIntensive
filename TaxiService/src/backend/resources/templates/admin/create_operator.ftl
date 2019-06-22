@@ -3,7 +3,7 @@
 <#import "/spring.ftl" as spring>
 <@l.layout "Зарегистрировать нового оператора | TaxiService">
     <@n.navbar/>
-    <div class="form-container flex__container layout-positioner">
+    <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание нового оператора</h1>
 
         <form class="form-container__form" action="/admin/create_operator" method="post">
