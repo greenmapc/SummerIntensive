@@ -1,8 +1,12 @@
 package com.simbirsoft.taxi_service.controller;
 
 import com.simbirsoft.taxi_service.form.AutoForm;
+import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
+import com.simbirsoft.taxi_service.model.Auto;
+import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
+import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.service.DriverService;
 import com.simbirsoft.taxi_service.util.SelectCreator;
@@ -10,6 +14,7 @@ import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +23,20 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/operator")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
     private final AutoService autoService;
     private final DriverService driverService;
+    private final ActService actService;
 
     @InitBinder("form")
     public void initAutoFormBinder(WebDataBinder binder) {
@@ -94,13 +107,25 @@ public class UserController {
 
     @GetMapping("/create_act_from_company_to_driver")
     public String actFromCompanyToDriverPage(Model model) {
-        model.addAttribute("drivers", driverService.getAllSorted());
+        model.addAttribute("formCD", new CompanyToDriverActForm());
+        model.addAttribute("drivers", fillDriverSelectFields(driverService.getAllSorted()));
+        model.addAttribute("autos", fillAutoSelectFields(autoService.getAll()));
         return "acts/company_to_driver";
     }
 
     @PostMapping("/create_act_from_company_to_driver")
-    public String createActFromCompanyToDriver(Model model) {
-        return "redirect:operator/acts";
+    public String createActFromCompanyToDriver(
+            @ModelAttribute("formCD") CompanyToDriverActForm form,
+            @RequestParam("leaseStartDate1")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime leaseStartDate,
+            @RequestParam("leaseEndDate1")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime leaseEndDate,
+            BindingResult bindingResult,
+            Model model) {
+        form.setLeaseStartDate(leaseStartDate);
+        form.setLeaseEndDate(leaseEndDate);
+        actService.createActFromCompanyToDriver(form);
+        return "redirect:/operator/acts";
     }
 
     @GetMapping("/create_act_from_driver_to_company")
@@ -123,10 +148,31 @@ public class UserController {
         return "redirect:operator/acts";
     }
 
-
     private void fillAutoSelectFields(Model model) {
         model.addAttribute("bodyType", SelectCreator.bodyTypeCreate());
         model.addAttribute("driveType", SelectCreator.driveTypeCreate());
         model.addAttribute("transmissionType", SelectCreator.transmissionType());
+    }
+
+    private Map<String, String> fillDriverSelectFields(List<Driver> drivers) {
+        Map<String, String> map = new HashMap<>();
+        for (Driver driver : drivers) {
+            map.put(driver.getId().toString(), driver.getLastName() + " " +
+                    driver.getFirstName() + " " +
+                    driver.getPatronymic() + ", " +
+                    driver.getBirthDate());
+        }
+        return map;
+    }
+
+    private Map<String, String> fillAutoSelectFields(List<Auto> autos) {
+        Map<String, String> map = new HashMap<>();
+        for (Auto auto : autos) {
+            map.put(auto.getId().toString(), auto.getBrand() + ", " +
+                    auto.getModel() + ", " +
+                    auto.getYear() + ", " +
+                    auto.getGosNumber());
+        }
+        return map;
     }
 }
