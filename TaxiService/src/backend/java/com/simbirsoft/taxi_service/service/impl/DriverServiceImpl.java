@@ -6,6 +6,7 @@ import com.simbirsoft.taxi_service.repository.DriverRepository;
 import com.simbirsoft.taxi_service.service.DriverService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -20,6 +21,11 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public List<Driver> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<Driver> getAllSorted() {
+        return repository.findAll(sortByLastNameAndFirstNameAndPatronymic());
     }
 
     @Override
@@ -51,5 +57,11 @@ public class DriverServiceImpl implements DriverService {
                 .telegramLogin(form.getTelegramLogin())
                 .build();
         repository.save(driver);
+    }
+
+    private Sort sortByLastNameAndFirstNameAndPatronymic() {
+        return new Sort(Sort.Direction.ASC, "lastName")
+                .and(new Sort(Sort.Direction.ASC, "firstName"))
+                .and(new Sort(Sort.Direction.ASC, "patronymic"));
     }
 }
