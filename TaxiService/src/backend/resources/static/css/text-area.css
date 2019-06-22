@@ -1,0 +1,9 @@
+.document__more {
+    margin-bottom: 30px;
+    height: 100px;
+    width: 400px;
+    border-radius: 15px;
+    border: 1px solid lightgrey;
+    box-sizing: border-box;
+    outline: none;
+}
