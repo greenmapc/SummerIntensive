@@ -5,6 +5,7 @@ import com.simbirsoft.taxi_service.model.Driver;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +14,9 @@ import java.time.LocalDateTime;
 public class CompanyToDriverActForm extends ActForm {
     private Auto auto;
     private Driver driver;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime leaseStartDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime leaseEndDate;
     private String conditions;
     private String drafter;

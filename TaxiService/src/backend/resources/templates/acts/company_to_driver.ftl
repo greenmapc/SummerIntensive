@@ -19,39 +19,20 @@
             <label for="document__driver">Водитель (кому передают)*</label><br>
             <@spring.formSingleSelect "formCD.driver" drivers 'class="form-container__form--input flex__element"
                                     id="document__driver" placeholder="Выберите водителя" required'/>
-
             <br>
 
             <label for="document__date-transfer">Дата передачи*</label><br>
-            <input
-                    class="form-container__form--input flex__element"
-                    type="datetime-local"
-                    id="document__date-transfer"
-                    name="leaseStartDate1"
-                    placeholder="Введите email оператора"
-                    value="2019-06-22"
-                    min="2019-06-22"
-                    max="2020-12-31"
-                    required>
+            <@spring.formInput "formCD.leaseStartDate" 'class="form-container__form--input flex__element" id="document__date-transfer"
+                                value="2019-06-22" min="2019-06-22" max="2020-12-31" required' 'datetime-local'/>
             <br>
 
             <label for="document__date-reception">Дата возвращения*</label><br>
-            <input
-                    class="form-container__form--input flex__element"
-                    type="datetime-local"
-                    id="document__date-reception"
-                    name="leaseEndDate1"
-                    placeholder="Введите телефон оператора"
-                    value="2019-06-22"
-                    min="2019-06-22"
-                    max="2020-12-31"
-                    required>
+            <@spring.formInput "formCD.leaseEndDate" 'class="form-container__form--input flex__element" id="document__date-reception"
+                                value="2019-07-22" min="2019-07-22" max="2020-12-31" required' 'datetime-local'/>
             <br>
 
             <label for="document__more">Дополнительные условия аренды</label><br>
-            <@spring.formTextarea "formCD.conditions"
-                    'class="document__more"
-                    id="document__more"'/>
+            <@spring.formTextarea "formCD.conditions" 'class="document__more" id="document__more"'/>
             <br>
 
             <button class="form-container__form--button flex__element" type="submit">Создать</button>

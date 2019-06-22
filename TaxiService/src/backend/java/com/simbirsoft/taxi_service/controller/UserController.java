@@ -60,13 +60,10 @@ public class UserController {
                              Model model) {
         if (bindingResult.hasErrors()) {
             fillAutoSelectFields(model);
-
             return "operator/create_auto";
         }
-        // ToDo AutoService.create
-
+        autoService.createAuto(form);
         model.addAttribute("user", user);
-
         return "redirect:/autos";
     }
 
@@ -115,17 +112,9 @@ public class UserController {
     @PostMapping("/create_act_from_company_to_driver")
     public String createActFromCompanyToDriver(
             @ModelAttribute("formCD") CompanyToDriverActForm form,
-            @RequestParam("leaseStartDate1")
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime leaseStartDate,
-            @RequestParam("leaseEndDate1")
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime leaseEndDate,
             @AuthenticationPrincipal User user,
             Model model) {
-
-        form.setLeaseStartDate(leaseStartDate);
-        form.setLeaseEndDate(leaseEndDate);
         form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
-
         actService.createActFromCompanyToDriver(form);
         return "redirect:/operator/acts";
     }

@@ -27,7 +27,6 @@ public class ActServiceImpl implements ActService {
         act.setDriverRecipient(actForm.getDriver());
         act.setLeaseStartDate(actForm.getLeaseStartDate());
         act.setLeaseEndDate(actForm.getLeaseEndDate());
-        act.setConditions(actForm.getConditions());
         act.setType(actForm.getType());
 
         actRepository.save(act);
