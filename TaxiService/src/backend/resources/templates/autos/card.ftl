@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>TaxiService. Карта авто</title>
-    <link href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
-</head>
-<body class="site">
-   <#include "../header/newHeader.ftl">
+<#import "../macros/layout.ftl" as l>
+<#import "../macros/navbar.ftl" as n>
+<@l.layout "Карта авто | TaxiService">
+    <@n.navbar/>
     <div class="layout-positioner">
         <h1>База данных автомобилей > Автомобиль ${auto.id}</h1>
 
@@ -37,5 +32,4 @@
         <h3>Киллометраж</h3>
         <p>${auto.kilometrage}</p>
     </div>
-</body>
-</html>
+</@l.layout>

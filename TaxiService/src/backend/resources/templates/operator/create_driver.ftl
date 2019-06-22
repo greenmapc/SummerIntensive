@@ -1,9 +1,10 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
-<@l.layout "TaxiService">
+
+<@l.layout "Создание карты водителя | TaxiService">
     <@n.navbar/>
-    <div class="form-container flex__container layout-positioner">
+    <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание нового водителя</h1>
 
         <form class="form-container__form" action="/operator/create_driver" method="post">
@@ -82,6 +83,13 @@
                             id="driver__date_of_passport_issue" type="date" placeholder="Введите дату выдачи паспорта" required'/>
             <br>
             <@spring.showErrors "driverForm.dateOfPassportIssue"/>
+            <br>
+
+            <label for="driver__birthday">Дата рождения *</label><br>
+            <@spring.formInput "driverForm.birthday" 'class="form-container__form--input flex__element"
+                            id="driver__birthday" type="date" placeholder="Введите дату рождения" required'/>
+            <br>
+            <@spring.showErrors "driverForm.birthday"/>
             <br>
 
             <label for="driver__residence_address">Адрес прописки *</label><br>

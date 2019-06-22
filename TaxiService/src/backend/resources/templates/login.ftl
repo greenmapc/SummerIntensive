@@ -1,13 +1,11 @@
 <#import "macros/layout.ftl" as l>
 <#import "macros/navbar.ftl" as n>
-<@l.layout "TaxiService">
+<@l.layout "Вход | TaxiService">
     <@n.navbar/>
-    <div class="form-container flex__container layout-positioner">
+    <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Вход в систему</h1>
 
         <form class="form-container__form" action="/login" method="post">
-            <h2>Войдите в систему</h2>
-
             <label for="operator__contact--email">Email</label><br>
             <input class="form-container__form--input flex__element" type="email" name="email"
                    id="operator__contact--email"

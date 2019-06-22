@@ -1,40 +1,36 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
+<#import "/spring.ftl" as spring>
 <@l.layout "Зарегистрировать нового оператора | TaxiService">
     <@n.navbar/>
-    <div class="form-container flex__container layout-positioner">
+    <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание нового оператора</h1>
 
         <form class="form-container__form" action="/admin/create_operator" method="post">
             <h2>Оператор</h2>
+            <@spring.bind "form"/>
 
-            <label for="operator__name--last-name">Фамилия оператора*</label><br>
-            <input class="form-container__form--input flex__element" type="text" id="operator__name--last-name"
-                   name="lastName"
-                   placeholder="Введите фамилию оператора" required><br>
+            <label for="operator__first_name">Имя</label><br>
+            <@spring.formInput "form.firstName" 'class="form-container__form--input flex__element"
+                            id="operator__first_name" placeholder="Введите имя" required'/><br>
+            <@spring.showErrors "form.firstName"/><br>
 
-            <label for="operator__name--first-name">Имя оператора*</label><br>
-            <input class="form-container__form--input flex__element" type="text" id="operator__name--first-name"
-                   name="firstName"
-                   placeholder="Введите имя оператора" required><br>
+            <label for="operator__last_name">Фамилия</label><br>
+            <@spring.formInput "form.lastName" 'class="form-container__form--input flex__element"
+                            id="operator__last_name" placeholder="Введите фамилию" required'/><br>
+            <@spring.showErrors "form.lastName"/><br>
 
-            <label for="operator__name--patronymic">Отчество оператора*</label><br>
-            <input class="form-container__form--input flex__element" type="text" id="operator__name--patronymic"
-                   name="patronymic"
-                   placeholder="Введите имя оператора" required><br>
+            <label for="operator__patronymic">Отчество</label><br>
+            <@spring.formInput "form.patronymic" 'class="form-container__form--input flex__element"
+                            id="operator__patronymic" placeholder="Введите отчество" required'/><br>
+            <@spring.showErrors "form.patronymic"/><br>
 
-            <label for="operator__contact--email">Email оператора*</label><br>
-            <input class="form-container__form--input flex__element" type="email" id="operator__contact--email"
-                   name="email"
-                   placeholder="Введите email оператора" required><br>
-
-            <label for="operator__contact--phone">Телефон оператора*</label><br>
-            <input class="form-container__form--input flex__element" type="tel" id="operator__contact--phone"
-                   name="phoneNumber"
-                   placeholder="Введите телефон оператора" required><br>
+            <label for="operator__email">Email</label><br>
+            <@spring.formInput "form.email" 'class="form-container__form--input flex__element"
+                            id="operator__email" placeholder="Введите email" required'/><br>
+            <@spring.showErrors "form.email"/><br>
 
             <button class="form-container__form--button flex__element" type="submit">Создать</button>
         </form>
     </div>
-    <div class="result"><#if success??><h4>${success}</h4></#if></div>
 </@l.layout>

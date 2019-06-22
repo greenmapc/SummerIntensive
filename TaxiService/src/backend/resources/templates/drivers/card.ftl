@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>TaxiService. Карта водителя</title>
-    <link href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
-</head>
-<body class="site">
-<#include "../header/newHeader.ftl">
+<#import "../macros/layout.ftl" as l>
+<#import "../macros/navbar.ftl" as n>
 
-<div class="layout-positioner">
+<@l.layout "Карта водителя | TaxiService">
+        <@n.navbar/><div class="layout-positioner">
         <h1>База данных водителей такси > Водитель ${driver.id}</h1>
 
         <h3>ФИО водителя</h3>
@@ -44,14 +38,13 @@
 
         <h3>Черный список</h3>
         <p><#if driver.blackList?? && driver.blackList>
-                Забанен
-            <#else >
-                Нет
-            </#if>
+                        Забанен
+                <#else >
+                        Нет
+                </#if>
         </p>
 
         <h3>Генератор акта передачи на  текущую дату данному водителю</h3>
         <button type="button">Создать акт передачи</button>
-    </div>
-</body>
-</html>
+        </div>
+</@l.layout>
