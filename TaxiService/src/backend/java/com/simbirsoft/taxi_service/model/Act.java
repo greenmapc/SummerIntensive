@@ -39,4 +39,7 @@ public class Act {
     @JoinColumn(name = "driver_recipient", referencedColumnName = "id")
     private Driver driverRecipient;
 
+    @Column(name = "act_type")
+    private Long type;
+
 }

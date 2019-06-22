@@ -49,11 +49,9 @@
             <br>
 
             <label for="document__more">Дополнительные условия аренды</label><br>
-            <textarea
-                    class="document__more"
-                    id="document__more"
-                    placeholder="Введите телефон оператора">
-            </textarea>
+            <@spring.formTextarea "formCD.conditions"
+                    'class="document__more"
+                    id="document__more"'/>
             <br>
 
             <button class="form-container__form--button flex__element" type="submit">Создать</button>

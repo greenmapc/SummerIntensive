@@ -23,9 +23,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,15 +99,20 @@ public class UserController {
     }
 
     @GetMapping("/acts")
-    public String actsPage(Model model) {
+    public String actsPage(@AuthenticationPrincipal User user,
+                           Model model) {
+        model.addAttribute("user", user);
         return "acts/list";
     }
 
     @GetMapping("/create_act_from_company_to_driver")
-    public String actFromCompanyToDriverPage(Model model) {
+    public String actFromCompanyToDriverPage(@AuthenticationPrincipal User user,
+                                             Model model) {
         model.addAttribute("formCD", new CompanyToDriverActForm());
         model.addAttribute("drivers", fillDriverSelectFields(driverService.getAllSorted()));
         model.addAttribute("autos", fillAutoSelectFields(autoService.getAll()));
+        model.addAttribute("user", user);
+
         return "acts/company_to_driver";
     }
 
@@ -120,26 +123,36 @@ public class UserController {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime leaseStartDate,
             @RequestParam("leaseEndDate1")
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime leaseEndDate,
-            BindingResult bindingResult,
+            @AuthenticationPrincipal User user,
             Model model) {
+
         form.setLeaseStartDate(leaseStartDate);
         form.setLeaseEndDate(leaseEndDate);
+        form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
+
         actService.createActFromCompanyToDriver(form);
         return "redirect:/operator/acts";
     }
 
     @GetMapping("/create_act_from_driver_to_company")
-    public String actFromDriverToCompanyPage(Model model) {
+    public String actFromDriverToCompanyPage(@AuthenticationPrincipal User user,
+                                             Model model) {
+        model.addAttribute("user", user);
+
         return "acts/driver_to_company";
     }
 
     @PostMapping("/create_act_from_driver_to_company")
     public String createActFromDriverToCompany(Model model) {
+        // ToDo: creation act
         return "redirect:operator/acts";
     }
 
     @GetMapping("/create_act_from_driver_to_driver")
-    public String actFromDriverToDriverPage(Model model) {
+    public String actFromDriverToDriverPage(@AuthenticationPrincipal User user,
+                                            Model model) {
+        model.addAttribute("user", user);
+
         return "acts/driver_to_driver";
     }
 
@@ -147,6 +160,8 @@ public class UserController {
     public String createActFromDriverToDriver(Model model) {
         return "redirect:operator/acts";
     }
+
+
 
     private void fillAutoSelectFields(Model model) {
         model.addAttribute("bodyType", SelectCreator.bodyTypeCreate());
