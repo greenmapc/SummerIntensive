@@ -3,8 +3,13 @@ package com.simbirsoft.taxi_service.controller;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.User;
+import com.simbirsoft.taxi_service.service.AutoService;
+import com.simbirsoft.taxi_service.service.DriverService;
+import com.simbirsoft.taxi_service.service.impl.AutoServiceImpl;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +20,11 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/operator")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
+    private final AutoService autoService;
+    private final DriverService driverService;
+
     @InitBinder("form")
     public void initAutoFormBinder(WebDataBinder binder) {
         binder.addValidators(new AutoFormValidator());
@@ -82,6 +91,7 @@ public class UserController {
 
     @GetMapping("/create_act_from_company_to_driver")
     public String actFromCompanyToDriverPage(Model model) {
+        model.addAttribute("drivers", driverService.getAllSorted());
         return "acts/company_to_driver";
     }
 

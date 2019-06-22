@@ -20,12 +20,18 @@
             <br>
 
             <label for="document__driver">Водитель (кому передают)*</label><br>
-            <input
+            <#--<input
                     class="form-container__form--input flex__element"
                     type="number"
                     id="document__driver"
                     placeholder="Введите ID водителя"
-                    required>
+                    required>-->
+            <select id="document__driver">
+                <#list drivers as driver>
+                    <option value="${driver.id}">${driver.lastName} ${driver.firstName} ${driver.patronymic}
+                        , ${driver.birthDate}</option>
+                </#list>
+            </select>
             <br>
 
             <label for="document__date-transfer">Дата передачи*</label><br>

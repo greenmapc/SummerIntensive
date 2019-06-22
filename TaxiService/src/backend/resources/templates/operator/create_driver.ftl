@@ -4,7 +4,7 @@
 
 <@l.layout "Создание карты водителя | TaxiService">
     <@n.navbar/>
-    <div class="form-container flex__container layout-positioner">
+    <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание нового водителя</h1>
 
         <form class="form-container__form" action="/operator/create_driver" method="post">

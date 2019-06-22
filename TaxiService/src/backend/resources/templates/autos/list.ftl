@@ -2,7 +2,7 @@
 <#import "../macros/navbar.ftl" as n>
 <@l.layout "База данных авто | TaxiService">
     <@n.navbar/>
-    <div class="form-container flex__container layout-positioner">
+    <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Список автомобилей</h1>
         <#if autos??>
             <#list autos as auto>
