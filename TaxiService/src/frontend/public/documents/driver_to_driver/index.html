@@ -2,17 +2,17 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>TaxiService. Документ: компания > водитель</title>
-    <link href="../../src/css/app.css" rel="stylesheet">
-    <link href="../../src/css/site-header.css" rel="stylesheet">
-    <link href="../../src/css/form-flex.css" rel="stylesheet">
-    <link href="../../src/css/text-area.css" rel="stylesheet">
+    <title>TaxiService. Документ: водитель > водитель</title>
+    <link href="../../../src/css/app.css" rel="stylesheet">
+    <link href="../../../src/css/site-header.css" rel="stylesheet">
+    <link href="../../../src/css/form-flex.css" rel="stylesheet">
+    <link href="../../../src/css/text-area.css" rel="stylesheet">
 </head>
 <body class="site">
     <div class="site-header">
         <div class="layout-positioner">
             <div class="flex__header--container">
-                <img class="site-header__logo" src="../../src/img/logo.png" alt="Логотип">
+                <img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип">
                 <div class="flex__header--button">
                     <button class="site-header__button site-header__button--admin  flex__element">Панель администратора</button>
                     <button class="site-header__button site-header__button--driver flex__element">База водителей</button>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="form-container flex__form layout-positioner">
-        <h1 class="form-container__h1 flex__element">Создание акта приема-передачи автомобиля от компании к водителю</h1>
+        <h1 class="form-container__h1 flex__element">Создание акта приема-передачи автомобиля от водителя к водителю</h1>
 
         <form class="form-container__form">
             <h2>Акт 1</h2>
@@ -37,12 +37,21 @@
                 required>
             <br>
 
-            <label for="document__driver">Водитель (кому передают)*</label><br>
+            <label for="document__driver--1">Водитель 1 (кто передаёт)*</label><br>
             <input
                 class="form-container__form--input flex__element"
                 type="number"
-                id="document__driver"
-                placeholder="Введите ID водителя"
+                id="document__driver--1"
+                placeholder="Введите ID водителя 1"
+                required>
+            <br>
+
+            <label for="document__driver--2">Водитель 2 (кому передают)*</label><br>
+            <input
+                class="form-container__form--input flex__element"
+                type="number"
+                id="document__driver--2"
+                placeholder="Введите ID водителя 2"
                 required>
             <br>
 
@@ -74,7 +83,12 @@
             <textarea
                 class="document__more"
                 id="document__more"
-                placeholder="Введите телефон оператора">
+                placeholder="Введите телефон оператора"
+                style="
+                    min-width: 400px;
+                    max-width: 400px;
+                    font-size: 16px
+                ">
             </textarea>
             <br>
 
