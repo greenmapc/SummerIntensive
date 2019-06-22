@@ -75,4 +75,38 @@ public class UserController {
         return "redirect:/drivers";
     }
 
+    @GetMapping("/acts")
+    public String actsPage(Model model) {
+        return "acts/list";
+    }
+
+    @GetMapping("/create_act_from_company_to_driver")
+    public String actFromCompanyToDriverPage(Model model) {
+        return "acts/company_to_driver";
+    }
+
+    @PostMapping("/create_act_from_company_to_driver")
+    public String createActFromCompanyToDriver(Model model) {
+        return "redirect:operator/acts";
+    }
+
+    @GetMapping("/create_act_from_driver_to_company")
+    public String actFromDriverToCompanyPage(Model model) {
+        return "acts/driver_to_company";
+    }
+
+    @PostMapping("/create_act_from_driver_to_company")
+    public String createActFromDriverToCompany(Model model) {
+        return "redirect:operator/acts";
+    }
+
+    @GetMapping("/create_act_from_driver_to_driver")
+    public String actFromDriverToDriverPage(Model model) {
+        return "acts/driver_to_driver";
+    }
+
+    @PostMapping("/create_act_from_driver_to_driver")
+    public String createActFromDriverToDriver(Model model) {
+        return "redirect:operator/acts";
+    }
 }

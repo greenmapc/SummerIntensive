@@ -10,18 +10,6 @@
     max-width: 1024px;
 }
 
-.site-header {
-    height: 60px;
-    width: 100%;
-    background: rgb(238,83,53);
-    background: linear-gradient(0deg, rgba(238,83,53,1) 0%, rgba(240,126,67,1) 100%);
-}
-
-.site-header__logo {
-    padding-top: 10px;
-    height: 40px;
-}
-
 h1,
 h2,
 h3,
@@ -30,12 +18,14 @@ p,
 a,
 label,
 input,
+textarea,
 button {
     font-family: "PT Sans", Arial, sans-serif;
     color: rgba(0, 0, 0, 0.66);
 }
 
 input,
+textarea,
 button {
     font-size: 18px;
     outline: none;
@@ -55,4 +45,9 @@ button:focus {
 button {
     color: white;
     font-weight: bold;
+}
+
+textarea {
+    margin: 0;
+    padding: 0;
 }
