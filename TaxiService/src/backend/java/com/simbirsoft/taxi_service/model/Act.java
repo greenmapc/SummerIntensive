@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "acts")
@@ -20,12 +20,10 @@ public class Act {
     private Auto auto;
 
     @Column(name = "lease_start_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date leaseStartDate;
+    private LocalDateTime leaseStartDate;
 
     @Column(name = "lease_end_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date leaseEndDate;
+    private LocalDateTime leaseEndDate;
 
     @Column(name = "drafter", nullable = false, length = 192)
     private String drafter;
@@ -40,5 +38,8 @@ public class Act {
     @ManyToOne
     @JoinColumn(name = "driver_recipient", referencedColumnName = "id")
     private Driver driverRecipient;
+
+    @Column(name = "act_type")
+    private Long type;
 
 }

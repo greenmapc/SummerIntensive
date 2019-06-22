@@ -2,6 +2,7 @@ package com.simbirsoft.taxi_service.form;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,15 +16,19 @@ public class DriverForm {
     private String patronymic;
     private Integer driversLicenseSeries;
     private Integer driversLicenseNumber;
-    private Date dateOfDriverLicenseIssue;
-    private Date dateOfDriverLicenseExpiry;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateOfDriverLicenseIssue;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateOfDriverLicenseExpiry;
     private Integer passportSeries;
     private Integer passportNumber;
     private String placeOfPassportIssue;
-    private Date dateOfPassportIssue;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateOfPassportIssue;
     private String residenceAddress;
     private String actualAddress;
     private String phoneNumber;
     private String telegramLogin;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthday;
 }

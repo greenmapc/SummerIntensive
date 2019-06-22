@@ -8,6 +8,7 @@ import java.util.List;
 public interface DriverService {
     List<Driver> getAll();
     List<Driver> getAllSorted();
+    List<Driver> getAllWithoutRentSorted();
     Driver findOneById(Long id);
-    void createDriver(DriverForm form);
+    Driver createDriver(DriverForm form);
 }

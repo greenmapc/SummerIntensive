@@ -1,6 +1,8 @@
-package com.simbirsoft.taxi_service.repositories;
 
-import com.simbirsoft.taxi_service.models.Act;
+package com.simbirsoft.taxi_service.repository;
+
+import com.simbirsoft.taxi_service.model.Act;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
