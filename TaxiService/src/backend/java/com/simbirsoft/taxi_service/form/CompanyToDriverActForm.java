@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class CompanyToDriverActForm extends ActForm {
+public class CompanyToDriverActForm {
     private Auto auto;
     private Driver driver;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

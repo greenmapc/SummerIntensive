@@ -20,24 +20,20 @@ public class ActServiceImpl implements ActService {
     private final ActRepository actRepository;
 
     @Override
-    public void createActFromCompanyToDriver(ActForm form) {
-        CompanyToDriverActForm actForm = (CompanyToDriverActForm) form;
-
+    public void createActFromCompanyToDriver(CompanyToDriverActForm form) {
         Act act = new Act();
-        act.setAuto(actForm.getAuto());
-        act.setConditions(actForm.getConditions());
-        act.setDrafter(actForm.getDrafter());
-        act.setDriverRecipient(actForm.getDriver());
-        act.setLeaseStartDate(actForm.getLeaseStartDate());
-        act.setLeaseEndDate(actForm.getLeaseEndDate());
-        act.setType(actForm.getType());
+        act.setAuto(form.getAuto());
+        act.setConditions(form.getConditions());
+        act.setDrafter(form.getDrafter());
+        act.setDriverRecipient(form.getDriver());
+        act.setLeaseStartDate(form.getLeaseStartDate());
+        act.setLeaseEndDate(form.getLeaseEndDate());
+        act.setType(form.getType());
 
-        actRepository.save(act);
         try {
             pdfActCreatorService.createPdfActFromCompanyToDriver(form);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
+            actRepository.save(act);
+        } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
     }

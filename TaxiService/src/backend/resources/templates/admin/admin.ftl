@@ -39,7 +39,7 @@
                              alt="Иконка базы данных">
                     </div>
                 </a>
-                <a class="admin-screen__a" href="">
+                <a class="admin-screen__a" href="/operator/create_act_from_company_to_driver">
                     <div class="admin-screen__flex--bar">
                         <p class="admin-screen__p">Создание акта приема-<br>передачи автомобиля</p>
                         <img class="admin-screen__svg--document"
