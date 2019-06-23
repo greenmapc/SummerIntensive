@@ -1,5 +1,6 @@
 package com.simbirsoft.taxi_service.service.impl;
 
+import com.itextpdf.text.DocumentException;
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.model.Act;
@@ -9,6 +10,8 @@ import com.simbirsoft.taxi_service.service.PdfActCreatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -30,7 +33,13 @@ public class ActServiceImpl implements ActService {
         act.setType(actForm.getType());
 
         actRepository.save(act);
-        pdfActCreatorService.createPdfActFromCompanyToDriver(form);
+        try {
+            pdfActCreatorService.createPdfActFromCompanyToDriver(form);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
