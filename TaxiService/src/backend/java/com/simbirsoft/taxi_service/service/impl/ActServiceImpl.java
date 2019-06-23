@@ -25,7 +25,7 @@ public class ActServiceImpl implements ActService {
         act.setAuto(form.getAuto());
         act.setConditions(form.getConditions());
         act.setDrafter(form.getDrafter());
-        act.setDriverRecipient(form.getDriver());
+        act.setDriverRecipient(form.getRenter());
         act.setLeaseStartDate(form.getLeaseStartDate());
         act.setLeaseEndDate(form.getLeaseEndDate());
         act.setType(form.getType());
@@ -41,7 +41,13 @@ public class ActServiceImpl implements ActService {
     @Override
     public void createActFromDriverToDriver(ActForm form) {
         // parse form, save to db
-        pdfActCreatorService.createPdfActFromDriverToDriver(form);
+        try {
+            pdfActCreatorService.createPdfActFromDriverToDriver(form);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -11,15 +11,8 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class CompanyToDriverActForm {
-    private Auto auto;
-    private Driver driver;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime leaseStartDate;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime leaseEndDate;
-    private String conditions;
-    private String drafter;
-
-    private final Long type = 1L;
+public class CompanyToDriverActForm extends ActForm{
+    public Long getType() {
+        return 1L;
+    }
 }
