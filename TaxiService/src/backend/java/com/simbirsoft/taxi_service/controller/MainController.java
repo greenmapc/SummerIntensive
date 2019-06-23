@@ -17,6 +17,6 @@ public class MainController {
     public String adminPage(@AuthenticationPrincipal User user,
                             Model model) {
         model.addAttribute("user", user);
-        return "admin/admin";
+        return "user/panel";
     }
 }

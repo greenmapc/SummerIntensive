@@ -3,7 +3,6 @@ package com.simbirsoft.taxi_service.controller;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
-import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
@@ -14,7 +13,6 @@ import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +20,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/operator")
@@ -51,7 +46,7 @@ public class UserController {
         model.addAttribute("user", user);
         fillAutoSelectFields(model);
 
-        return "operator/create_auto";
+        return "user/create_auto";
     }
 
     @PostMapping("/create_auto")
@@ -61,7 +56,7 @@ public class UserController {
                              Model model) {
         if (bindingResult.hasErrors()) {
             fillAutoSelectFields(model);
-            return "operator/create_auto";
+            return "user/create_auto";
         }
         autoService.createAuto(form);
         model.addAttribute("user", user);
@@ -74,7 +69,7 @@ public class UserController {
         model.addAttribute("driverForm", new DriverForm());
         model.addAttribute("user", user);
 
-        return "operator/create_driver";
+        return "user/create_driver";
     }
 
     @PostMapping("/create_driver")
@@ -83,7 +78,7 @@ public class UserController {
                                Model model,
                                @AuthenticationPrincipal User user) {
         if (bindingResult.hasErrors()) {
-            return "operator/create_driver";
+            return "user/create_driver";
         }
         driverService.createDriver(form);
         model.addAttribute("user", user);
