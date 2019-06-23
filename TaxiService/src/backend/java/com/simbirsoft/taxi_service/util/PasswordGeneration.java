@@ -21,10 +21,10 @@ public class PasswordGeneration {
         StringBuilder password = new StringBuilder();
         String shufflePasswordAllowBase = PASSWORD_ALLOW_BASE;
 
-        for(int i = 0; i < PASSWORD_LENGTH; i ++) {
+        for (int i = 0; i < PASSWORD_LENGTH; i++) {
             shufflePasswordAllowBase = shuffleString(shufflePasswordAllowBase);
             password.append(shufflePasswordAllowBase
-                        .charAt(random.nextInt(shufflePasswordAllowBase.length())));
+                    .charAt(random.nextInt(shufflePasswordAllowBase.length())));
         }
 
         return password.toString();

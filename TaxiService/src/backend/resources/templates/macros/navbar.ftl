@@ -6,13 +6,11 @@
                      alt="Логотип">
                 <div class="flex__header--button">
                     <#if user ??>
-                        <#if user.getStringRoles()?seq_contains("ADMIN")>
-                            <form action="/admin/panel">
-                                <button class="site-header__button site-header__button--admin  flex__element">Панель
-                                    администратора
-                                </button>
-                            </form>
-                        </#if>
+                        <form action="/panel">
+                            <button class="site-header__button site-header__button--admin  flex__element">
+                                <#if user.getStringRoles()?seq_contains("ADMIN")>Панель администратора<#else >Панель оператора</#if>
+                            </button>
+                        </form>
 
                         <form action="/drivers">
                             <button class="site-header__button site-header__button--driver flex__element">База водителей

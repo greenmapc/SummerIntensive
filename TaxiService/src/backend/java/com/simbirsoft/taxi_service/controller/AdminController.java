@@ -55,17 +55,4 @@ public class AdminController {
 
         return "admin/create_operator";
     }
-
-    @GetMapping("/panel")
-    public String adminPage(@AuthenticationPrincipal User user,
-                            Model model) {
-        model.addAttribute("user", user);
-
-        if (user.getAuthorities().contains(Roles.ADMIN)) {
-            return "admin/admin";
-        } else {
-            // ToDo: return redirect to operator panel
-            return null;
-        }
-    }
 }
