@@ -10,4 +10,5 @@ public interface ActService {
     void createActFromCompanyToDriver(CompanyToDriverActForm form);
     void createActFromDriverToDriver(DriverToDriverActForm form);
     void createActFromDriverToCompany(DriverToCompanyActForm form);
+
 }

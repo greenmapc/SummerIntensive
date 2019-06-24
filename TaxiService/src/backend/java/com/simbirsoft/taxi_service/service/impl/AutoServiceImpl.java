@@ -3,9 +3,13 @@ package com.simbirsoft.taxi_service.service.impl;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.repository.AutoRepository;
+import com.simbirsoft.taxi_service.repository.filters.AutoFilter;
 import com.simbirsoft.taxi_service.service.AutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -16,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AutoServiceImpl implements AutoService {
     private final AutoRepository repository;
+    private static final int pageSize = 10;
 
     @Override
     public List<Auto> getAll() {
@@ -52,5 +57,15 @@ public class AutoServiceImpl implements AutoService {
     @Override
     public List<Auto> findAllFree() {
         return repository.findAllFree();
+    }
+
+    @Override
+    public List<Auto> getPage(int number) {
+        return repository.findAll(PageRequest.of(number - 1,pageSize)).getContent(); //-1 because start point for user is 1
+    }
+
+    @Override
+    public List<Auto> getPage(int number, Specification<Auto> filter) {
+        return repository.findAll(filter,PageRequest.of(number - 1,pageSize)).getContent();
     }
 }
