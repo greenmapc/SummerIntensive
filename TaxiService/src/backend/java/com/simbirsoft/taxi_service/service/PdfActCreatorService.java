@@ -1,11 +1,17 @@
 package com.simbirsoft.taxi_service.service;
 
+import com.itextpdf.text.DocumentException;
 import com.simbirsoft.taxi_service.form.ActForm;
+import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
+import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
+import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
+
+import java.io.IOException;
 
 public interface PdfActCreatorService {
 
-    void createPdfActFromCompanyToDriver(ActForm form);
-    void createPdfActFromDriverToDriver(ActForm form);
-    void createPdfActFromDriverToCompany(ActForm form);
+    String createPdfActFromCompanyToDriver(CompanyToDriverActForm form) throws IOException, DocumentException;
+    String createPdfActFromDriverToDriver(DriverToDriverActForm form) throws IOException, DocumentException;
+    String createPdfActFromDriverToCompany(DriverToCompanyActForm form) throws IOException, DocumentException;
 
 }

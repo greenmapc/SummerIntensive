@@ -27,3 +27,6 @@ target/
 # Package Files #
 *.jar
 *.war
+
+uploads/
+*.pdf
