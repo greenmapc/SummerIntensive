@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
-public abstract class PdfActCreator  {
+public abstract class PdfActCreator {
 
     private final int HEADER_FONT_SIZE = 18;
     private final int BASIC_FONT_SIZE = 14;
@@ -27,8 +27,6 @@ public abstract class PdfActCreator  {
 
     Font basicFont;
     private BaseFont baseFont;
-
-
 
     public String createActPdf(ActForm actForm) throws DocumentException, IOException {
         Document document = new Document();
@@ -59,15 +57,15 @@ public abstract class PdfActCreator  {
     }
 
     private Paragraph createHeaderParagraph() {
-            Font headerFont = new Font(baseFont, HEADER_FONT_SIZE, Font.BOLD);
-            Paragraph header = new Paragraph(
-                    PdfReceptionTransmissionActParts.HEADER, headerFont);
+        Font headerFont = new Font(baseFont, HEADER_FONT_SIZE, Font.BOLD);
+        Paragraph header = new Paragraph(
+                PdfReceptionTransmissionActParts.HEADER, headerFont);
 
-            header.setAlignment(Element.ALIGN_CENTER);
-            header.setIndentationLeft(50);
-            header.setIndentationRight(50);
+        header.setAlignment(Element.ALIGN_CENTER);
+        header.setIndentationLeft(50);
+        header.setIndentationRight(50);
 
-            return header;
+        return header;
     }
 
     private Paragraph createAutoInfoParagraph(ActForm actForm) {
@@ -145,7 +143,6 @@ public abstract class PdfActCreator  {
 
     // Приема-передачи, от него унаследуется другой приема-передачи (водитель -> водитель)
     protected abstract Paragraph createRentDatesParagraph(ActForm actForm);
-
 
     void indent(Paragraph paragraph) {
         paragraph.setFirstLineIndent(30);

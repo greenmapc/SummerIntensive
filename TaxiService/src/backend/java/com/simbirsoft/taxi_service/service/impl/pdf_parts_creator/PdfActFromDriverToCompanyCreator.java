@@ -3,6 +3,7 @@ package com.simbirsoft.taxi_service.service.impl.pdf_parts_creator;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.simbirsoft.taxi_service.form.ActForm;
+import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.util.pdf_act_part.PdfActParts;
@@ -15,8 +16,9 @@ public class PdfActFromDriverToCompanyCreator extends PdfActFromCompanyToDriverC
 
     @Override
     protected Paragraph createBodyParagraph(ActForm actForm) {
-        Auto auto = actForm.getAuto();
-        Driver driver = actForm.getRenter();
+        DriverToCompanyActForm form = (DriverToCompanyActForm) actForm;
+        Auto auto = form.getAuto();
+        Driver driver = form.getRenter();
 
         Paragraph bodyParagraph = new Paragraph();
         String bodyText = String.format(PdfReturnActParts.MAIN_BODY,

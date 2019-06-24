@@ -1,6 +1,7 @@
 package com.simbirsoft.taxi_service.service.impl;
 
 import com.itextpdf.text.DocumentException;
+import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
@@ -22,15 +23,9 @@ public class ActServiceImpl implements ActService {
 
     @Override
     public void createActFromCompanyToDriver(CompanyToDriverActForm form) {
-        Act act = new Act();
+        Act act = fillBasicData(form);
 
-        act.setAuto(form.getAuto());
-        act.setConditions(form.getConditions());
-        act.setDrafter(form.getDrafter());
         act.setDriverRenter(form.getRenter());
-        act.setLeaseStartDate(form.getLeaseStartDate());
-        act.setLeaseEndDate(form.getLeaseEndDate());
-        act.setType(form.getType());
 
         // ToDo: exceptions
         try {
@@ -41,42 +36,43 @@ public class ActServiceImpl implements ActService {
         }
     }
 
-
     public void createActFromDriverToDriver(DriverToDriverActForm actForm) {
-        Act act = new Act();
+        Act act = fillBasicData(actForm);
 
-        act.setAuto(actForm.getAuto());
-        act.setConditions(actForm.getConditions());
-        act.setDrafter(actForm.getDrafter());
         act.setDriverRenter(actForm.getRenter());
         act.setDriverLessor(actForm.getLessor());
-        act.setDrafter(actForm.getDrafter());
-        act.setLeaseStartDate(actForm.getLeaseStartDate());
-        act.setLeaseEndDate(actForm.getLeaseEndDate());
-        act.setType(actForm.geType());
 
         // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
         } catch (
-                IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
+                IOException | DocumentException e) {
             e.printStackTrace();
         }
     }
 
-
     @Override
     public void createActFromDriverToCompany(DriverToCompanyActForm form) {
-        // parse form, save to db
+        Act act = fillBasicData(form);
+
+        act.setDriverRenter(form.getRenter());
+
         // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromDriverToCompany(form);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
+        } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
+    }
+
+    private Act fillBasicData(ActForm form) {
+        Act act = new Act();
+        act.setAuto(form.getAuto());
+        act.setConditions(form.getConditions());
+        act.setDrafter(form.getDrafter());
+        act.setLeaseStartDate(form.getLeaseStartDate());
+        act.setLeaseEndDate(form.getLeaseEndDate());
+        act.setType(form.getType());
+        return act;
     }
 }

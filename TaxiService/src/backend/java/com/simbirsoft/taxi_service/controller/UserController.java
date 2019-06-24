@@ -1,10 +1,6 @@
 package com.simbirsoft.taxi_service.controller;
 
-import com.simbirsoft.taxi_service.form.AutoForm;
-import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
-import com.simbirsoft.taxi_service.form.DriverForm;
-import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
-import com.simbirsoft.taxi_service.model.Roles;
+import com.simbirsoft.taxi_service.form.*;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
@@ -121,13 +117,20 @@ public class UserController {
     public String actFromDriverToCompanyPage(@AuthenticationPrincipal User user,
                                              Model model) {
         model.addAttribute("user", user);
-
+        model.addAttribute("formDC", new DriverToCompanyActForm());
+        model.addAttribute("drivers",
+                CreateActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+        model.addAttribute("autos",
+                CreateActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
         return "acts/driver_to_company";
     }
 
     @PostMapping("/create_act_from_driver_to_company")
-    public String createActFromDriverToCompany(Model model) {
-        // ToDo: creation act
+    public String createActFromDriverToCompany(@ModelAttribute("formDC") DriverToCompanyActForm form,
+                                               @AuthenticationPrincipal User user,
+                                               Model model) {
+        form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
+        actService.createActFromDriverToCompany(form);
         return "redirect:/operator/acts";
     }
 

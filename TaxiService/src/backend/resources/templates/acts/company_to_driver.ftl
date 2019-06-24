@@ -13,7 +13,7 @@
 
             <label for="document__auto">Автомобиль (что передают)*</label><br>
             <@spring.formSingleSelect "formCD.auto" autos 'class="form-container__form--input flex__element"
-                        id="document_auto" placeholder="Выберите авто"'/>
+                        id="document__auto" placeholder="Выберите авто"'/>
             <br>
 
             <label for="document__driver">Водитель (кому передают)*</label><br>
