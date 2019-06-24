@@ -2,6 +2,7 @@ package com.simbirsoft.taxi_service.service.impl;
 
 import com.itextpdf.text.DocumentException;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
+import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.service.DriverService;
@@ -51,21 +52,24 @@ public class PdfActCreationServiceImplTest {
 
     @Test
     public void createPdfFromDriverToDriver() {
-        DriverToDriverActForm actForm = new DriverToDriverActForm();
+        DriverToCompanyActForm actForm = new DriverToCompanyActForm();
         actForm.setDrafter("Анна Кузьменко");
         actForm.setConditions("Не указано");
-        actForm.setAuto(autoService.findAllFree().get(0));
-        actForm.setRenter(driverService.getAllWithoutRentSorted().get(0));
-        actForm.setRecipient(driverService.getAllWithoutRentSorted().get(1));
-        actForm.setLeaseStartDate(LocalDateTime.now());
+        actForm.setAuto(autoService.getAll().get(0));
+        actForm.setRenter(driverService.getAll().get(0));
         actForm.setLeaseEndDate(LocalDateTime.of(LocalDate.now(), LocalTime.of(19, 0)));
 
         try {
-            pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
+            pdfActCreatorService.createPdfActFromDriverToCompany(actForm);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void createPdfFromDriverToCompany() {
+
     }
 }

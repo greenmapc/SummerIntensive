@@ -3,6 +3,7 @@ package com.simbirsoft.taxi_service.service.impl;
 import com.itextpdf.text.DocumentException;
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
+import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.service.PdfActCreatorService;
 import com.simbirsoft.taxi_service.service.PdfCreatorFactory;
@@ -27,8 +28,7 @@ public class PdfActCreationServiceImpl implements PdfActCreatorService {
     }
 
     @Override
-    public String createPdfActFromDriverToCompany(ActForm form) throws IOException, DocumentException {
+    public String createPdfActFromDriverToCompany(DriverToCompanyActForm form) throws IOException, DocumentException {
         return pdfCreatorFactory.getDriverToCompanyCreator().createActPdf(form);
-
     }
 }

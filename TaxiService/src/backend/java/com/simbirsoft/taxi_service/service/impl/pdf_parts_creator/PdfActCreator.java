@@ -5,8 +5,8 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.model.Auto;
-import com.simbirsoft.taxi_service.util.document.PdfActParts;
-import com.simbirsoft.taxi_service.util.document.PdfReceptionTransmissionActParts;
+import com.simbirsoft.taxi_service.util.pdf_act_part.PdfActParts;
+import com.simbirsoft.taxi_service.util.pdf_act_part.PdfReceptionTransmissionActParts;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.FileOutputStream;
@@ -19,6 +19,7 @@ public abstract class PdfActCreator  {
     private final int BASIC_FONT_SIZE = 14;
     final String COMPANY = "Компания \"Такси-Такси\"";
     final String RENTER = "Арендатор";
+    final String LESSOR = "Арендодатель";
     final String PASSPORT = "Паспорт";
 
     @Value("${pdf.basic.font}")

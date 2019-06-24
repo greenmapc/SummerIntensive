@@ -3,6 +3,7 @@ package com.simbirsoft.taxi_service.service.impl;
 import com.itextpdf.text.DocumentException;
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
+import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.model.Act;
 import com.simbirsoft.taxi_service.repository.ActRepository;
@@ -54,7 +55,7 @@ public class ActServiceImpl implements ActService {
     }
 
     @Override
-    public void createActFromDriverToCompany(ActForm form) {
+    public void createActFromDriverToCompany(DriverToCompanyActForm form) {
         // parse form, save to db
         // ToDo: exceptions
         try {
