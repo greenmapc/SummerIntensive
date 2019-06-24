@@ -57,7 +57,7 @@ public class PdfActCreationServiceImplTest {
         actForm.setConditions("Не указано");
         actForm.setAuto(autoService.getAll().get(0));
         actForm.setRenter(driverService.getAll().get(0));
-        actForm.setRecipient(driverService.getAll().get(0));
+        actForm.setLessor(driverService.getAll().get(0));
         actForm.setLeaseStartDate(LocalDateTime.now());
         actForm.setLeaseEndDate(LocalDateTime.of(LocalDate.now(), LocalTime.of(19, 0)));
 

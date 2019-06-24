@@ -19,7 +19,7 @@ public class PdfActFromDriverToDriverCreator extends PdfActFromCompanyToDriverCr
 
         Auto auto = driverToDriverActForm.getAuto();
         Driver renter = driverToDriverActForm.getRenter();
-        Driver recipient = driverToDriverActForm.getRecipient();
+        Driver recipient = driverToDriverActForm.getLessor();
 
         Paragraph bodyParagraph = new Paragraph();
         String bodyText = String.format(PdfReceptionTransmissionActParts.MAIN_BODY,
@@ -41,7 +41,7 @@ public class PdfActFromDriverToDriverCreator extends PdfActFromCompanyToDriverCr
         DriverToDriverActForm driverToDriverActForm = (DriverToDriverActForm)actForm;
 
         Driver renter = driverToDriverActForm.getRenter();
-        Driver recipient = driverToDriverActForm.getRecipient();
+        Driver recipient = driverToDriverActForm.getLessor();
 
         String text = String.format(PdfReceptionTransmissionActParts.DOCUMENT_FOOTER,
                 driverName(renter),
