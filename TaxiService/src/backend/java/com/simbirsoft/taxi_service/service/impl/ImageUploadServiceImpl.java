@@ -25,8 +25,16 @@ public class ImageUploadServiceImpl implements ImageUploadService {
     private String uploadPath;
 
     @Override
-    public Optional<Document> saveDriverDocument(Driver driver, MultipartFile multipartFile) {
-        return Optional.empty();
+    public Optional<Document> saveDriverDocument(Driver driver, MultipartFile file) throws IOException {
+        String fileGenerateName = UUID.randomUUID().toString();
+        file = saveFile(file, fileGenerateName);
+
+        Document document = new Document();
+        document.setDriver(driver);
+
+        return Optional.of(saveDocumentToDb(document,
+                FilenameUtils.getExtension(file.getOriginalFilename()),
+                fileGenerateName));
     }
 
     @Override
@@ -35,12 +43,18 @@ public class ImageUploadServiceImpl implements ImageUploadService {
         file = saveFile(file, fileGenerateName);
 
         Document document = new Document();
-        document.setExtension(FilenameUtils.getExtension(file.getOriginalFilename()));
-        document.setGeneratedName(fileGenerateName);
         document.setAuto(auto);
 
-        documentRepository.save(document);
-        return Optional.of(document);
+        return Optional.of(saveDocumentToDb(document,
+                FilenameUtils.getExtension(file.getOriginalFilename()),
+                fileGenerateName));
+    }
+
+    private Document saveDocumentToDb(Document document, String extension, String name) {
+        document.setExtension(extension);
+        document.setGeneratedName(name);
+
+        return documentRepository.save(document);
     }
 
     private MultipartFile saveFile(MultipartFile file, String newName) throws IOException {
@@ -51,7 +65,7 @@ public class ImageUploadServiceImpl implements ImageUploadService {
         File uploadDir = new File(uploadPath);
 
         if (!uploadDir.exists()) {
-            uploadDir.mkdir();UUID.randomUUID().toString();
+            uploadDir.mkdir();
         }
 
         String resultFilename = newName + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));

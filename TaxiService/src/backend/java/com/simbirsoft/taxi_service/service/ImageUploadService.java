@@ -10,6 +10,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 public interface ImageUploadService {
-    Optional<Document> saveDriverDocument(Driver driver, MultipartFile multipartFile);
+    Optional<Document> saveDriverDocument(Driver driver, MultipartFile multipartFile) throws IOException;
     Optional<Document> saveAutoDocument(Auto auto, MultipartFile multipartFile) throws IOException;
 }

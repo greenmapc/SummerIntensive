@@ -21,10 +21,10 @@ public class Document {
     private String extension;
 
     @ManyToOne
-    @JoinColumn(name = "driver", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "driver", referencedColumnName = "id")
     private Driver driver;
 
     @ManyToOne
-    @JoinColumn(name = "auto", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "auto", referencedColumnName = "id")
     private Auto auto;
 }

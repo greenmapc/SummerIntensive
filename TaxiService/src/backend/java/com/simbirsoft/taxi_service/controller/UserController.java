@@ -5,6 +5,7 @@ import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.model.Auto;
+import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
@@ -93,14 +94,26 @@ public class UserController {
     }
 
     @PostMapping("/create_driver")
+    @Transactional
     public String createDriver(@Validated @ModelAttribute("driverForm") DriverForm form,
                                BindingResult bindingResult,
                                Model model,
-                               @AuthenticationPrincipal User user) {
+                               @AuthenticationPrincipal User user,
+                               @RequestParam("docs") List<MultipartFile> docs) {
         if (bindingResult.hasErrors()) {
             return "user/create_driver";
         }
-        driverService.createDriver(form);
+        Driver driver = driverService.createDriver(form);
+
+        try {
+            for(MultipartFile doc : docs) {
+                imageUploadService.saveDriverDocument(driver, doc);
+            }
+        } catch (IOException e) {
+            // ToDo: handle
+            e.printStackTrace();
+        }
+
         model.addAttribute("user", user);
         return "redirect:/drivers";
     }
