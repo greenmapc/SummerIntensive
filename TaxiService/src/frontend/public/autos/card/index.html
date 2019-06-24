@@ -2,87 +2,96 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
     <title>TaxiService. Карта авто</title>
     <link href="../../../src/css/app.css" rel="stylesheet">
     <link href="../../../src/css/site-header.css" rel="stylesheet">
     <link href="../../../src/css/data__flex.css" rel="stylesheet">
     <link href="../../../src/css/data__p--margin-left.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="site">
-    <div class="site-header">
+    <header class="site-header">
         <div class="layout-positioner">
             <div class="flex__header--container">
                 <a href=""><img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип"></a>
-                <div class="flex__header--button">
+                <nav class="flex__header--button">
                     <button class="site-header__button site-header__button--admin  flex__element">Панель администратора</button>
                     <button class="site-header__button site-header__button--driver flex__element">База водителей</button>
                     <button class="site-header__button site-header__button--auto flex__element">База автомобилей</button>
                     <button class="site-header__button site-header__button--login flex__element">Вход/выход</button>
-                </div>
+                </nav>
             </div>
+        </div>
+    </header>
+    <div class="banner">
+        <div class="banner_div data__flex layout-positioner">
+            <h1 class="banner_h1">База данных автомобилей</h1>
+            <img class="banner_img" src="img/car.svg" alt="Иконка автомобиля">
         </div>
     </div>
     <div class="layout-positioner">
-        <h1>База данных автомобилей > Автомобиль 1</h1>
         <h2>Автомобиль 1</h2>
 
         <div class="data__flex">
-            <h3 class="data__p">Марка/бренд</h3>
-            <p class="data__p data__p--margin-left">Opel</p>
+            <h3>Марка/бренд</h3>
+            <p class="data__p">Opel</p>
         </div>
         <div class="data__flex">
             <h3>Модель</h3>
-            <p class="data__p data__p--margin-left">Astra</p>
+            <p class="data__p">Astra</p>
         </div>
         <div class="data__flex">
             <h3>Государственный номер</h3>
-            <p class="data__p data__p--margin-left">XXXXXXXXXXXXXXXXX</p>
+            <p class="data__p">XXXXXXXXXXXXXXXXX</p>
         </div>
         <div class="data__flex">
             <h3>VIN</h3>
-            <p class="data__p data__p--margin-left">XXXXXXXXXXXXXXXXX</p>
+            <p class="data__p">XXXXXXXXXXXXXXXXX</p>
         </div>
         <div class="data__flex">
             <h3>Год выпуска (г.)</h3>
-            <p class="data__p data__p--margin-left">2011</p>
+            <p class="data__p">2011</p>
         </div>
         <div class="data__flex">
             <h3>Объем двигателя (л.с.)</h3>
-            <p class="data__p data__p--margin-left">115</p>
+            <p class="data__p">115</p>
         </div>
         <div class="data__flex">
             <h3>Мощность автомобиля (кВт./ч.)</h3>
-            <p class="data__p data__p--margin-left">85</p>
+            <p class="data__p">85</p>
         </div>
         <div class="data__flex">
             <h3>КПП</h3>
-            <p class="data__p data__p--margin-left">Робот</p>
+            <p class="data__p">Робот</p>
         </div>
         <div class="data__flex">
             <h3>Привод</h3>
-            <p class="data__p data__p--margin-left">Передний</p>
+            <p class="data__p">Передний</p>
         </div>
         <div class="data__flex">
             <h3>Тип кузова</h3>
-            <p class="data__p data__p--margin-left">Седан</p>
+            <p class="data__p">Седан</p>
         </div>
         <div class="data__flex">
             <h3>Цвет автомобиля</h3>
-            <p class="data__p data__p--margin-left">Красный</p>
+            <p class="data__p">Красный</p>
         </div>
         <div class="data__flex">
             <h3>Внешний вид (описание)</h3>
-            <p class="data__p data__p--margin-left">Имеется 2 царапины на левом кузове</p>
+            <p class="data__p">Имеется 2 царапины на левом кузове</p>
         </div>
         <div class="data__flex">
             <h3>Пробег (км.)</h3>
-            <p class="data__p data__p--margin-left">10 000</p>
+            <p class="data__p">10 000</p>
         </div>
+        <div class="data__flex">
             <h3>Автомобиль работает</h3>
-            <p class="data__p data__p--margin-left">Да</p>
+            <p class="data__p">Да</p>
+        </div>
         <div class="data__flex">
             <h3>Номер ID текущего водителя</h3>
-            <p class="data__p data__p--margin-left">131</p>
+            <p class="data__p">131</p>
         </div>
         <h3>Фотографии</h3>
         <img src="" alt="Фотография автомобиля 1">

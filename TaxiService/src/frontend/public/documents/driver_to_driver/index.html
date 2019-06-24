@@ -2,26 +2,28 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
     <title>TaxiService. Документ: водитель > водитель</title>
     <link href="../../../src/css/app.css" rel="stylesheet">
     <link href="../../../src/css/site-header.css" rel="stylesheet">
     <link href="../../../src/css/form-flex.css" rel="stylesheet">
     <link href="../../../src/css/text-area.css" rel="stylesheet">
+    <link href="../../../src/css/error-field.css" rel="stylesheet">
 </head>
 <body class="site">
-    <div class="site-header">
+    <header class="site-header">
         <div class="layout-positioner">
             <div class="flex__header--container">
                 <img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип">
-                <div class="flex__header--button">
+                <nav class="flex__header--button">
                     <button class="site-header__button site-header__button--admin  flex__element">Панель администратора</button>
                     <button class="site-header__button site-header__button--driver flex__element">База водителей</button>
                     <button class="site-header__button site-header__button--auto flex__element">База автомобилей</button>
                     <button class="site-header__button site-header__button--login flex__element">Вход/выход</button>
-                </div>
+                </nav>
             </div>
         </div>
-    </div>
+    </header>
     <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание акта приема-передачи автомобиля от водителя к водителю</h1>
 
@@ -93,6 +95,10 @@
             <br>
 
             <button class="form-container__form--button flex__element" type="button">Создать</button>
+
+            <div class="error-field">
+                <p>Ошибка ввода данных</p>
+            </div>
         </form>
     </div>
 </body>

@@ -1,12 +1,10 @@
 .site-header {
     min-height: 60px;
     min-width: 100%;
-    background: rgb(238,83,53);
-    background: linear-gradient(0deg, rgba(238,83,53,1) 0%, rgba(240,126,67,1) 100%);
+    background: rgba(255, 0, 0, 0.66);
 }
 
 .site-header__logo {
-    padding-left: 5px;
     padding-top: 10px;
     height: 40px;
 }
@@ -18,6 +16,11 @@
     border-radius: 15px;
     border: 0px solid lightgrey;
     background-color: transparent;
+}
+
+.site-header__button:hover {
+    background-color: transparent;
+    text-decoration: underline;
 }
 
 .flex__header--container {
