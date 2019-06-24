@@ -9,6 +9,7 @@ import com.simbirsoft.taxi_service.util.pdf_act_part.PdfActParts;
 import com.simbirsoft.taxi_service.util.pdf_act_part.PdfReceptionTransmissionActParts;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;

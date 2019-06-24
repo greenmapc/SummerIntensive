@@ -22,7 +22,7 @@ ALTER TABLE driver ADD CONSTRAINT CHECK_DATE_ISSUE_PASSPORT CHECK (date_of_passp
 
 -- custom's constraints for act entity
 ALTER TABLE acts ADD CONSTRAINT CHECK_DATE_END_START CHECK (lease_end_date >= current_date);
-ALTER TABLE acts ADD CONSTRAINT CHECK_ACT CHECK ((driver_recipient IS NOT NULL AND driver_renter IS NOT NULL) OR (driver_recipient IS NOT NULL AND driver_renter IS NULL) OR (driver_recipient IS NULL AND driver_renter IS NOT NULL));
+ALTER TABLE acts ADD CONSTRAINT CHECK_ACT CHECK ((driver_lessor IS NOT NULL AND driver_renter IS NOT NULL) OR (driver_lessor IS NOT NULL AND driver_renter IS NULL) OR (driver_lessor IS NULL AND driver_renter IS NOT NULL));
 ALTER TABLE acts ADD CONSTRAINT CHECK_ACT_TYPE CHECK (act_type IN (1, 2, 3));
 
 -- custom's constraints for document entity
