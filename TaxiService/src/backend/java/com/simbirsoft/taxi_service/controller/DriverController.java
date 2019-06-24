@@ -15,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 
 @RequestMapping("/drivers")
 @Controller
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class DriverController {
     private final DriverService driverService;
 

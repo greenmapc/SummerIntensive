@@ -6,7 +6,6 @@ import com.simbirsoft.taxi_service.repository.DriverRepository;
 import com.simbirsoft.taxi_service.service.DriverService;
 import com.simbirsoft.taxi_service.util.comparator.DriverFullNameComparator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class DriverServiceImpl implements DriverService {
     private final DriverRepository repository;
     private final DriverFullNameComparator driverFullNameComparator;
@@ -65,6 +64,7 @@ public class DriverServiceImpl implements DriverService {
                 .rating(0)
                 .residenceAddress(form.getResidenceAddress())
                 .telegramLogin(form.getTelegramLogin())
+                .birthDate(form.getBirthDate())
                 .build();
         return repository.save(driver);
     }

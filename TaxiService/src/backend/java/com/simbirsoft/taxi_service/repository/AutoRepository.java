@@ -10,8 +10,9 @@ import java.util.List;
 @Repository
 public interface AutoRepository extends JpaRepository<Auto, Long> {
 
-    @Query("FROM Auto WHERE id NOT IN (" +
-            "SELECT a.auto.id FROM Act as a JOIN a.auto WHERE a.leaseEndDate >= current_timestamp)")
+    @Query("FROM Auto WHERE id NOT IN (SELECT " +
+                "a.auto.id FROM Act as a JOIN a.auto " +
+                    "WHERE a.leaseEndDate >= current_timestamp)")
     List<Auto> findAllFree();
 
 }

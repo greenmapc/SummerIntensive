@@ -19,4 +19,5 @@ public class AutoForm {
     private String color;
     private Integer kilometrage;
     private String description;
+    private Boolean state = true;
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "pdf_act_part")
+@Table(name = "document")
 @Data
 @NoArgsConstructor
 public class Document {

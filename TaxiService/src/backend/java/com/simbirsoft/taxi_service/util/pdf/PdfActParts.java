@@ -1,4 +1,4 @@
-package com.simbirsoft.taxi_service.util.pdf_act_part;
+package com.simbirsoft.taxi_service.util.pdf;
 
 public abstract class PdfActParts {
 

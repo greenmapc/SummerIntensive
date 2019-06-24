@@ -1,15 +1,14 @@
-package com.simbirsoft.taxi_service.service.impl.pdf_parts_creator;
+package com.simbirsoft.taxi_service.service.impl.pdf_parts;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.model.Auto;
-import com.simbirsoft.taxi_service.util.pdf_act_part.PdfActParts;
-import com.simbirsoft.taxi_service.util.pdf_act_part.PdfReceptionTransmissionActParts;
+import com.simbirsoft.taxi_service.util.pdf.PdfActParts;
+import com.simbirsoft.taxi_service.util.pdf.PdfReceptionTransmissionActParts;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
@@ -30,7 +29,7 @@ public abstract class PdfActCreator  {
 
 
 
-    public String createActPdf(ActForm actForm) throws DocumentException, IOException {
+    public final String createActPdf(ActForm actForm) throws DocumentException, IOException {
         Document document = new Document();
         String fileName = UUID.randomUUID().toString();
 
@@ -143,7 +142,6 @@ public abstract class PdfActCreator  {
 
     protected abstract Paragraph createBodyParagraph(ActForm actForm);
 
-    // Приема-передачи, от него унаследуется другой приема-передачи (водитель -> водитель)
     protected abstract Paragraph createRentDatesParagraph(ActForm actForm);
 
 

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class AutoServiceImpl implements AutoService {
     private final AutoRepository repository;
 

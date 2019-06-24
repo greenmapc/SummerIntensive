@@ -6,7 +6,6 @@ import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 
 public interface ActService {
-
     void createActFromCompanyToDriver(CompanyToDriverActForm form);
     void createActFromDriverToDriver(DriverToDriverActForm form);
     void createActFromDriverToCompany(DriverToCompanyActForm form);

@@ -15,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 
 @RequestMapping("/autos")
 @Controller
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class AutoController {
     private final AutoService autoService;
 

@@ -19,4 +19,5 @@ public abstract class ActForm {
     private LocalDateTime leaseEndDate;
     private String conditions;
     private String drafter;
+    private Long type;
 }

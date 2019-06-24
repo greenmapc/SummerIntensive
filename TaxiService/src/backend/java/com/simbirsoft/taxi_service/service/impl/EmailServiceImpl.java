@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
     private final EmailSenderService emailSenderService;
     private final Configuration freemarkerConfig;

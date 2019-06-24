@@ -30,5 +30,5 @@ public class DriverForm {
     private String phoneNumber;
     private String telegramLogin;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate birthday;
+    private LocalDate birthDate;
 }
