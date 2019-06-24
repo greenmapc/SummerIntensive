@@ -1,0 +1,35 @@
+.site-footer {
+    padding: 20px 0;
+    min-height: 60px;
+    background-color: rgba(0, 0, 0, 0.33);
+}
+
+h4,
+p {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.site-footer__div {
+    justify-content: space-around;
+}
+
+.site-footer__about-base--h4 {
+    padding-top: 12px;
+}
+
+.site-footer__about-base--p {
+    max-width: 725px;
+    font-size: 14px;
+}
+
+.site-footer__about-base--div-description {
+    padding: 10px;
+    border: 3px dashed white;
+    border-radius: 15px;
+}

@@ -1,25 +1,54 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
-<@l.layout "База данных авто | TaxiService">
+<@l.layout "База данных авто | TaxiService" 'style.css'>
     <@n.navbar/>
-    <div class="form-container flex__form layout-positioner">
-        <h1 class="form-container__h1 flex__element">Список автомобилей</h1>
-        <#if autos??>
-            <#list autos as auto>
-                <h2>Автомобиль 1</h2>
-                <h3>Марка/бренд</h3>
-                <p>${auto.brand}</p>
-                <h3>Модельный ряд</h3>
-                <p>${auto.model}</p>
-                <h3>Год выпуска</h3>
-                <p>${auto.year}</p>
-                <br>
-            </#list>
-        <#else>
-            <h4>Нет автомобилей</h4>
-        </#if>
-        <form action="/operator/create_auto" method="get">
-            <button class="form-container__form--button flex__element" type="submit">Добавить авто</button>
-        </form>
+    <div class="banner">
+        <div class="banner_div data__flex layout-positioner">
+            <h1 class="banner_h1">База данных автомобилей</h1>
+            <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/car.svg" alt="Иконка автомобиля">
+        </div>
+    </div>
+    <div class="layout-positioner">
+        <h2>Автомобиль 1</h2>
+        <div class="data__flex">
+            <h3>Марка/бренд</h3>
+            <p>Opel</p>
+        </div>
+        <div class="data__flex">
+            <h3>Модельный ряд</h3>
+            <p>Atra</p>
+        </div>
+        <div class="data__flex">
+            <h3>Год выпуска</h3>
+            <p>2011</p>
+        </div>
+
+        <h2>Автомобиль 2</h2>
+        <div class="data__flex">
+            <h3>Марка/бренд</h3>
+            <p>Lada</p>
+        </div>
+        <div class="data__flex">
+            <h3>Модельный ряд</h3>
+            <p>Kalina</p>
+        </div>
+        <div class="data__flex">
+            <h3>Год выпуска</h3>
+            <p>2015</p>
+        </div>
+
+        <h2>Автомобиль 3</h2>
+        <div class="data__flex">
+            <h3>Марка/бренд</h3>
+            <p>Nissan</p>
+        </div>
+        <div class="data__flex">
+            <h3>Модельный ряд</h3>
+            <p>Almera</p>
+        </div>
+        <div class="data__flex">
+            <h3>Год выпуска</h3>
+            <p>2005</p>
+        </div>
     </div>
 </@l.layout>

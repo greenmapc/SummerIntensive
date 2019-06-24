@@ -1,10 +1,10 @@
 <#macro navbar>
-    <div class="site-header">
+    <header class="site-header">
         <div class="layout-positioner">
             <div class="flex__header--container">
                 <img class="site-header__logo" src="${springMacroRequestContext.contextPath}/img/logo.png"
                      alt="Логотип">
-                <div class="flex__header--button">
+                <nav class="flex__header--button">
                     <#if user ??>
                         <form action="/panel">
                             <button class="site-header__button site-header__button--admin  flex__element">
@@ -28,8 +28,8 @@
                             <button class="site-header__button site-header__button--login flex__element">Вход</button>
                         </form>
                     </#if>
-                </div>
+                </nav>
             </div>
         </div>
-    </div>
+    </header>
 </#macro>

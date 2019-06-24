@@ -20,8 +20,12 @@ label,
 input,
 textarea,
 button {
-    font-family: "PT Sans", Arial, sans-serif;
-    color: rgba(0, 0, 0, 0.66);
+    font-family: "ProximaNova-Light", Arial, sans-serif;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 28px;
 }
 
 input,
@@ -32,6 +36,7 @@ button {
 }
 
 input {
+    font-family: "ProximaNova-Light", Arial, sans-serif;
     padding-left: 10px;
     box-sizing: border-box;
 }
@@ -44,10 +49,13 @@ button:focus {
 
 button {
     color: white;
-    font-weight: bold;
 }
 
 textarea {
     margin: 0;
     padding: 0;
+}
+
+button:hover {
+    background-color: limegreen;
 }

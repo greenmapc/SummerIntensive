@@ -1,26 +1,32 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 
-<@l.layout "База данных водителей | TaxiService">
+<@l.layout "База данных водителей | TaxiService" "style.css">
     <@n.navbar/>
-    <div class="form-container flex__form layout-positioner">
-        <h1 class="form-container__h1 flex__element">Список Водителей</h1>
+    <div class="banner">
+        <div class="banner_div data__flex layout-positioner">
+            <h1 class="banner_h1">База данных водителей</h1>
+            <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/driver.svg" alt="Иконка водителя">
+        </div>
+    </div>
+    <div class="layout-positioner">
         <#if drivers??>
             <#list drivers as driver>
-                <h2>Водитель ${driver.id}</h2>
-                <h3>Имя</h3>
-                <p>${driver.firstName}</p>
-                <h3>Фамилия</h3>
-                <p>${driver.lastName}</p>
-                <h3>Отчество</h3>
-                <p>${driver.patronymic}</p>
-                <br>
+                <h2>Водитель 1</h2>
+                <div class="data__flex">
+                    <h3>ФИО</h3>
+                    <p>Иванов Иван Иванович</p>
+                </div>
+                <div class="data__flex">
+                    <h3>Рейтинг из 5 баллов</h3>
+                    <p>4,7</p>
+                </div>
             </#list>
-        <#else>
-            <h4>Нет Водителей</h4>
+        <#else >
+            <h3>Нет Водителей</h3>
         </#if>
-        <form action="/operator/create_driver" method="get">
-            <button class="form-container__form--button flex__element" type="submit">Добавить водителя</button>
-        </form>
     </div>
+    <form action="/operator/create_driver" method="get">
+        <button class="form-container__form--button flex__element" type="submit">Добавить водителя</button>
+    </form>
 </@l.layout>

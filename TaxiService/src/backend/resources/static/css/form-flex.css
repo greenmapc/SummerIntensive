@@ -17,6 +17,5 @@
     width: 400px;
     border-radius: 15px;
     border: 0px solid lightgrey;
-    background: rgb(238,83,53);
-    background: linear-gradient(0deg, rgba(238,83,53,1) 0%, rgba(240,126,67,1) 100%);
+    background-color: lightskyblue;
 }
