@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 
 @RequestMapping("/autos")
 @Controller
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class AutoController {
     private final AutoService autoService;
     private final ConditionService conditionService;

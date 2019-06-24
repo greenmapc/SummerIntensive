@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class EmailSenderServiceImpl implements EmailSenderService {
     private final JavaMailSender javaMailSender;
 
@@ -27,7 +27,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
             messageHelper.setTo(mailTo);
         };
 
-        // Exception without net
+        // ToDo: Exception without net
         javaMailSender.send(messagePreparator);
     }
 }

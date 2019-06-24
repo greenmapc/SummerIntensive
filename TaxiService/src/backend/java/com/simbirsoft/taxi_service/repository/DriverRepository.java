@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public interface DriverRepository extends JpaRepository<Driver, Long> {
 
-    @Query("FROM Driver WHERE id NOT IN (" +
-            "SELECT act.driverLessor.id FROM Act as act JOIN act.driverLessor " +
-             "WHERE act.leaseEndDate >= current_timestamp)")
+    @Query("FROM Driver WHERE id NOT IN (SELECT " +
+                "act.driverLessor.id FROM Act as act JOIN act.driverLessor " +
+                    "WHERE act.leaseEndDate >= current_timestamp)")
     List<Driver> findAllWithoutRent();
 
 }

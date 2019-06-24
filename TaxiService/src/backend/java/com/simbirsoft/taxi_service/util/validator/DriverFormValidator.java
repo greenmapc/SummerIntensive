@@ -1,7 +1,6 @@
 package com.simbirsoft.taxi_service.util.validator;
 
 import com.simbirsoft.taxi_service.form.DriverForm;
-import com.simbirsoft.taxi_service.util.ValidatorConstraints;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -33,8 +32,8 @@ public class DriverFormValidator implements Validator {
                 form.getPatronymic().length() > ValidatorConstraints.MAX_FIELD_LENGTH) {
             errors.rejectValue("patronymic", "error.field.empty");
         }
-        if (LocalDate.now().getYear() - form.getBirthday().getYear() < ValidatorConstraints.MIN_AGE_OF_DRIVER) {
-            errors.rejectValue("birthday", "driverform.birthday");
+        if (LocalDate.now().getYear() - form.getBirthDate().getYear() < ValidatorConstraints.MIN_AGE_OF_DRIVER) {
+            errors.rejectValue("birthDate", "driverform.birthday");
         }
         if (form.getDriversLicenseSeries() < ValidatorConstraints.MIN_DOCUMENT_SERIES_VALUE ||
                 form.getDriversLicenseSeries() > ValidatorConstraints.MAX_DOCUMENT_SERIES_VALUE) {

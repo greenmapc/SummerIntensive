@@ -1,4 +1,4 @@
-package com.simbirsoft.taxi_service.aop;
+package com.simbirsoft.taxi_service.logging;
 
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;

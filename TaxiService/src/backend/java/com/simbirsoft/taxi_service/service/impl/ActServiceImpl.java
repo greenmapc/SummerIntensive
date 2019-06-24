@@ -15,10 +15,12 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class ActServiceImpl implements ActService {
     private final PdfActCreatorService pdfActCreatorService;
     private final ActRepository actRepository;
+
+    //ToDo: moved general part to method
 
     @Override
     public void createActFromCompanyToDriver(CompanyToDriverActForm form) {

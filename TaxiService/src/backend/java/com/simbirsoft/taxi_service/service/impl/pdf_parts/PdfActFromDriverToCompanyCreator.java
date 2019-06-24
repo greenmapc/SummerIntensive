@@ -1,13 +1,12 @@
-package com.simbirsoft.taxi_service.service.impl.pdf_parts_creator;
+package com.simbirsoft.taxi_service.service.impl.pdf_parts;
 
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.Driver;
-import com.simbirsoft.taxi_service.util.pdf_act_part.PdfActParts;
-import com.simbirsoft.taxi_service.util.pdf_act_part.PdfReceptionTransmissionActParts;
-import com.simbirsoft.taxi_service.util.pdf_act_part.PdfReturnActParts;
+import com.simbirsoft.taxi_service.util.pdf.PdfReceptionTransmissionActParts;
+import com.simbirsoft.taxi_service.util.pdf.PdfReturnActParts;
 import org.springframework.stereotype.Service;
 
 @Service("driverToCompany")

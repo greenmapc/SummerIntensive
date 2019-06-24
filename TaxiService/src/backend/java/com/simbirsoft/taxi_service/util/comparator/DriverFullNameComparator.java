@@ -7,7 +7,6 @@ import java.util.Comparator;
 
 @Service
 public class DriverFullNameComparator implements Comparator<Driver> {
-
     @Override
     public int compare(Driver driver1, Driver driver2) {
         if (!driver1.getLastName().equals(driver2.getLastName())) {

@@ -61,7 +61,7 @@ public class Auto {
     @Column(name = "kilometrage", nullable = false)
     private Integer kilometrage;
 
-    @Column(name = "state", nullable = false)
+    @Column(name = "state")
     private Boolean state;
 
 

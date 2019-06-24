@@ -4,17 +4,15 @@ import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
-import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.service.DriverService;
-import com.simbirsoft.taxi_service.util.freemaker_select_creator.CreateActSelectCreator;
-import com.simbirsoft.taxi_service.util.freemaker_select_creator.CreateAutoSelectCreator;
+import com.simbirsoft.taxi_service.util.select.ActSelectCreator;
+import com.simbirsoft.taxi_service.util.select.AutoSelectCreator;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/operator")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class UserController {
     private final AutoService autoService;
     private final DriverService driverService;
@@ -99,9 +97,9 @@ public class UserController {
                                              Model model) {
         model.addAttribute("formCD", new CompanyToDriverActForm());
         model.addAttribute("drivers",
-                CreateActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
         model.addAttribute("autos",
-                CreateActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
+                ActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
         model.addAttribute("user", user);
 
         return "acts/company_to_driver";
@@ -136,9 +134,9 @@ public class UserController {
                                             Model model) {
         model.addAttribute("formDD", new DriverToDriverActForm());
         model.addAttribute("drivers",
-                CreateActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
         model.addAttribute("autos",
-                CreateActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
+                ActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
         model.addAttribute("user", user);
         return "acts/driver_to_driver";
     }
@@ -153,8 +151,8 @@ public class UserController {
     }
 
     private void fillAutoSelectFields(Model model) {
-        model.addAttribute("bodyType", CreateAutoSelectCreator.bodyTypeCreate());
-        model.addAttribute("driveType", CreateAutoSelectCreator.driveTypeCreate());
-        model.addAttribute("transmissionType", CreateAutoSelectCreator.transmissionType());
+        model.addAttribute("bodyType", AutoSelectCreator.bodyTypeCreate());
+        model.addAttribute("driveType", AutoSelectCreator.driveTypeCreate());
+        model.addAttribute("transmissionType", AutoSelectCreator.transmissionType());
     }
 }

@@ -1,11 +1,11 @@
-package com.simbirsoft.taxi_service.util.freemaker_select_creator;
+package com.simbirsoft.taxi_service.util.select;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class CreateAutoSelectCreator {
+public class AutoSelectCreator {
 
-    private CreateAutoSelectCreator() {}
+    private AutoSelectCreator() {}
 
     public static Map<String, String> bodyTypeCreate() {
         Map<String, String> bodyTypeMap = new LinkedHashMap<>();

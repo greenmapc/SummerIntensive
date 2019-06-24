@@ -1,4 +1,4 @@
-package com.simbirsoft.taxi_service.util.pdf_act_part;
+package com.simbirsoft.taxi_service.util.pdf;
 
 public class PdfReturnActParts extends PdfActParts {
     public static final String MAIN_BODY = "Настоящий акт составлен в двух экземплярах, по одному для " +

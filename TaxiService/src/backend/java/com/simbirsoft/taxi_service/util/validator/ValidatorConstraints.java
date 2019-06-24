@@ -1,4 +1,4 @@
-package com.simbirsoft.taxi_service.util;
+package com.simbirsoft.taxi_service.util.validator;
 
 public final class ValidatorConstraints {
     public static final Integer MAX_FIELD_LENGTH = 64;
