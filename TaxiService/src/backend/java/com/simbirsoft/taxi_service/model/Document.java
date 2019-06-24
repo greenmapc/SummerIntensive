@@ -20,9 +20,6 @@ public class Document {
     @Column(name = "extension", nullable = false)
     private String extension;
 
-    @Column(name = "doc_type", nullable = false)
-    private String docType;
-
     @ManyToOne
     @JoinColumn(name = "driver", referencedColumnName = "id", nullable = true)
     private Driver driver;

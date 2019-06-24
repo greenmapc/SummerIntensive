@@ -4,10 +4,12 @@ import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
+import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.service.DriverService;
+import com.simbirsoft.taxi_service.service.ImageUploadService;
 import com.simbirsoft.taxi_service.util.select.ActSelectCreator;
 import com.simbirsoft.taxi_service.util.select.AutoSelectCreator;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
@@ -20,6 +22,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.transaction.Transactional;
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/operator")
@@ -28,6 +35,7 @@ public class UserController {
     private final AutoService autoService;
     private final DriverService driverService;
     private final ActService actService;
+    private final ImageUploadService imageUploadService;
 
     @InitBinder("form")
     public void initAutoFormBinder(WebDataBinder binder) {
@@ -50,15 +58,27 @@ public class UserController {
     }
 
     @PostMapping("/create_auto")
+    @Transactional
     public String createAuto(@Validated @ModelAttribute("form") AutoForm form,
                              BindingResult bindingResult,
                              @AuthenticationPrincipal User user,
-                             Model model) {
+                             Model model,
+                             @RequestParam("docs") List<MultipartFile> docs) {
         if (bindingResult.hasErrors()) {
             fillAutoSelectFields(model);
             return "user/create_auto";
         }
-        autoService.createAuto(form);
+        Auto auto = autoService.createAuto(form);
+
+        try {
+            for(MultipartFile doc : docs) {
+                imageUploadService.saveAutoDocument(auto, doc);
+            }
+        } catch (IOException e) {
+            // ToDo: handle
+            e.printStackTrace();
+        }
+
         model.addAttribute("user", user);
         return "redirect:/autos";
     }
