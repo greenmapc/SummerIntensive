@@ -11,6 +11,6 @@ public interface PdfActCreatorService {
 
     String createPdfActFromCompanyToDriver(CompanyToDriverActForm form) throws IOException, DocumentException;
     String createPdfActFromDriverToDriver(DriverToDriverActForm form) throws IOException, DocumentException;
-    void createPdfActFromDriverToCompany(ActForm form);
+    String createPdfActFromDriverToCompany(ActForm form) throws IOException, DocumentException;
 
 }

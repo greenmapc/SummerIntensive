@@ -17,7 +17,7 @@
             <br>
 
             <label for="document__driver">Водитель (кому передают)*</label><br>
-            <@spring.formSingleSelect "formCD.driver" drivers 'class="form-container__form--input flex__element"
+            <@spring.formSingleSelect "formCD.renter" drivers 'class="form-container__form--input flex__element"
                                     id="document__driver" placeholder="Выберите водителя" required'/>
             <br>
 

@@ -1,4 +1,4 @@
-package com.simbirsoft.taxi_service.service.impl.pdf_creator;
+package com.simbirsoft.taxi_service.service.impl.pdf_parts_creator;
 
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;

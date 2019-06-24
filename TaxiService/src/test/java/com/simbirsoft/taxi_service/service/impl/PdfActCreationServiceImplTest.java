@@ -31,7 +31,7 @@ public class PdfActCreationServiceImplTest {
     private DriverService driverService;
 
     @Test
-    public void createPdfActFromCompanyToDriver() {
+    public void createPdfFromCompanyToDriver() {
         CompanyToDriverActForm actForm = new CompanyToDriverActForm();
         actForm.setDrafter("Анна Кузьменко");
         actForm.setConditions("Не указано");

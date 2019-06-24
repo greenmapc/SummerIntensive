@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
 public abstract class ActForm {
     private Auto auto;
     private Driver renter;

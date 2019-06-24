@@ -3,6 +3,7 @@ package com.simbirsoft.taxi_service.service.impl;
 import com.itextpdf.text.DocumentException;
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
+import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.model.Act;
 import com.simbirsoft.taxi_service.repository.ActRepository;
 import com.simbirsoft.taxi_service.service.ActService;
@@ -30,6 +31,7 @@ public class ActServiceImpl implements ActService {
         act.setLeaseEndDate(form.getLeaseEndDate());
         act.setType(form.getType());
 
+        // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromCompanyToDriver(form);
             actRepository.save(act);
@@ -39,8 +41,9 @@ public class ActServiceImpl implements ActService {
     }
 
     @Override
-    public void createActFromDriverToDriver(ActForm form) {
+    public void createActFromDriverToDriver(DriverToDriverActForm form) {
         // parse form, save to db
+        // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromDriverToDriver(form);
         } catch (IOException e) {
@@ -53,6 +56,13 @@ public class ActServiceImpl implements ActService {
     @Override
     public void createActFromDriverToCompany(ActForm form) {
         // parse form, save to db
-        pdfActCreatorService.createPdfActFromDriverToCompany(form);
+        // ToDo: exceptions
+        try {
+            pdfActCreatorService.createPdfActFromDriverToCompany(form);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
     }
 }

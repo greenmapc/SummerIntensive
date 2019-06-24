@@ -5,7 +5,7 @@ import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.service.PdfActCreatorService;
-import com.simbirsoft.taxi_service.service.impl.pdf_creator.PdfActCreator;
+import com.simbirsoft.taxi_service.service.PdfCreatorFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,21 +14,21 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class PdfActCreationServiceImpl implements PdfActCreatorService {
-    // How to inject?
-    private final PdfActCreator pdfActCreator;
+    private final PdfCreatorFactory pdfCreatorFactory;
 
     @Override
     public String createPdfActFromCompanyToDriver(CompanyToDriverActForm form) throws IOException, DocumentException {
-        return pdfActCreator.createActPdf(form);
+        return pdfCreatorFactory.getCompanyToDriverCreator().createActPdf(form);
     }
 
     @Override
     public String createPdfActFromDriverToDriver(DriverToDriverActForm form) throws IOException, DocumentException {
-        return pdfActCreator.createActPdf(form);
+        return pdfCreatorFactory.getDriverToDriverCreator().createActPdf(form);
     }
 
     @Override
-    public void createPdfActFromDriverToCompany(ActForm form) {
+    public String createPdfActFromDriverToCompany(ActForm form) throws IOException, DocumentException {
+        return pdfCreatorFactory.getDriverToCompanyCreator().createActPdf(form);
 
     }
 }
