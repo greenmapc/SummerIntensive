@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>TaxiService. Изменение данных</title>
+    <link href="../../../src/css/app.css" rel="stylesheet">
+    <link href="../../../src/css/site-header.css" rel="stylesheet">
+    <link href="../../../src/css/form-flex.css" rel="stylesheet">
+    <link href="../../../src/css/error-field.css" rel="stylesheet">
+</head>
+<body class="site">
+    <header class="site-header">
+        <div class="layout-positioner">
+            <div class="flex__header--container">
+                <img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип">
+                <nav class="flex__header--button">
+                    <button class="site-header__button site-header__button--admin  flex__element">Панель администратора</button>
+                    <button class="site-header__button site-header__button--driver flex__element">База водителей</button>
+                    <button class="site-header__button site-header__button--auto flex__element">База автомобилей</button>
+                    <button class="site-header__button site-header__button--login flex__element">Вход/выход</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="form-container flex__form layout-positioner">
+        <h1 class="form-container__h1 flex__element">Изменение личных данных</h1>
+
+        <form class="form-container__form">
+            <label for="name__second">Текущая фамилия: Александрова</label><br>
+            <input class="form-container__form--input flex__element" type="text" id="name__second" placeholder="Введите новую фамилию" required><br>
+
+            <label for="name__first">Текущее имя: Александра</label><br>
+            <input class="form-container__form--input flex__element" type="text" id="name__first" placeholder="Введите новое имя" required><br>
+
+            <label for="name__third">Текущее отчество: Александровна</label><br>
+            <input class="form-container__form--input flex__element" type="text" id="name__third" placeholder="Введите новое отчество" required><br>
+
+            <label for="contact__email">Текущий email: example@mail.ru</label><br>
+            <input class="form-container__form--input flex__element" type="email" id="contact__email" placeholder="Введите новую электронную почту" required><br>
+
+            <label for="password__new">Пароль для входа в систему</label><br>
+            <input class="form-container__form--input flex__element" type="password" id="password__new" placeholder="Введите новый пароль" required><br>
+
+            <label for="password__repeat">Подтверждение пароля</label><br>
+            <input class="form-container__form--input flex__element" type="password" id="password__repeat" placeholder="Повторите новый пароль" required><br>
+
+            <button class="form-container__form--button flex__element" type="button">Принять изменения</button>
+
+            <div class="error-field">
+                <p>Ошибка ввода данных</p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

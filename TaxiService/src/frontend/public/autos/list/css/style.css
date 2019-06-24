@@ -1,0 +1,34 @@
+p {
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 5px;
+    padding: 15px 0 0 10px;
+    height: 35px;
+    width: 724px;
+    color: white;
+    background-color: lightskyblue;
+    border-radius: 15px;
+}
+
+.banner {
+    margin: 0;
+    height: 300px;
+    background-color: lightgreen;
+}
+
+.banner_div {
+    justify-content: space-between;
+
+}
+
+.banner_h1 {
+    margin: 0;
+    padding-top: 120px;
+    font-size: 36px;
+    text-align: left;
+    color: white;
+}
+
+.banner_img {
+    width: 460px;
+}
