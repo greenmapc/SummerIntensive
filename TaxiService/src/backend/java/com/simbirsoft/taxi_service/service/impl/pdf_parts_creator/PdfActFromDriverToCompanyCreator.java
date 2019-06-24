@@ -5,6 +5,8 @@ import com.itextpdf.text.Phrase;
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.Driver;
+import com.simbirsoft.taxi_service.util.pdf_act_part.PdfActParts;
+import com.simbirsoft.taxi_service.util.pdf_act_part.PdfReceptionTransmissionActParts;
 import com.simbirsoft.taxi_service.util.pdf_act_part.PdfReturnActParts;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,7 @@ public class PdfActFromDriverToCompanyCreator extends PdfActFromCompanyToDriverC
                 auto.getYear(),
                 auto.getGosNumber(),
                 driverInfo(driver),
-                this.COMPANY);
+                PdfReceptionTransmissionActParts.COMPANY);
 
         Phrase bodyPhrase = new Phrase(bodyText, basicFont);
         bodyParagraph.add(bodyPhrase);
@@ -49,8 +51,7 @@ public class PdfActFromDriverToCompanyCreator extends PdfActFromCompanyToDriverC
 
     @Override
     protected Paragraph createConclusionParagraph() {
-        Paragraph conclusionParagraph = new Paragraph(
-                String.format(PdfReturnActParts.MAIN_CONCLUSION, this.LESSOR), basicFont);
+        Paragraph conclusionParagraph = new Paragraph(PdfReturnActParts.MAIN_CONCLUSION, basicFont);
         indent(conclusionParagraph);
 
         return conclusionParagraph;

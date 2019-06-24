@@ -2,6 +2,11 @@ package com.simbirsoft.taxi_service.util.pdf_act_part;
 
 public abstract class PdfActParts {
 
+    public static final String COMPANY = "Компания \"Такси-Такси\"";
+    public static final String RENTER = "Арендатор";
+    public static final String LESSOR = "Арендодатель";
+    public static final String PASSPORT = "Паспорт";
+
     public static final String HEADER = "Договор аренды автомобиля физическим лицом для использования в коммерческих целях";
 
     public static final String KILOMETRAGE_AUTO_INFO = "На момент передачи общий пробег автомобиля составляет %d км.";

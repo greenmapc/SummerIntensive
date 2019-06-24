@@ -17,10 +17,6 @@ public abstract class PdfActCreator  {
 
     private final int HEADER_FONT_SIZE = 18;
     private final int BASIC_FONT_SIZE = 14;
-    final String COMPANY = "Компания \"Такси-Такси\"";
-    final String RENTER = "Арендатор";
-    final String LESSOR = "Арендодатель";
-    final String PASSPORT = "Паспорт";
 
     @Value("${pdf.basic.font}")
     private String PATH_TO_COURIER_FONT;

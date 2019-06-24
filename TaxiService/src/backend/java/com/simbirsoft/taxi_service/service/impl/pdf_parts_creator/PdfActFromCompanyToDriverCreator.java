@@ -18,7 +18,7 @@ public class PdfActFromCompanyToDriverCreator extends PdfActCreator {
         Driver driver = actForm.getRenter();
         String text = String.format(PdfReceptionTransmissionActParts.DOCUMENT_FOOTER,
                 driver.getLastName() + " " + driver.getFirstName() + " " + driver.getPatronymic(),
-                this.COMPANY);
+                PdfReceptionTransmissionActParts.COMPANY);
 
         Paragraph footerParagraph = new Paragraph(text, this.basicFont);
         this.indent(footerParagraph);
@@ -29,7 +29,8 @@ public class PdfActFromCompanyToDriverCreator extends PdfActCreator {
     @Override
     protected Paragraph createConclusionParagraph() {
         Paragraph conclusionParagraph = new Paragraph(
-                String.format(PdfReceptionTransmissionActParts.MAIN_CONCLUSION, this.RENTER), basicFont);
+                String.format(PdfReceptionTransmissionActParts.MAIN_CONCLUSION,
+                        PdfReceptionTransmissionActParts.COMPANY), basicFont);
         indent(conclusionParagraph);
 
         return conclusionParagraph;
@@ -47,7 +48,7 @@ public class PdfActFromCompanyToDriverCreator extends PdfActCreator {
                 auto.getYear(),
                 auto.getGosNumber(),
                 driverInfo(driver),
-                this.COMPANY);
+                PdfReceptionTransmissionActParts.COMPANY);
 
         Phrase bodyPhrase = new Phrase(bodyText, basicFont);
         bodyParagraph.add(bodyPhrase);
@@ -77,7 +78,7 @@ public class PdfActFromCompanyToDriverCreator extends PdfActCreator {
 
         return driver.getLastName() + " " + driver.getFirstName() + " " + driver.getPatronymic() + " " +
                 birthDate.getDayOfMonth() + "." + birthDate.getMonthValue() + "." + birthDate.getYear() + " " +
-                this.PASSPORT + " " + driver.getPassportSeries() + " " + driver.getPassportNumber() + " " +
+                PdfReceptionTransmissionActParts.PASSPORT + " " + driver.getPassportSeries() + " " + driver.getPassportNumber() + " " +
                 driver.getDateOfPassportIssue().toString() + " " + driver.getPlaceOfPassportIssue();
     }
 }

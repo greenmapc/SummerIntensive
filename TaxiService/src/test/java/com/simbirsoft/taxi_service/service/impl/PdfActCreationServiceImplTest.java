@@ -52,6 +52,26 @@ public class PdfActCreationServiceImplTest {
 
     @Test
     public void createPdfFromDriverToDriver() {
+        DriverToDriverActForm actForm = new DriverToDriverActForm();
+        actForm.setDrafter("Анна Кузьменко");
+        actForm.setConditions("Не указано");
+        actForm.setAuto(autoService.getAll().get(0));
+        actForm.setRenter(driverService.getAll().get(0));
+        actForm.setRecipient(driverService.getAll().get(0));
+        actForm.setLeaseStartDate(LocalDateTime.now());
+        actForm.setLeaseEndDate(LocalDateTime.of(LocalDate.now(), LocalTime.of(19, 0)));
+
+        try {
+            pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void createPdfFromDriverToCompany() {
         DriverToCompanyActForm actForm = new DriverToCompanyActForm();
         actForm.setDrafter("Анна Кузьменко");
         actForm.setConditions("Не указано");
@@ -66,10 +86,5 @@ public class PdfActCreationServiceImplTest {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-    }
-
-    @Test
-    public void createPdfFromDriverToCompany() {
-
     }
 }
