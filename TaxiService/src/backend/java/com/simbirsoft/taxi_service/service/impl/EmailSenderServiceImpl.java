@@ -19,7 +19,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
     @Override
     public void sendMessage(String subject, String text, String mailTo) {
-        MimeMessagePreparator messagePreparator = mimeMessage ->{
+        MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setSubject(subject);
             messageHelper.setText(text, true);

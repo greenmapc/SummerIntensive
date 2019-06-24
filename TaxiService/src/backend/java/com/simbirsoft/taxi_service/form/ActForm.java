@@ -1,10 +1,22 @@
 package com.simbirsoft.taxi_service.form;
 
+import com.simbirsoft.taxi_service.model.Auto;
+import com.simbirsoft.taxi_service.model.Driver;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
 public abstract class ActForm {
-    // ToDo: fill with act fields
+    protected Auto auto;
+    protected Driver renter;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    protected LocalDateTime leaseStartDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    protected LocalDateTime leaseEndDate;
+    protected String conditions;
+    protected String drafter;
+
+    public abstract Long getType();
 }

@@ -27,8 +27,3 @@ target/
 # Package Files #
 *.jar
 *.war
-
-
-
-## Properties ##
-application.properties

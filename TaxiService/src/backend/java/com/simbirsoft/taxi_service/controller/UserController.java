@@ -3,6 +3,7 @@ package com.simbirsoft.taxi_service.controller;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverForm;
+import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
@@ -131,22 +132,29 @@ public class UserController {
     @PostMapping("/create_act_from_driver_to_company")
     public String createActFromDriverToCompany(Model model) {
         // ToDo: creation act
-        return "redirect:operator/acts";
+        return "redirect:/operator/acts";
     }
 
     @GetMapping("/create_act_from_driver_to_driver")
     public String actFromDriverToDriverPage(@AuthenticationPrincipal User user,
                                             Model model) {
+        model.addAttribute("formDD", new DriverToDriverActForm());
+        model.addAttribute("drivers",
+                CreateActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+        model.addAttribute("autos",
+                CreateActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
         model.addAttribute("user", user);
-
         return "acts/driver_to_driver";
     }
 
     @PostMapping("/create_act_from_driver_to_driver")
-    public String createActFromDriverToDriver(Model model) {
-        return "redirect:operator/acts";
+    public String createActFromDriverToDriver(@ModelAttribute("formDD") DriverToDriverActForm form,
+                                              @AuthenticationPrincipal User user,
+                                              Model model) {
+        form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
+        actService.createActFromDriverToDriver(form);
+        return "redirect:/operator/acts";
     }
-
 
     private void fillAutoSelectFields(Model model) {
         model.addAttribute("bodyType", CreateAutoSelectCreator.bodyTypeCreate());

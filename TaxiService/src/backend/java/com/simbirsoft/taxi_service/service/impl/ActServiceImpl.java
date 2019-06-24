@@ -2,6 +2,7 @@ package com.simbirsoft.taxi_service.service.impl;
 
 import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
+import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.model.Act;
 import com.simbirsoft.taxi_service.repository.ActRepository;
 import com.simbirsoft.taxi_service.service.ActService;
@@ -24,7 +25,7 @@ public class ActServiceImpl implements ActService {
         act.setAuto(actForm.getAuto());
         act.setConditions(actForm.getConditions());
         act.setDrafter(actForm.getDrafter());
-        act.setDriverRecipient(actForm.getDriver());
+        act.setDriverRenter(actForm.getRenter());
         act.setLeaseStartDate(actForm.getLeaseStartDate());
         act.setLeaseEndDate(actForm.getLeaseEndDate());
         act.setType(actForm.getType());
@@ -35,13 +36,25 @@ public class ActServiceImpl implements ActService {
 
     @Override
     public void createActFromDriverToDriver(ActForm form) {
-        // parse form, save to db
+        DriverToDriverActForm actForm = (DriverToDriverActForm) form;
+
+        Act act = new Act();
+        act.setAuto(form.getAuto());
+        act.setConditions(actForm.getConditions());
+        act.setDrafter(form.getDrafter());
+        act.setDriverRenter(actForm.getRenter());
+        act.setDriverLessor(actForm.getLessor());
+        act.setDrafter(actForm.getDrafter());
+        act.setLeaseStartDate(actForm.getLeaseStartDate());
+        act.setLeaseEndDate(actForm.getLeaseEndDate());
+        act.setType(actForm.getType());
+
+        actRepository.save(act);
         pdfActCreatorService.createPdfActFromDriverToDriver(form);
     }
 
     @Override
     public void createActFromDriverToCompany(ActForm form) {
-        // parse form, save to db
-        pdfActCreatorService.createPdfActFromDriverToCompany(form);
+
     }
 }

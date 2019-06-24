@@ -36,8 +36,8 @@ public class Act {
     private Driver driverRenter;
 
     @ManyToOne
-    @JoinColumn(name = "driver_recipient", referencedColumnName = "id")
-    private Driver driverRecipient;
+    @JoinColumn(name = "driver_lessor", referencedColumnName = "id")
+    private Driver driverLessor;
 
     @Column(name = "act_type")
     private Long type;
