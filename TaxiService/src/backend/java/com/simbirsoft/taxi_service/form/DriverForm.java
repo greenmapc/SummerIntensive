@@ -30,7 +30,6 @@ public class DriverForm {
     private String telegramLogin;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
-    private LocalDate birthday;
     private boolean blackList;
     private Integer rating;
 
@@ -51,7 +50,7 @@ public class DriverForm {
         form.setActualAddress(driver.getActualAddress());
         form.setPhoneNumber(driver.getPhoneNumber());
         form.setTelegramLogin(driver.getTelegramLogin());
-        form.setBirthday(driver.getBirthDate());
+        form.setBirthDate(driver.getBirthDate());
         form.setBlackList(driver.getBlackList());
         form.setRating(driver.getRating());
         return form;

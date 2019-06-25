@@ -102,7 +102,7 @@ public class DriverServiceImpl implements DriverService {
         driver.setDateOfPassportIssue(form.getDateOfPassportIssue());
         driver.setPhoneNumber(form.getPhoneNumber());
         driver.setTelegramLogin(form.getTelegramLogin());
-        driver.setBirthDate(form.getBirthday());
+        driver.setBirthDate(form.getBirthDate());
         driver.setRating(form.getRating());
         return repository.save(driver);
     }
