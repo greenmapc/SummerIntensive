@@ -8,7 +8,7 @@
             Создание акта приема-передачи автомобиля от водителя к водителю
         </h1>
 
-        <form class="form-container__form" action="/operator/create_act_from_driver_to_driver" method="post">
+        <form class="form-container__form" action="/user/create_act_from_driver_to_driver" method="post">
             <h2>Акт 1</h2>
             <@spring.bind "formDD"/>
 

@@ -6,7 +6,7 @@
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
             <h1 class="banner_h1">База данных водителей</h1>
-            <img class="banner_img" src="img/driver.svg" alt="Иконка водителя">
+            <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/driver.svg" alt="Иконка водителя">
         </div>
     </div>
     <div class="data layout-positioner">

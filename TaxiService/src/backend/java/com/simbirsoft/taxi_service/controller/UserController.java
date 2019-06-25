@@ -5,13 +5,16 @@ import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.service.DriverService;
+import com.simbirsoft.taxi_service.service.UserService;
 import com.simbirsoft.taxi_service.util.freemaker_select_creator.CreateActSelectCreator;
 import com.simbirsoft.taxi_service.util.freemaker_select_creator.CreateAutoSelectCreator;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
+import com.simbirsoft.taxi_service.util.validator.UserFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,12 +23,14 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/operator")
+@RequestMapping("/user")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
     private final AutoService autoService;
     private final DriverService driverService;
     private final ActService actService;
+    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
     @InitBinder("form")
     public void initAutoFormBinder(WebDataBinder binder) {
@@ -35,6 +40,11 @@ public class UserController {
     @InitBinder("driverForm")
     public void initDriverFormBinder(WebDataBinder binder) {
         binder.addValidators(new DriverFormValidator());
+    }
+
+    @InitBinder("userForm")
+    public void initUserFormBinder(WebDataBinder binder) {
+        binder.addValidators(new UserFormValidator());
     }
 
     @GetMapping("/create_auto")
@@ -110,7 +120,7 @@ public class UserController {
             Model model) {
         form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
         actService.createActFromCompanyToDriver(form);
-        return "redirect:/operator/acts";
+        return "redirect:/user/acts";
     }
 
     @GetMapping("/create_act_from_driver_to_company")
@@ -131,7 +141,7 @@ public class UserController {
                                                Model model) {
         form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
         actService.createActFromDriverToCompany(form);
-        return "redirect:/operator/acts";
+        return "redirect:/user/acts";
     }
 
     @GetMapping("/create_act_from_driver_to_driver")
@@ -152,7 +162,30 @@ public class UserController {
                                               Model model) {
         form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
         actService.createActFromDriverToDriver(form);
-        return "redirect:/operator/acts";
+        return "redirect:/user/acts";
+    }
+
+    @GetMapping("/update")
+    public String updateInfoPage(@AuthenticationPrincipal User user,
+                                 Model model) {
+        User userFromDb = (User) userDetailsService.loadUserByUsername(user.getEmail());
+        model.addAttribute("user", userFromDb);
+        model.addAttribute("userForm", UserForm.createFromUser(userFromDb));
+        return "user/update";
+    }
+
+    @PostMapping("/update")
+    public String updateInfo(@AuthenticationPrincipal User user,
+                             @Validated @ModelAttribute("userForm") UserForm userForm,
+                             BindingResult bindingResult,
+                             Model model) {
+        User userFromDb = (User) userDetailsService.loadUserByUsername(user.getEmail());
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", userFromDb);
+            return "user/update";
+        }
+        userService.updateInfo(userFromDb, userForm);
+        return "redirect:/panel";
     }
 
     private void fillAutoSelectFields(Model model) {

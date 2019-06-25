@@ -7,7 +7,7 @@
         <h1 class="form-container__h1 flex__element">Создание акта передачи автомобиля от водителя к компании</h1>
 
         <div class="flex__container">
-            <form class="form-container__form" action="/operator/create_act_from_driver_to_company" method="post">
+            <form class="form-container__form" action="/user/create_act_from_driver_to_company" method="post">
                 <h2>Акт 1</h2>
                 <@spring.bind "formDC"/>
 

@@ -1,6 +1,6 @@
 package com.simbirsoft.taxi_service.service.impl;
 
-import com.simbirsoft.taxi_service.form.OperatorForm;
+import com.simbirsoft.taxi_service.form.UserForm;
 import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.UserRepository;
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private final EmailService emailService;
 
     @Override
-    public User createOperator(OperatorForm form) {
+    public User createOperator(UserForm form) {
         String password = PasswordGeneration.generatePassword();
 
         User user = new User();
@@ -34,19 +34,23 @@ public class UserServiceImpl implements UserService {
         user.setPatronymic(form.getPatronymic());
         user.setRoles(Collections.singleton(Roles.OPERATOR));
         user.setPassword(passwordEncoder.encode(password));
-
         repository.save(user);
 
         try {
             emailService.sendPasswordToEmail(user, password);
-        } catch (TemplateException e) {
-            // ToDo: handle exception
-            e.printStackTrace();
-        } catch (IOException e) {
-            // ToDo: handle IO exception
+        } catch (TemplateException | IOException e) {
             e.printStackTrace();
         }
-
         return user;
+    }
+
+    @Override
+    public User updateInfo(User user, UserForm form) {
+        user.setEmail(form.getEmail());
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+        user.setPatronymic(form.getPatronymic());
+        user.setPassword(passwordEncoder.encode(form.getNewPassword()));
+        return repository.save(user);
     }
 }
