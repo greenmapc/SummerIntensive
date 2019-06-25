@@ -1,7 +1,7 @@
 package com.simbirsoft.taxi_service.service.impl;
 
-import com.simbirsoft.taxi_service.form.OperatorForm;
 import com.simbirsoft.taxi_service.model.OperatorAction;
+import com.simbirsoft.taxi_service.form.UserForm;
 import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.OperatorActionRepository;
@@ -12,12 +12,10 @@ import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import com.simbirsoft.taxi_service.util.PasswordGeneration;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 
@@ -30,7 +28,7 @@ public class UserServiceImpl implements UserService {
     private final OperatorActionRepository operatorActionRepository;
 
     @Override
-    public User createOperator(OperatorForm form) {
+    public User createOperator(UserForm form) {
         String password = PasswordGeneration.generatePassword();
 
         User user = new User();
@@ -40,25 +38,19 @@ public class UserServiceImpl implements UserService {
         user.setPatronymic(form.getPatronymic());
         user.setRoles(Collections.singleton(Roles.OPERATOR));
         user.setPassword(passwordEncoder.encode(password));
-
         repository.save(user);
 
         try {
             emailService.sendPasswordToEmail(user, password);
-        } catch (TemplateException e) {
-            // ToDo: handle exception
-            e.printStackTrace();
-        } catch (IOException e) {
-            // ToDo: handle IO exception
+        } catch (TemplateException | IOException e) {
             e.printStackTrace();
         }
-
         return user;
     }
 
     @Override
     public void addAction(User user, OperatorActionEnum action) {
-        if(user.getRoles().contains(Roles.OPERATOR)) {
+        if (user.getRoles().contains(Roles.OPERATOR)) {
             OperatorAction operatorAction = new OperatorAction();
             operatorAction.setAction(action.toString());
             operatorAction.setDate(LocalDateTime.now());
@@ -66,5 +58,13 @@ public class UserServiceImpl implements UserService {
 
             operatorActionRepository.save(operatorAction);
         }
+    }
+    public User updateInfo(User user, UserForm form) {
+        user.setEmail(form.getEmail());
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+        user.setPatronymic(form.getPatronymic());
+        user.setPassword(passwordEncoder.encode(form.getNewPassword()));
+        return repository.save(user);
     }
 }

@@ -1,11 +1,11 @@
 package com.simbirsoft.taxi_service.service.impl;
 
 import com.itextpdf.text.DocumentException;
+import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.model.Act;
-import com.simbirsoft.taxi_service.model.OperatorAction;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.ActRepository;
 import com.simbirsoft.taxi_service.service.ActService;
@@ -28,16 +28,8 @@ public class ActServiceImpl implements ActService {
 
     @Override
     public void createActFromCompanyToDriver(CompanyToDriverActForm form, User user) {
-        Act act = new Act();
-
-        act.setAuto(form.getAuto());
-        act.setConditions(form.getConditions());
-        act.setDrafter(form.getDrafter());
+        Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
-        act.setLeaseStartDate(form.getLeaseStartDate());
-        act.setLeaseEndDate(form.getLeaseEndDate());
-        act.setType(form.getType());
-
         userService.addAction(user, OperatorActionEnum.CREATE_ACT);
         // ToDo: exceptions
         try {
@@ -50,44 +42,43 @@ public class ActServiceImpl implements ActService {
 
     @Override
     public void createActFromDriverToDriver(DriverToDriverActForm actForm, User user) {
-        Act act = new Act();
+        Act act = fillBasicData(actForm);
 
-        act.setAuto(actForm.getAuto());
-        act.setConditions(actForm.getConditions());
-        act.setDrafter(actForm.getDrafter());
         act.setDriverRenter(actForm.getRenter());
         act.setDriverLessor(actForm.getLessor());
-        act.setDrafter(actForm.getDrafter());
-        act.setLeaseStartDate(actForm.getLeaseStartDate());
-        act.setLeaseEndDate(actForm.getLeaseEndDate());
-        act.setType(actForm.geType());
 
         userService.addAction(user, OperatorActionEnum.CREATE_ACT);
         // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
         } catch (
-                IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
+                IOException | DocumentException e) {
             e.printStackTrace();
         }
     }
 
-
     @Override
     public void createActFromDriverToCompany(DriverToCompanyActForm form, User user) {
-        // parse form, save to db
-        // ToDo: exceptions
-
-
+        Act act = fillBasicData(form);
+        act.setDriverRenter(form.getRenter());
         userService.addAction(user, OperatorActionEnum.CREATE_ACT);
+
+        // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromDriverToCompany(form);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
+        } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
+    }
+
+    private Act fillBasicData(ActForm form) {
+        Act act = new Act();
+        act.setAuto(form.getAuto());
+        act.setConditions(form.getConditions());
+        act.setDrafter(form.getDrafter());
+        act.setLeaseStartDate(form.getLeaseStartDate());
+        act.setLeaseEndDate(form.getLeaseEndDate());
+        act.setType(form.getType());
+        return act;
     }
 }

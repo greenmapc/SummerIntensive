@@ -26,7 +26,7 @@
             <h3>Нет Водителей</h3>
         </#if>
     </div>
-    <form action="/operator/create_driver" method="get">
+    <form action="/user/create_driver" method="get">
         <button class="form-container__form--button flex__element" type="submit">Добавить водителя</button>
     </form>
 </@l.layout>

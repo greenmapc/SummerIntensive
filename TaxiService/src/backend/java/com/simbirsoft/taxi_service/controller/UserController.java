@@ -1,19 +1,19 @@
 package com.simbirsoft.taxi_service.controller;
 
-import com.simbirsoft.taxi_service.form.AutoForm;
-import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
-import com.simbirsoft.taxi_service.form.DriverForm;
-import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
+import com.simbirsoft.taxi_service.form.*;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.service.DriverService;
 import com.simbirsoft.taxi_service.util.select.ActSelectCreator;
 import com.simbirsoft.taxi_service.util.select.AutoSelectCreator;
+import com.simbirsoft.taxi_service.service.UserService;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
+import com.simbirsoft.taxi_service.util.validator.UserFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,12 +22,14 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/operator")
 @RequiredArgsConstructor
+@RequestMapping("/user")
 public class UserController {
     private final AutoService autoService;
     private final DriverService driverService;
     private final ActService actService;
+    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
     @InitBinder("form")
     public void initAutoFormBinder(WebDataBinder binder) {
@@ -37,6 +39,11 @@ public class UserController {
     @InitBinder("driverForm")
     public void initDriverFormBinder(WebDataBinder binder) {
         binder.addValidators(new DriverFormValidator());
+    }
+
+    @InitBinder("userForm")
+    public void initUserFormBinder(WebDataBinder binder) {
+        binder.addValidators(new UserFormValidator());
     }
 
     @GetMapping("/create_auto")
@@ -111,22 +118,30 @@ public class UserController {
             @AuthenticationPrincipal User user,
             Model model) {
         form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
+
         actService.createActFromCompanyToDriver(form, user);
-        return "redirect:/operator/acts";
+        return "redirect:/user/acts";
     }
 
     @GetMapping("/create_act_from_driver_to_company")
     public String actFromDriverToCompanyPage(@AuthenticationPrincipal User user,
                                              Model model) {
         model.addAttribute("user", user);
-
+        model.addAttribute("formDC", new DriverToCompanyActForm());
+        model.addAttribute("drivers",
+                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+        model.addAttribute("autos",
+                ActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
         return "acts/driver_to_company";
     }
 
     @PostMapping("/create_act_from_driver_to_company")
-    public String createActFromDriverToCompany(Model model) {
-        // ToDo: creation act
-        return "redirect:/operator/acts";
+    public String createActFromDriverToCompany(@ModelAttribute("formDC") DriverToCompanyActForm form,
+                                               @AuthenticationPrincipal User user,
+                                               Model model) {
+        form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
+        actService.createActFromDriverToCompany(form, user);
+        return "redirect:/user/acts";
     }
 
     @GetMapping("/create_act_from_driver_to_driver")
@@ -146,8 +161,32 @@ public class UserController {
                                               @AuthenticationPrincipal User user,
                                               Model model) {
         form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
+
         actService.createActFromDriverToDriver(form, user);
-        return "redirect:/operator/acts";
+        return "redirect:/user/acts";
+    }
+
+    @GetMapping("/update")
+    public String updateInfoPage(@AuthenticationPrincipal User user,
+                                 Model model) {
+        User userFromDb = (User) userDetailsService.loadUserByUsername(user.getEmail());
+        model.addAttribute("user", userFromDb);
+        model.addAttribute("userForm", UserForm.createFromUser(userFromDb));
+        return "user/update";
+    }
+
+    @PostMapping("/update")
+    public String updateInfo(@AuthenticationPrincipal User user,
+                             @Validated @ModelAttribute("userForm") UserForm userForm,
+                             BindingResult bindingResult,
+                             Model model) {
+        User userFromDb = (User) userDetailsService.loadUserByUsername(user.getEmail());
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", userFromDb);
+            return "user/update";
+        }
+        userService.updateInfo(userFromDb, userForm);
+        return "redirect:/panel";
     }
 
     private void fillAutoSelectFields(Model model) {

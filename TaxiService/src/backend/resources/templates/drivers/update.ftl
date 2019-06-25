@@ -1,14 +1,13 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
-
-<@l.layout "Создание карты водителя | TaxiService">
+<@l.layout "Обновление данных водителя | TaxiService" 'style.css'>
     <@n.navbar/>
     <div class="form-container flex__form layout-positioner">
-        <h1 class="form-container__h1 flex__element">Создание нового водителя</h1>
+        <h1 class="form-container__h1 flex__element">Изменение данных водителя</h1>
 
-        <form class="form-container__form" action="/user/create_driver" method="post">
-            <h2>Добавление водителя</h2>
+        <form class="form-container__form" action="/drivers/${driver.id}/update" method="post">
+            <h2>Данные водителя</h2>
             <@spring.bind "driverForm"/>
 
             <label for="driver__last_name">Фамилия *</label><br>
@@ -86,10 +85,10 @@
             <br>
 
             <label for="driver__birthday">Дата рождения *</label><br>
-            <@spring.formInput "driverForm.birthDate" 'class="form-container__form--input flex__element"
+            <@spring.formInput "driverForm.birthday" 'class="form-container__form--input flex__element"
                             id="driver__birthday" type="date" placeholder="Введите дату рождения" required' 'date'/>
             <br>
-            <@spring.showErrors "driverForm.birthDate"/>
+            <@spring.showErrors "driverForm.birthday"/>
             <br>
 
             <label for="driver__residence_address">Адрес прописки *</label><br>
@@ -120,7 +119,16 @@
             <@spring.showErrors "driverForm.telegramLogin"/>
             <br>
 
-            <button class="form-container__form--button flex__element" type="submit">Добавить водителя</button>
+            <label for="driver__black_list">Черный список</label><br>
+            <@spring.formCheckbox "driverForm.blackList" 'id="driver__black_list" '/>
+            <br>
+
+            <label for="driver__rating">Рейтинг</label><br>
+            <@spring.formInput "driverForm.rating" 'class="form-container__form--input flex__element"
+                            id="driver__rating" placeholder="Введите рейтинг водителя" required' 'number'/><br>
+            <@spring.showErrors "driverForm.rating"/>
+
+            <button class="form-container__form--button flex__element" type="submit">Обновить</button>
         </form>
     </div>
 </@l.layout>
