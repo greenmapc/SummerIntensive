@@ -9,7 +9,9 @@
         </div>
     </div>
     <div class="layout-positioner">
-        <h2>Автомобиль</h2>
+        <form style="margin-top: 10px" class="form-container__form" action="/autos/${auto.id}/update" method="get">
+            <button class="form-container__form--button flex__element" type="submit">Изменить данные</button>
+        </form>
 
         <div class="data__flex">
             <h3>Марка/бренд</h3>
