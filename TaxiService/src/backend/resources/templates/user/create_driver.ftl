@@ -7,7 +7,7 @@
     <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание нового водителя</h1>
 
-        <form class="form-container__form" action="/user/create_driver" method="post">
+        <form class="form-container__form" action="/operator/create_driver" method="post" enctype="multipart/form-data">
             <h2>Добавление водителя</h2>
             <@spring.bind "driverForm"/>
 
@@ -118,6 +118,9 @@
                             id="driver__telegram_login" placeholder="Введите логин Telegram" '/>
             <br>
             <@spring.showErrors "driverForm.telegramLogin"/>
+            <br>
+
+            <input class="form-container__form--input flex__element" type="file" name="docs" multiple accept="image/*"/>
             <br>
 
             <button class="form-container__form--button flex__element" type="submit">Добавить водителя</button>

@@ -20,14 +20,11 @@ public class Document {
     @Column(name = "extension", nullable = false)
     private String extension;
 
-    @Column(name = "doc_type", nullable = false)
-    private String docType;
-
     @ManyToOne
-    @JoinColumn(name = "driver", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "driver", referencedColumnName = "id")
     private Driver driver;
 
     @ManyToOne
-    @JoinColumn(name = "auto", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "auto", referencedColumnName = "id")
     private Auto auto;
 }

@@ -1,10 +1,13 @@
 package com.simbirsoft.taxi_service.controller;
 
 import com.simbirsoft.taxi_service.form.*;
+import com.simbirsoft.taxi_service.model.Auto;
+import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.ActService;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.service.DriverService;
+import com.simbirsoft.taxi_service.service.ImageUploadService;
 import com.simbirsoft.taxi_service.util.select.ActSelectCreator;
 import com.simbirsoft.taxi_service.util.select.AutoSelectCreator;
 import com.simbirsoft.taxi_service.service.UserService;
@@ -20,6 +23,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.transaction.Transactional;
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,6 +38,7 @@ public class UserController {
     private final ActService actService;
     private final UserDetailsService userDetailsService;
     private final UserService userService;
+    private final ImageUploadService imageUploadService;
 
     @InitBinder("form")
     public void initAutoFormBinder(WebDataBinder binder) {
@@ -57,15 +66,27 @@ public class UserController {
     }
 
     @PostMapping("/create_auto")
+    @Transactional
     public String createAuto(@Validated @ModelAttribute("form") AutoForm form,
                              BindingResult bindingResult,
                              @AuthenticationPrincipal User user,
-                             Model model) {
+                             Model model,
+                             @RequestParam("docs") List<MultipartFile> docs) {
         if (bindingResult.hasErrors()) {
             fillAutoSelectFields(model);
             return "user/create_auto";
         }
         autoService.createAuto(form, user);
+        Auto auto = autoService.createAuto(form, user);
+
+        try {
+            for(MultipartFile doc : docs) {
+                imageUploadService.saveAutoDocument(auto, doc);
+            }
+        } catch (IOException e) {
+            // ToDo: handle
+            e.printStackTrace();
+        }
         model.addAttribute("user", user);
         return "redirect:/autos";
     }
@@ -80,14 +101,26 @@ public class UserController {
     }
 
     @PostMapping("/create_driver")
+    @Transactional
     public String createDriver(@Validated @ModelAttribute("driverForm") DriverForm form,
                                BindingResult bindingResult,
                                Model model,
-                               @AuthenticationPrincipal User user) {
+                               @AuthenticationPrincipal User user,
+                               @RequestParam("docs") List<MultipartFile> docs) {
         if (bindingResult.hasErrors()) {
             return "user/create_driver";
         }
         driverService.createDriver(form, user);
+        Driver driver = driverService.createDriver(form, user);
+
+        try {
+            for(MultipartFile doc : docs) {
+                imageUploadService.saveDriverDocument(driver, doc);
+            }
+        } catch (IOException e) {
+            // ToDo: handle
+            e.printStackTrace();
+        }
         model.addAttribute("user", user);
         return "redirect:/drivers";
     }
