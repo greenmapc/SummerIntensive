@@ -6,4 +6,5 @@ import java.io.FileNotFoundException;
 
 public interface DownloadDocService {
     DownloadFileDto downloadPdf(String fileName) throws FileNotFoundException;
+    DownloadFileDto downloadDoc(String fileName) throws FileNotFoundException;
 }

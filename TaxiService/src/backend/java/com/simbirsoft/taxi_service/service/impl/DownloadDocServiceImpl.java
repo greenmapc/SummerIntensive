@@ -22,11 +22,23 @@ public class DownloadDocServiceImpl implements DownloadDocService {
     @Value("${pdf.store}")
     private String PDF_STORE;
 
+    @Value("${docs.store}")
+    private String DOC_STORE;
+
     @Override
     public DownloadFileDto downloadPdf(String fileName) throws FileNotFoundException {
+        return dtoCreation(fileName, PDF_STORE);
+    }
+
+    @Override
+    public DownloadFileDto downloadDoc(String fileName) throws FileNotFoundException {
+        return dtoCreation(fileName, DOC_STORE);
+    }
+
+    private DownloadFileDto dtoCreation(String fileName, String path) throws FileNotFoundException {
         DownloadFileDto dto = new DownloadFileDto();
         MediaType mediaType = MediaTypeUtil.getMediaTypeForFileName(servletContext, fileName);
-        File file = new File(PDF_STORE + "/" + fileName);
+        File file = new File(path + "/" + fileName);
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
         dto.setFile(file);
