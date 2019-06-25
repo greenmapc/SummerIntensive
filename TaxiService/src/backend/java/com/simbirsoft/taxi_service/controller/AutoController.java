@@ -1,20 +1,24 @@
 package com.simbirsoft.taxi_service.controller;
 
+import com.simbirsoft.taxi_service.form.AutoForm;
+import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.AutoService;
+import com.simbirsoft.taxi_service.util.freemaker_select_creator.CreateAutoSelectCreator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.Set;
 
-@RequestMapping("/autos")
 @Controller
+@RequestMapping("/autos")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AutoController {
     private final AutoService autoService;
@@ -39,4 +43,23 @@ public class AutoController {
         return "autos/card";
     }
 
+    @GetMapping("/{id}/update")
+    public String updatePage(@PathVariable Long id,
+                             Model model) {
+        model.addAttribute("bodyType", CreateAutoSelectCreator.bodyTypeCreate());
+        model.addAttribute("driveType", CreateAutoSelectCreator.driveTypeCreate());
+        model.addAttribute("transmissionType", CreateAutoSelectCreator.transmissionType());
+        Auto auto = autoService.findOneById(id);
+        model.addAttribute("auto", auto);
+        model.addAttribute("form", AutoForm.createFromAuto(auto));
+        return "autos/update";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateAuto(@PathVariable Long id,
+                             @ModelAttribute("form") AutoForm form,
+                             Model model) {
+        autoService.updateInfo(autoService.findOneById(id), form);
+        return "redirect:/autos/" + id;
+    }
 }

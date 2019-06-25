@@ -26,7 +26,8 @@ public class AutoServiceImpl implements AutoService {
     public Auto findOneById(Long id) throws EntityNotFoundException {
         Optional<Auto> candidate = repository.findById(id);
         return candidate.orElseThrow(
-                () -> new EntityNotFoundException("Auto with id = " + id + " not found"));
+                () -> new EntityNotFoundException("Auto with id = " + id + " not found")
+        );
     }
 
     @Override
@@ -45,6 +46,7 @@ public class AutoServiceImpl implements AutoService {
                 .transmission(form.getTransmissionType())
                 .model(form.getModel())
                 .kilometrage(form.getKilometrage())
+                .state(true)
                 .build();
         return repository.save(auto);
     }
@@ -52,5 +54,24 @@ public class AutoServiceImpl implements AutoService {
     @Override
     public List<Auto> findAllFree() {
         return repository.findAllFree();
+    }
+
+    @Override
+    public Auto updateInfo(Auto auto, AutoForm form) {
+        auto.setBodyType(form.getBodyType());
+        auto.setBrand(form.getBrand());
+        auto.setColor(form.getColor());
+        auto.setDescription(form.getDescription());
+        auto.setDrive(form.getDrive());
+        auto.setEnginePower(form.getEnginePower());
+        auto.setGosNumber(form.getGosNumber());
+        auto.setVinNumber(form.getVinNumber());
+        auto.setYear(form.getYear());
+        auto.setVolume(form.getVolume());
+        auto.setTransmission(form.getTransmissionType());
+        auto.setModel(form.getModel());
+        auto.setKilometrage(form.getKilometrage());
+        auto.setState(form.isState());
+        return repository.save(auto);
     }
 }
