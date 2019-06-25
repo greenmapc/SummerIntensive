@@ -2,10 +2,13 @@ package com.simbirsoft.taxi_service.service.impl;
 
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.model.Auto;
+import com.simbirsoft.taxi_service.model.OperatorAction;
+import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.AutoRepository;
 import com.simbirsoft.taxi_service.service.AutoService;
+import com.simbirsoft.taxi_service.service.UserService;
+import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -16,6 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AutoServiceImpl implements AutoService {
     private final AutoRepository repository;
+    private final UserService userService;
 
     @Override
     public List<Auto> getAll() {
@@ -30,7 +34,7 @@ public class AutoServiceImpl implements AutoService {
     }
 
     @Override
-    public Auto createAuto(AutoForm form) {
+    public Auto createAuto(AutoForm form, User user) {
         Auto auto = Auto.builder()
                 .bodyType(form.getBodyType())
                 .brand(form.getBrand())
@@ -46,6 +50,9 @@ public class AutoServiceImpl implements AutoService {
                 .model(form.getModel())
                 .kilometrage(form.getKilometrage())
                 .build();
+
+        userService.addAction(user, OperatorActionEnum.CREATE_AUTO);
+
         return repository.save(auto);
     }
 

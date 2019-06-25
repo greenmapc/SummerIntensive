@@ -2,6 +2,7 @@ package com.simbirsoft.taxi_service.service;
 
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.Driver;
+import com.simbirsoft.taxi_service.model.User;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ public interface DriverService {
     List<Driver> getAllSorted();
     List<Driver> getAllWithoutRentSorted();
     Driver findOneById(Long id);
-    Driver createDriver(DriverForm form);
+    Driver createDriver(DriverForm form, User user);
 }

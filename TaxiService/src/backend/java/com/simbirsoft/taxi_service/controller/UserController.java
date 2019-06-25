@@ -58,7 +58,7 @@ public class UserController {
             fillAutoSelectFields(model);
             return "user/create_auto";
         }
-        autoService.createAuto(form);
+        autoService.createAuto(form, user);
         model.addAttribute("user", user);
         return "redirect:/autos";
     }
@@ -80,7 +80,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "user/create_driver";
         }
-        driverService.createDriver(form);
+        driverService.createDriver(form, user);
         model.addAttribute("user", user);
         return "redirect:/drivers";
     }
@@ -111,7 +111,7 @@ public class UserController {
             @AuthenticationPrincipal User user,
             Model model) {
         form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
-        actService.createActFromCompanyToDriver(form);
+        actService.createActFromCompanyToDriver(form, user);
         return "redirect:/operator/acts";
     }
 
@@ -146,7 +146,7 @@ public class UserController {
                                               @AuthenticationPrincipal User user,
                                               Model model) {
         form.setDrafter(user.getLastName() + " " + user.getFirstName() + " " + user.getPatronymic());
-        actService.createActFromDriverToDriver(form);
+        actService.createActFromDriverToDriver(form, user);
         return "redirect:/operator/acts";
     }
 

@@ -1,11 +1,14 @@
 package com.simbirsoft.taxi_service.service.impl;
 
 import com.simbirsoft.taxi_service.form.OperatorForm;
+import com.simbirsoft.taxi_service.model.OperatorAction;
 import com.simbirsoft.taxi_service.model.Roles;
 import com.simbirsoft.taxi_service.model.User;
+import com.simbirsoft.taxi_service.repository.OperatorActionRepository;
 import com.simbirsoft.taxi_service.repository.UserRepository;
 import com.simbirsoft.taxi_service.service.EmailService;
 import com.simbirsoft.taxi_service.service.UserService;
+import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import com.simbirsoft.taxi_service.util.PasswordGeneration;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 
 @Service
@@ -22,6 +27,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
+    private final OperatorActionRepository operatorActionRepository;
 
     @Override
     public User createOperator(OperatorForm form) {
@@ -48,5 +54,17 @@ public class UserServiceImpl implements UserService {
         }
 
         return user;
+    }
+
+    @Override
+    public void addAction(User user, OperatorActionEnum action) {
+        if(user.getRoles().contains(Roles.OPERATOR)) {
+            OperatorAction operatorAction = new OperatorAction();
+            operatorAction.setAction(action.toString());
+            operatorAction.setDate(LocalDateTime.now());
+            operatorAction.setOperator(user);
+
+            operatorActionRepository.save(operatorAction);
+        }
     }
 }
