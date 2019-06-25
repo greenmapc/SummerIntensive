@@ -12,12 +12,12 @@
                 <@spring.bind "formDC"/>
 
                 <label for="document__auto">Автомобиль (что передают)*</label><br>
-                <@spring.formSingleSelect "formDC.auto" autos 'class="form-container__form--input flex__element"
+                <@spring.formSingleSelect "formDC.auto" autos 'class="dtc_auto_select form-container__form--input flex__element"
                         id="document__auto" placeholder="Выберите авто"'/>
                 <br>
 
                 <label for="document__driver">Водитель (кто передаёт)*</label><br>
-                <@spring.formSingleSelect "formDC.renter" drivers 'class="form-container__form--input flex__element"
+                <@spring.formSingleSelect "formDC.renter" drivers 'class="dtc_select form-container__form--input flex__element"
                                     id="document__driver" placeholder="Выберите водителя" required'/>
                 <br>
 

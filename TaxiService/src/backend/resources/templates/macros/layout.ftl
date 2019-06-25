@@ -30,6 +30,9 @@
         <#else >
         </#if>
         <title>${title}</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="${springMacroRequestContext.contextPath}/js/act.js"></script>
     </head>
     <body class="site">
     <#nested>

@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -161,10 +162,15 @@ public class UserController {
                                              Model model) {
         model.addAttribute("user", user);
         model.addAttribute("formDC", new DriverToCompanyActForm());
+
+        List<Driver> drivers = driverService.getAllWithRentSorted();
         model.addAttribute("drivers",
-                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithRentSorted()));
+                ActSelectCreator.fillDriverSelectFields(drivers));
+
+        List<Auto> autos = new ArrayList<>();
+        autos.add(autoService.findAllRentedByUser(drivers.get(0).getId()));
         model.addAttribute("autos",
-                ActSelectCreator.fillAutoSelectFields(autoService.findAllRented()));
+                ActSelectCreator.fillAutoSelectFields(autos));
         return "acts/driver_to_company";
     }
 

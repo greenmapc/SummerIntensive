@@ -68,6 +68,11 @@ public class AutoServiceImpl implements AutoService {
     }
 
     @Override
+    public Auto findAllRentedByUser(Long id) {
+        return repository.findAllRentByUser(id);
+    }
+
+    @Override
     public Auto updateInfo(Auto auto, AutoForm form) {
         auto.setBodyType(form.getBodyType());
         auto.setBrand(form.getBrand());

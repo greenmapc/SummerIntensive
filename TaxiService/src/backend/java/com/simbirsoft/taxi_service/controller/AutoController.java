@@ -1,5 +1,6 @@
 package com.simbirsoft.taxi_service.controller;
 
+import com.simbirsoft.taxi_service.dto.AutoSelectDto;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.User;
@@ -72,5 +73,13 @@ public class AutoController {
         }
         autoService.updateInfo(autoService.findOneById(id), form);
         return "redirect:/autos/" + id;
+    }
+
+    @GetMapping(value="/getRentedAuto", produces = "application/json")
+    @ResponseBody
+    public AutoSelectDto getAutoFromUser(@RequestParam("id") Long id) {
+        AutoSelectDto dto = new AutoSelectDto();
+        dto = dto.createByAuto(autoService.findAllRentedByUser(id)) ;
+        return dto;
     }
 }

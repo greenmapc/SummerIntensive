@@ -12,6 +12,7 @@ public interface AutoService {
     List<Auto> findAllFree();
     List<Auto> findAllRented();
 
+    Auto findAllRentedByUser(Long id);
     Auto createAuto(AutoForm form, User user);
     Auto findOneById(@NotNull Long id);
     Auto updateInfo(Auto auto, AutoForm newForm);
