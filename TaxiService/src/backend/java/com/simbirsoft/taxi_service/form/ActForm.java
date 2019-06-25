@@ -16,9 +16,9 @@ public abstract class ActForm {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     protected LocalDateTime leaseStartDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime leaseEndDate;
-    private String drafter;
-    private Long type;
+    protected LocalDateTime leaseEndDate;
+    protected String drafter;
+    protected Long type;
     protected String conditions = "Не указано";
 
     public abstract Long getType();

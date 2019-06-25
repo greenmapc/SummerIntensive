@@ -71,16 +71,15 @@ public class UserController {
                              BindingResult bindingResult,
                              @AuthenticationPrincipal User user,
                              Model model,
-                             @RequestParam("docs") List<MultipartFile> docs) {
+                             @RequestParam(value = "docs", required = false) List<MultipartFile> docs) {
         if (bindingResult.hasErrors()) {
             fillAutoSelectFields(model);
             return "user/create_auto";
         }
-        autoService.createAuto(form, user);
         Auto auto = autoService.createAuto(form, user);
 
         try {
-            for(MultipartFile doc : docs) {
+            for (MultipartFile doc : docs) {
                 imageUploadService.saveAutoDocument(auto, doc);
             }
         } catch (IOException e) {
@@ -114,7 +113,7 @@ public class UserController {
         Driver driver = driverService.createDriver(form, user);
 
         try {
-            for(MultipartFile doc : docs) {
+            for (MultipartFile doc : docs) {
                 imageUploadService.saveDriverDocument(driver, doc);
             }
         } catch (IOException e) {

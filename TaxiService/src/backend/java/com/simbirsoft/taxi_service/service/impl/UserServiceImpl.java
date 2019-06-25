@@ -50,15 +50,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addAction(User user, OperatorActionEnum action) {
-        if (user.getRoles().contains(Roles.OPERATOR)) {
-            OperatorAction operatorAction = new OperatorAction();
-            operatorAction.setAction(action.toString());
-            operatorAction.setDate(LocalDateTime.now());
-            operatorAction.setOperator(user);
+        OperatorAction operatorAction = new OperatorAction();
+        operatorAction.setAction(action.toString());
+        operatorAction.setDate(LocalDateTime.now());
+        operatorAction.setOperator(user);
 
-            operatorActionRepository.save(operatorAction);
-        }
+        operatorActionRepository.save(operatorAction);
     }
+
     public User updateInfo(User user, UserForm form) {
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
