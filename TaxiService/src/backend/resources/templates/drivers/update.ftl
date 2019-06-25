@@ -85,10 +85,10 @@
             <br>
 
             <label for="driver__birthday">Дата рождения *</label><br>
-            <@spring.formInput "driverForm.birthday" 'class="form-container__form--input flex__element"
+            <@spring.formInput "driverForm.birthDate" 'class="form-container__form--input flex__element"
                             id="driver__birthday" type="date" placeholder="Введите дату рождения" required' 'date'/>
             <br>
-            <@spring.showErrors "driverForm.birthday"/>
+            <@spring.showErrors "driverForm.birthDate"/>
             <br>
 
             <label for="driver__residence_address">Адрес прописки *</label><br>
