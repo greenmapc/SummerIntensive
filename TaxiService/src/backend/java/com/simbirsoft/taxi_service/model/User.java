@@ -40,6 +40,11 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Roles> roles = new HashSet<>();
 
+    @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "operator_action", joinColumns = @JoinColumn(name = "operator_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<OperatorAction> actions = new HashSet<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
