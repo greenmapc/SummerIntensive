@@ -1,7 +1,7 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 
-<@l.layout "Карта водителя | TaxiService">
+<@l.layout "Карта водителя | TaxiService" "style.css">
     <@n.navbar/>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
