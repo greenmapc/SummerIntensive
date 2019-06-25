@@ -7,7 +7,7 @@
     <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание нового автомобиля</h1>
 
-        <form class="form-container__form" action="/operator/create_auto" method="post" enctype="multipart/form-data">
+        <form class="form-container__form" action="/user/create_auto" method="post" enctype="multipart/form-data">
 
             <@spring.bind "form"/>
 
