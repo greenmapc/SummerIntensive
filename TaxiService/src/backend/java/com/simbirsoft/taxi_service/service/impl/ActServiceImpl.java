@@ -6,6 +6,7 @@ import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.model.Act;
+import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.ActRepository;
 import com.simbirsoft.taxi_service.service.ActService;
@@ -30,11 +31,11 @@ public class ActServiceImpl implements ActService {
     public void createActFromCompanyToDriver(CompanyToDriverActForm form, User user) {
         Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
-        userService.addAction(user, OperatorActionEnum.CREATE_ACT);
         // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromCompanyToDriver(form);
             actRepository.save(act);
+            userService.addAction(user, OperatorActionEnum.CREATE_ACT);
         } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
@@ -47,10 +48,12 @@ public class ActServiceImpl implements ActService {
         act.setDriverRenter(actForm.getRenter());
         act.setDriverLessor(actForm.getLessor());
 
-        userService.addAction(user, OperatorActionEnum.CREATE_ACT);
         // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
+            actRepository.save(act);
+            userService.addAction(user, OperatorActionEnum.CREATE_ACT);
+            rentEnd(actForm.getLessor());
         } catch (
                 IOException | DocumentException e) {
             e.printStackTrace();
@@ -61,14 +64,21 @@ public class ActServiceImpl implements ActService {
     public void createActFromDriverToCompany(DriverToCompanyActForm form, User user) {
         Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
-        userService.addAction(user, OperatorActionEnum.CREATE_ACT);
 
         // ToDo: exceptions
         try {
             pdfActCreatorService.createPdfActFromDriverToCompany(form);
+            actRepository.save(act);
+            userService.addAction(user, OperatorActionEnum.CREATE_ACT);
+            rentEnd(form.getRenter());
         } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void rentEnd(Driver driver) {
+        actRepository.setRentEnd(driver);
     }
 
     private Act fillBasicData(ActForm form) {

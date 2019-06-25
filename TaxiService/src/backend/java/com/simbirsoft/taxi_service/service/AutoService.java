@@ -10,6 +10,7 @@ import java.util.List;
 public interface AutoService {
     List<Auto> getAll();
     List<Auto> findAllFree();
+    List<Auto> findAllRented();
 
     Auto createAuto(AutoForm form, User user);
     Auto findOneById(@NotNull Long id);

@@ -11,6 +11,7 @@ public interface DriverService {
     List<Driver> getAll();
     List<Driver> getAllSorted();
     List<Driver> getAllWithoutRentSorted();
+    List<Driver> getAllWithRentSorted();
 
     Driver createDriver(DriverForm form, User user);
     Driver findOneById(@NotNull Long id);

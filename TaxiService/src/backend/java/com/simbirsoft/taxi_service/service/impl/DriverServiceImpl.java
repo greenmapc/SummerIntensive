@@ -43,6 +43,13 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
+    public List<Driver> getAllWithRentSorted() {
+        List<Driver> result = repository.findAllWithRent();
+        result.sort(driverFullNameComparator);
+        return result;
+    }
+
+    @Override
     public Driver findOneById(Long id) throws EntityNotFoundException {
         Optional<Driver> candidate = repository.findById(id);
         return candidate.orElseThrow(

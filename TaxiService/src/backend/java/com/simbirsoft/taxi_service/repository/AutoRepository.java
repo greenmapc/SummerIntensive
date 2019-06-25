@@ -15,4 +15,10 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
                     "WHERE a.leaseEndDate >= current_timestamp)")
     List<Auto> findAllFree();
 
+
+    @Query("FROM Auto WHERE id IN (SELECT " +
+            "a.auto.id FROM Act as a JOIN a.auto " +
+            "WHERE a.leaseEndDate >= current_timestamp)")
+    List<Auto> findAllRent();
+
 }

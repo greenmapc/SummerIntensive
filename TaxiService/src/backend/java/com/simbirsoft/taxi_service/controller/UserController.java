@@ -129,9 +129,9 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("formDC", new DriverToCompanyActForm());
         model.addAttribute("drivers",
-                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithRentSorted()));
         model.addAttribute("autos",
-                ActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
+                ActSelectCreator.fillAutoSelectFields(autoService.findAllRented()));
         return "acts/driver_to_company";
     }
 
@@ -148,10 +148,12 @@ public class UserController {
     public String actFromDriverToDriverPage(@AuthenticationPrincipal User user,
                                             Model model) {
         model.addAttribute("formDD", new DriverToDriverActForm());
-        model.addAttribute("drivers",
+        model.addAttribute("lessor",
+                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithRentSorted()));
+        model.addAttribute("renter",
                 ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
         model.addAttribute("autos",
-                ActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
+                ActSelectCreator.fillAutoSelectFields(autoService.findAllRented()));
         model.addAttribute("user", user);
         return "acts/driver_to_driver";
     }
