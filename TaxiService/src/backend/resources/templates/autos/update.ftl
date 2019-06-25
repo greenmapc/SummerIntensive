@@ -80,7 +80,7 @@
                             id="auto__description" placeholder="Введите описание автомобиля"'/><br>
             <@spring.showErrors "form.description"/><br>
 
-            <button class="form-container__form--button flex__element" type="submit">Добавить автомобиль</button>
+            <button class="form-container__form--button flex__element" type="submit">Изменить</button>
         </form>
     </div>
 </@l.layout>

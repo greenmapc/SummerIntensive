@@ -69,4 +69,27 @@ public class DriverServiceImpl implements DriverService {
         return repository.save(driver);
     }
 
+    @Override
+    public Driver updateInfo(Driver driver, DriverForm form) {
+        driver.setActualAddress(form.getActualAddress());
+        driver.setResidenceAddress(form.getResidenceAddress());
+        driver.setBlackList(form.isBlackList());
+        driver.setFirstName(form.getFirstName());
+        driver.setLastName(form.getLastName());
+        driver.setPatronymic(form.getPatronymic());
+        driver.setDriversLicenseSeries(form.getDriversLicenseSeries());
+        driver.setDriversLicenseNumber(form.getDriversLicenseNumber());
+        driver.setDateOfLicenseIssue(form.getDateOfDriverLicenseIssue());
+        driver.setDateOfLicenseExpiry(form.getDateOfDriverLicenseExpiry());
+        driver.setPassportSeries(form.getPassportSeries());
+        driver.setPassportNumber(form.getPassportNumber());
+        driver.setPlaceOfPassportIssue(form.getPlaceOfPassportIssue());
+        driver.setDateOfPassportIssue(form.getDateOfPassportIssue());
+        driver.setPhoneNumber(form.getPhoneNumber());
+        driver.setTelegramLogin(form.getTelegramLogin());
+        driver.setBirthDate(form.getBirthday());
+        driver.setRating(form.getRating());
+        return repository.save(driver);
+    }
+
 }

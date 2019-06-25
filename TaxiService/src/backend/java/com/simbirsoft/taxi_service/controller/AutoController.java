@@ -5,12 +5,16 @@ import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.util.freemaker_select_creator.CreateAutoSelectCreator;
+import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -22,6 +26,11 @@ import java.util.Set;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AutoController {
     private final AutoService autoService;
+
+    @InitBinder("form")
+    public void initAutoFormBinder(WebDataBinder binder) {
+        binder.addValidators(new AutoFormValidator());
+    }
 
     @GetMapping
     public String getAll(@AuthenticationPrincipal User user,
@@ -57,8 +66,13 @@ public class AutoController {
 
     @PostMapping("/{id}/update")
     public String updateAuto(@PathVariable Long id,
-                             @ModelAttribute("form") AutoForm form,
+                             @Validated @ModelAttribute("form") AutoForm form,
+                             BindingResult bindingResult,
                              Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("auto", autoService.findOneById(id));
+            return "autos/update";
+        }
         autoService.updateInfo(autoService.findOneById(id), form);
         return "redirect:/autos/" + id;
     }
