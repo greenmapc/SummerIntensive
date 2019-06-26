@@ -44,7 +44,7 @@
                          src="${springMacroRequestContext.contextPath}/img/document.svg" alt="Иконка акта">
                 </div>
             </a>
-            <a class="admin-screen__a" href="">
+            <a class="admin-screen__a" href="/admin/operator_actions">
                 <div class="admin-screen__flex--bar">
                     <p class="admin-screen__p">Действия операторов</p>
                     <img class="admin-screen__svg--statistic"

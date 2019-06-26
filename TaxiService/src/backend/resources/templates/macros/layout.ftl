@@ -1,7 +1,6 @@
 <#assign path_to_style="null"/>
 <#macro layout title path_to_style="">
     <#import "/spring.ftl" as spring />
-    <#assign style=path_to_style/>
     <!doctype html>
     <html lang="ru">
     <head>
@@ -34,6 +33,11 @@
         <link type="text/css" href="${springMacroRequestContext.contextPath}/css/bootstrap__site-header.css"
               rel="stylesheet">
         <link type="text/css" href="${springMacroRequestContext.contextPath}/css/style.css" rel="stylesheet">
+        <#if path_to_style?contains('style.css')>
+            <link type="text/css" href="${springMacroRequestContext.contextPath}/css/card-style.css"
+                  rel="stylesheet">
+        <#else >
+        </#if>
         <title>${title}</title>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

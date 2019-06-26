@@ -1,7 +1,7 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 
-<@l.layout "Карта водителя | TaxiService" "style.css">
+<@l.layout "Карта водителя | TaxiService" "card-style.css">
     <@n.navbar/>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
@@ -66,10 +66,12 @@
             <h3>Черный список</h3>
             <p><#if driver.blackList>Да<#else>Нет</#if></p>
         </div>
-        <div class="data__flex">
-            <h3>Telegram водителя</h3>
-            <p>${driver.telegramLogin}</p>
-        </div>
+        <#if driver.telegramLogin??>
+            <div class="data__flex">
+                <h3>Telegram водителя</h3>
+                <p>{driver.telegramLogin}</p>
+            </div>
+        </#if>
         <div class="data__flex">
             <h3>Рейтинг водителя (от 1 до 10)</h3>
             <p>${driver.rating}</p>

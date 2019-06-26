@@ -12,12 +12,14 @@ import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import com.simbirsoft.taxi_service.util.PasswordGeneration;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -65,5 +67,12 @@ public class UserServiceImpl implements UserService {
         user.setPatronymic(form.getPatronymic());
         user.setPassword(passwordEncoder.encode(form.getNewPassword()));
         return repository.save(user);
+    }
+
+    @Override
+    public List<OperatorAction> getAllActionsSortedByDateDesc() {
+        return operatorActionRepository.findAll(
+                new Sort(Sort.Direction.DESC, "date")
+        );
     }
 }
