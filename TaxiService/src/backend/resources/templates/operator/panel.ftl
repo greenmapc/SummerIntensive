@@ -1,8 +1,8 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
-<@l.layout "Панель оператора">
+<@l.layout "Панель оператора" "operator_screen">
     <@n.navbar/>
-    <div class="operator-screen layout-positioner">
+    <div class="operator-screen layout-positioner over-bootstrap__form">
         <h1 class="operator-screen__h1 form-container__h1 flex__element">Экран оператора</h1>
         <div class="operator-screen__flex form-container__form">
             <a class="operator-screen__a" href="/user/create_auto">

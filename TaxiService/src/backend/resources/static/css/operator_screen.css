@@ -1,3 +1,41 @@
+.operator-screen__flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.operator-screen__flex--bar {
+    margin: 10px;
+    height: 200px;
+    overflow: hidden;
+    max-width: 480px;
+    min-width: 450px;
+    text-align: center;
+    background-color: lightskyblue;
+    border-radius: 15px;
+}
+
+.operator-screen__flex--bar-create {
+    background-color: limegreen;
+}
+
+.operator-screen__a {
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    vertical-align: center;
+}
+
+.over-bootstrap__site .operator-screen__p {
+    margin: 0;
+    padding-top: 5px;
+    color: white;
+}
+
+.over-bootstrap__site .operator-screen__a:hover {
+    text-decoration: none;
+}
+
 .operator-screen__svg--operator {
     position: absolute;
     margin-top: 30px;

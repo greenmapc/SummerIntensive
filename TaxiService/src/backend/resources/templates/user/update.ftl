@@ -1,7 +1,7 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
-<@l.layout "Обновить данные | TaxiService">
+<@l.layout "Обновить данные | TaxiService" "">
     <@n.navbar/>
     <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Изменение данных</h1>

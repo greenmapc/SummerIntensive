@@ -1,3 +1,5 @@
+/* Global styles */
+
 .site {
     margin: 0;
     padding: 0;
@@ -10,53 +12,300 @@
     max-width: 1024px;
 }
 
-h1,
-h2,
-h3,
-h4,
-p,
-a,
-label,
-input,
-textarea,
-button {
+.over-bootstrap__site h1,
+.over-bootstrap__site h2,
+.over-bootstrap__site h3,
+.over-bootstrap__site h4,
+.over-bootstrap__site p,
+.over-bootstrap__site a,
+.over-bootstrap__site label,
+.over-bootstrap__site input,
+.over-bootstrap__site textarea,
+.over-bootstrap__site button {
     font-family: "ProximaNova-Light", Arial, sans-serif;
     color: rgba(0, 0, 0, 0.5);
 }
 
-h1 {
+.over-bootstrap__site h1 {
+    margin: 20px 0;
     font-family: "ProximaNova-Light", Arial, sans-serif;
-    font-size: 28px;
+    font-size: 36px;
 }
 
-input,
-textarea,
-button {
+.over-bootstrap__site .banner_h1 {
+    margin: 0;
+    font-family: "ProximaNova-Light", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+}
+
+.over-bootstrap__site h3 {
+    margin: 15px 0;
+    font-family: "ProximaNova-Light", Arial, sans-serif;
+    font-size: 18px;
+}
+
+.over-bootstrap__form .p-as-input {
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 5px;
+    padding: 8px 0 0 10px;
+    height: 40px;
+    width: 724px;
+    color: white;
+    background-color: lightskyblue;
+    border-radius: 15px;
+}
+
+.over-bootstrap__site h2 {
+    margin: 0 0 25px 0;
+    font-size: 24px;
+}
+
+.over-bootstrap__site input,
+.over-bootstrap__site textarea,
+.over-bootstrap__site button {
     font-size: 18px;
     outline: none;
 }
 
-input {
+.over-bootstrap__site input {
     font-family: "ProximaNova-Light", Arial, sans-serif;
     padding-left: 10px;
     box-sizing: border-box;
 }
 
-input:focus,
-button:focus {
+.over-bootstrap__site input:focus,
+.over-bootstrap__site button:focus {
     border: 3px solid lightskyblue;
     box-sizing: border-box;
 }
 
-button {
+.over-bootstrap__site button {
+    /*margin-top: 20px;*/
     color: white;
 }
 
-textarea {
-    margin: 0;
+.over-bootstrap__site textarea {
     padding: 0;
 }
 
-button:hover {
+.over-bootstrap__site button:hover {
     background-color: limegreen;
 }
+
+
+
+/* Styles from data__flex.css */
+
+.data__flex {
+    display: flex;
+}
+
+
+
+/* Styles from form__flex.css */
+
+.flex__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container__form--input {
+    margin-bottom: 20px;
+    height: 50px;
+    width: 400px;
+    border-radius: 15px;
+    border: 1px solid lightgrey;
+}
+
+.form-container__form--button {
+    height: 50px;
+    width: 400px;
+    border-radius: 15px;
+    border: 0 solid lightgrey;
+    background-color: lightskyblue;
+}
+
+
+
+/* Styles from bootstrap__site-header.css */
+
+.bootstrap__p,
+.bootstrap__button,
+.bootstrap__input {
+    font-family: "ProximaNova-Light", Arial, sans-serif;
+}
+
+.bootstrap__p {
+    margin: 0;
+    font-size: 18px;
+    color: white;
+}
+
+.bootstrap__site-header .site-header__logo {
+    padding-top: 0;
+}
+
+.bootstrap__button {
+    color: white;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: transparent;
+}
+
+.bootstrap__input {
+    border-radius: 10px;
+    border: 0 solid white;
+}
+
+.bootstrap__p:hover {
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.bootstrap__button:hover {
+    background-color: lightskyblue;
+    border: 1px solid lightskyblue;
+}
+
+
+
+/* Styles from app.css */
+
+.site-footer {
+    padding: 20px 0;
+    min-height: 60px;
+    background-color: rgba(0, 0, 0, 0.33);
+}
+
+h4,
+p {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.site-footer__div {
+    justify-content: space-around;
+}
+
+.site-footer__about-base--h4 {
+    padding-top: 12px;
+}
+
+.site-footer__about-base--p {
+    max-width: 725px;
+    font-size: 14px;
+}
+
+.site-footer__about-base--div-description {
+    padding: 10px;
+    border: 3px dashed white;
+    border-radius: 15px;
+}
+
+
+
+/* Styles from error-field.css */
+
+.error-field {
+    display: none;
+    margin-top: 20px;
+    font-size: 14px;
+    min-height: 50px;
+    width: 400px;
+    color: red;
+    word-wrap: break-word;
+    background-color: transparent;
+    border: 3px dashed red;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+
+
+/* Styles from text-area.css */
+
+.document__more {
+    margin-bottom: 20px;
+    height: 100px;
+    width: 400px;
+    border-radius: 15px;
+    border: 1px solid lightgrey;
+    box-sizing: border-box;
+    outline: none;
+}
+
+
+/* Styles for pagination*/
+
+.pagination-position {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 25px;
+}
+
+.page-link {
+    color: rgba(0, 0, 0, 0.5);
+    border: 1px solid lightskyblue;
+}
+
+.page-link:hover {
+    color: limegreen;
+    background-color: white;
+    border: 1px solid limegreen;
+}
+
+
+
+/* Styles for header */
+
+.site-header {
+    min-height: 60px;
+    min-width: 100%;
+    background: rgba(255, 0, 0, 0.66);
+}
+
+.site-header .site-header__logo {
+    height: 40px;
+}
+
+.site-header button:hover {
+    background-color: lightskyblue;
+    border: 1px solid white;
+}
+
+.site-header .site-header__button:hover {
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.site-header .flex__header--container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.site-header .flex__header--button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.site-header .site-header__menu-item {
+    color: white;
+    font-size: 18px;
+}
+
+.site-header .site-header__menu-item:hover {
+    text-decoration: underline;
+}
+

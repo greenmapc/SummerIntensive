@@ -1,5 +1,5 @@
 <#assign path_to_style="null"/>
-<#macro layout title path_to_style="">
+<#macro layout title style>
     <#import "/spring.ftl" as spring />
     <!doctype html>
     <html lang="ru">
@@ -10,33 +10,26 @@
               href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/bootstrap__site-header.css"
-              rel="stylesheet">
         <link type="text/css" href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/data__p--margin-left.css"
-              rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/site-header.css" rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/form-flex.css" rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/admin-screen__flex.css"
-              rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/admin-screen__svg.css"
-              rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/operator-screen__flex.css"
-              rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/operator-screen__svg.css"
-              rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/flex-container.css" rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/text-area.css" rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/data__flex.css" rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/error-field.css" rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/site-footer.css" rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/bootstrap__site-header.css"
-              rel="stylesheet">
-        <link type="text/css" href="${springMacroRequestContext.contextPath}/css/style.css" rel="stylesheet">
-        <#if path_to_style?contains('style.css')>
-            <link type="text/css" href="${springMacroRequestContext.contextPath}/css/card-style.css"
-                  rel="stylesheet">
-        <#else >
+        <#if style??>
+            <#if style = "admin_screen">
+                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/admin_screen.css" rel="stylesheet">
+            <#elseif style = "create_operator">
+                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/create_operator.css" rel="stylesheet">
+            <#elseif style = "auto_card">
+                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/auto_card.css" rel="stylesheet">
+            <#elseif style = "auto_list">
+                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/auto_list.css" rel="stylesheet">
+            <#elseif style = "login">
+                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/login.css" rel="stylesheet">
+            <#elseif style = "driver_card">
+                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/driver_card.css" rel="stylesheet">
+            <#elseif style = "driver_list">
+                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/driver_list.css" rel="stylesheet">
+            <#elseif style = "operator_screen">
+                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/operator_screen.css" rel="stylesheet">
+            <#else>
+            </#if>
         </#if>
         <title>${title}</title>
 

@@ -1,0 +1,45 @@
+.banner {
+    margin: 0;
+    height: 300px;
+    background-color: lightgreen;
+}
+
+.banner_div {
+    justify-content: space-between;
+
+}
+
+.over-bootstrap__site-content .banner_h1 {
+    padding-top: 120px;
+    font-size: 36px;
+    text-align: left;
+    font-weight: bold;
+    color: white;
+}
+
+.banner_img {
+    width: 400px;
+}
+
+.form-container__filter {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -10px;
+    padding: 20px 0 0 20px;
+}
+
+.form-container__filter--black-list,
+.form-container__filter--driver-rating {
+    margin-left: 20px;
+}
+
+.driver-rating__variants {
+    font-family: "ProximaNova-Light", Arial, sans-serif;
+}
+
+.pagination-position {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}

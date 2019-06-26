@@ -1,7 +1,7 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 
-<@l.layout "Список актов передачи">
+<@l.layout "Список актов передачи" "">
     <@n.navbar/>
     <div class="container">
         <#if acts??>

@@ -1,7 +1,7 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 
-<@l.layout "База данных водителей | TaxiService" "style.css">
+<@l.layout "База данных водителей | TaxiService" "driver_list">
     <@n.navbar/>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
@@ -25,21 +25,17 @@
                 </select>
             </div>
         </div>
-        <#if drivers??>
-            <#list drivers as driver>
-                <h2>Водитель 1</h2>
-                <div class="data__flex">
-                    <h3>ФИО</h3>
-                    <p>Иванов Иван Иванович</p>
-                </div>
-                <div class="data__flex">
-                    <h3>Рейтинг из 5 баллов</h3>
-                    <p>4,7</p>
-                </div>
-            </#list>
-        <#else >
-            <h3>Нет Водителей</h3>
-        </#if>
+        <#list drivers as driver>
+            <h2>Водитель ${driver_index + 1}</h2>
+            <div class="data__flex">
+                <h3>ФИО</h3>
+                <p class="p-as-input">Иванов Иван Иванович</p>
+            </div>
+            <div class="data__flex">
+                <h3>Рейтинг из 5 баллов</h3>
+                <p class="p-as-input">4,7</p>
+            </div>
+        </#list>
     </div>
     <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
         <ul class="pagination">

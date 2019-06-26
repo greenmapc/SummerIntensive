@@ -1,0 +1,23 @@
+.banner {
+    margin: 0;
+    height: 300px;
+    background-color: lightgreen;
+}
+
+.banner_div {
+    justify-content: space-between;
+
+}
+
+.over-bootstrap__site h1 {
+    margin: 0;
+    padding-top: 120px;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: left;
+    color: white;
+}
+
+.banner_img {
+    width: 460px;
+}

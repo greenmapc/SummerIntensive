@@ -2,9 +2,9 @@
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
 
-<@l.layout "Создание карты авто | TaxiService">
+<@l.layout "Создание карты авто | TaxiService" "">
     <@n.navbar/>
-    <div class="form-container flex__form layout-positioner">
+    <div class="form-container flex__form layout-positioner over-bootstrap__form">
         <h1 class="form-container__h1 flex__element">Создание нового автомобиля</h1>
 
         <form class="form-container__form" action="/user/create_auto" method="post" enctype="multipart/form-data">

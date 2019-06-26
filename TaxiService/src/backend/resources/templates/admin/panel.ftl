@@ -1,9 +1,9 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 
-<@l.layout "Экран администратора | TaxiService">
+<@l.layout "Экран администратора | TaxiService" "admin_screen">
     <@n.navbar/>
-    <div class="admin-screen layout-positioner">
+    <div class="admin-screen layout-positioner over-bootstrap__site-content">
         <h1 class="admin-screen__h1 form-container__h1 flex__element">
             Экран администратора
         </h1>
