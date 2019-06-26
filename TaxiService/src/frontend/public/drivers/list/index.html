@@ -9,40 +9,36 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    <link href="../../../src/css/bootstrap__site-header.css" rel="stylesheet">
     <link href="../../../src/css/app.css" rel="stylesheet">
-    <link href="../../../src/css/site-header.css" rel="stylesheet">
-    <link href="../../../src/css/data__flex.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/form-flex.css" rel="stylesheet">
 </head>
 <body class="site over-bootstrap__site">
     <header class="site-header bootstrap__site-header">
         <nav class="bootstrap__nav navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="#"><img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип"></a>
             <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class=" nav-item active">
-                        <a class="nav-link" href="#"><p class="bootstrap__p">Панель администратора</p> <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#"><p class="site-header__menu-item">Панель администратора</p> <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><p class="bootstrap__p">База водителей</p></a>
+                        <a class="nav-link" href="#"><p class="site-header__menu-item">База водителей</p></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><p class="bootstrap__p">База автомобилей</p></a>
+                        <a class="nav-link" href="#"><p class="site-header__menu-item">База автомобилей</p></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><p class="bootstrap__p">Вход/выход</p></a>
+                        <a class="nav-link" href="#"><p class="site-header__menu-item">Вход/выход</p></a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -52,13 +48,13 @@
             </div>
         </nav>
     </header>
-    <div class="banner">
+    <div class="banner over-bootstrap__site-content">
         <div class="banner_div data__flex layout-positioner">
             <h1 class="banner_h1">База данных водителей</h1>
             <img class="banner_img" src="img/driver.svg" alt="Иконка водителя">
         </div>
     </div>
-    <div class="form-container flex__container layout-positioner over-bootstrap__form">
+    <div class="form-container layout-positioner over-bootstrap__form">
         <div class="form-container__filter">
             <div class="form-container__filter--black-list">
                 <label for="efficiency">Водитель в черном списке:</label>
@@ -78,31 +74,31 @@
         <h2>Водитель 1</h2>
         <div class="data__flex">
             <h3>ФИО</h3>
-            <p>Иванов Иван Иванович</p>
+            <p class="p-as-input">Иванов Иван Иванович</p>
         </div>
         <div class="data__flex">
             <h3>Рейтинг из 5 баллов</h3>
-            <p>4,7</p>
+            <p class="p-as-input">4,7</p>
         </div>
 
         <h2>Водитель 2</h2>
         <div class="data__flex">
             <h3>ФИО</h3>
-            <p>Иванов Иван Иванович</p>
+            <p class="p-as-input">Иванов Иван Иванович</p>
         </div>
         <div class="data__flex">
             <h3>Рейтинг из 5 баллов</h3>
-            <p>3,2</p>
+            <p class="p-as-input">3,2</p>
         </div>
 
         <h2>Водитель 3</h2>
         <div class="data__flex">
             <h3>ФИО</h3>
-            <p>Иванов Иван Иванович</p>
+            <p class="p-as-input">Иванов Иван Иванович</p>
         </div>
         <div class="data__flex">
             <h3>Рейтинг из 5 баллов</h3>
-            <p>2,1</p>
+            <p class="p-as-input">2,1</p>
         </div>
     </div>
     <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">

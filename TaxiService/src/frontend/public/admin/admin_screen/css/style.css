@@ -1,3 +1,41 @@
+.over-bootstrap__site h1 {
+    margin: 20px 0;
+}
+
+.admin-screen__flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.admin-screen__flex--bar {
+    margin: 10px;
+    height: 200px;
+    overflow: hidden;
+    max-width: 480px;
+    min-width: 300px;
+    text-align: center;
+    background-color: lightskyblue;
+    border-radius: 15px;
+}
+
+.admin-screen__flex--bar-create {
+    background-color: limegreen;
+}
+
+.admin-screen__a {
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    vertical-align: center;
+}
+
+.over-bootstrap__site .admin-screen__p {
+    margin: 0;
+    padding-top: 5px;
+    color: white;
+}
+
 .admin-screen__svg--operator {
     position: absolute;
     margin-top: 30px;
@@ -44,4 +82,8 @@
     margin-left: 22px;
     width: 130px;
     height: 130px;
+}
+
+.over-bootstrap__site-content .admin-screen__a:hover {
+    text-decoration: none;
 }

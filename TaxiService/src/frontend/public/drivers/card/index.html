@@ -4,24 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <title>TaxiService. Карта водителя</title>
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
     <link href="../../../src/css/app.css" rel="stylesheet">
-    <link href="../../../src/css/site-header.css" rel="stylesheet">
-    <link href="../../../src/css/data__flex.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
-<body class="site">
-    <header class="site-header">
-        <div class="layout-positioner">
-            <div class="flex__header--container">
-                <a href=""><img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип"></a>
-                <nav class="flex__header--button">
-                    <button class="site-header__button site-header__button--admin  flex__element">Панель администратора</button>
-                    <button class="site-header__button site-header__button--driver flex__element">База водителей</button>
-                    <button class="site-header__button site-header__button--auto flex__element">База автомобилей</button>
-                    <button class="site-header__button site-header__button--login flex__element">Вход/выход</button>
-                </nav>
+<body class="site over-bootstrap__site">
+    <header class="site-header bootstrap__site-header">
+        <nav class="bootstrap__nav navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"><img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип"></a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class=" nav-item active">
+                        <a class="nav-link" href="#"><p class="site-header__menu-item">Панель администратора</p> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><p class="site-header__menu-item">База водителей</p></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><p class="site-header__menu-item">База автомобилей</p></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><p class="site-header__menu-item">Вход/выход</p></a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="bootstrap__input form-control mr-sm-2" type="search" placeholder="Я ищу..." aria-label="Поиск">
+                    <button class="bootstrap__button btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+                </form>
             </div>
-        </div>
+        </nav>
     </header>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
@@ -29,56 +54,56 @@
             <img class="banner_img" src="img/driver.svg" alt="Иконка водителя">
         </div>
     </div>
-    <div class="data layout-positioner">
+    <div class="data layout-positioner over-bootstrap__form">
         <h2>Водитель 1</h2>
 
         <div class="data__flex">
             <h3>Имя водителя</h3>
-            <p>Иван</p>
+            <p class="p-as-input">Иван</p>
         </div>
         <div class="data__flex">
             <h3>Фамилия водителя</h3>
-            <p>Иванов</p>
+            <p class="p-as-input">Иванов</p>
         </div>
         <div class="data__flex">
             <h3>Отчество водителя</h3>
-            <p>Иванович</p>
+            <p class="p-as-input">Иванович</p>
         </div>
         <div class="data__flex">
             <h3>Серия в/у</h3>
-            <p>ХХХХ</p>
+            <p class="p-as-input">ХХХХ</p>
         </div>
         <div class="data__flex">
             <h3>Номер в/у</h3>
-            <p>ХХХХ</p>
+            <p class="p-as-input">ХХХХ</p>
         </div>
         <div class="data__flex">
             <h3>Дата выдачи в/у</h3>
-            <p>ДД.ММ.ГГГГ</p>
+            <p class="p-as-input">ДД.ММ.ГГГГ</p>
         </div>
         <div class="data__flex">
             <h3>Дата окончания в/у</h3>
-            <p>ДД.ММ.ГГГГ</p>
+            <p class="p-as-input">ДД.ММ.ГГГГ</p>
         </div>
         <div class="data__flex">
             <h3>Серия паспорта</h3>
-            <p>ХХХХ</p>
+            <p class="p-as-input">ХХХХ</p>
         </div>
         <div class="data__flex">
             <h3>Номер паспорта</h3>
-            <p>ХХХХХХ</p>
+            <p class="p-as-input">ХХХХХХ</p>
         </div>
         <div class="data__flex">
             <h3>Черный список</h3>
-            <p>Нет</p>
+            <p class="p-as-input">Нет</p>
         </div>
         <div class="data__flex">
             <h3>Telegram водителя</h3>
-            <p>+7 (9ХХ) ХХХ-ХХ-ХХ</p>
+            <p class="p-as-input">+7 (9ХХ) ХХХ-ХХ-ХХ</p>
         </div>
         <div class="data__flex">
             <h3>Рейтинг водителя (от 1 до 10)</h3>
-            <p>8</p>
+            <p class="p-as-input">8</p>
         </div>
 
         <h3>Генератор акта передачи на  текущую дату данному водителю</h3>

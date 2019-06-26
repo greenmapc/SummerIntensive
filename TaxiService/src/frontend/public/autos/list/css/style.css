@@ -37,10 +37,22 @@
     font-family: "ProximaNova-Light", Arial, sans-serif;
 }
 
-.over-bootstrap__form h2 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 24px;
+.drivers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.drivers__bar {
+    padding: 0 20px;
+    margin: 0 10px 20px 10px;
+    width: 318px;
+    min-height: 250px;
+    color: white;
+    background-color: lightskyblue;
+    border-radius: 15px;
+    box-sizing: border-box;
 }
 
 .over-bootstrap__form h2,
@@ -49,27 +61,47 @@
     font-weight: bold;
 }
 
+.bootstrap__site-header h1 {
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.over-bootstrap__form h2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: white;
+}
+
 .over-bootstrap__form h3 {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     font-size: 18px;
+    color: white;
 }
 
 .over-bootstrap__form p {
-    position: absolute;
-    margin-left: 300px;
-    margin-top: -10px;
-    margin-bottom: 5px;
-    padding: 8px 0 0 10px;
-    height: 40px;
-    width: 724px;
     color: white;
-    background-color: lightskyblue;
+}
+
+.over-bootstrap__form button {
+    margin-top: -5px;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: lightskyblue;
+    background-color: white;
+    border: 3px solid white;
     border-radius: 15px;
 }
 
-.pagination-position {
+.over-bootstrap__form button:hover{
+    color: limegreen;
+    background-color: white;
+    border: 3px solid limegreen;
+}
+
+.drivers__bar--title,
+.details__container {
     display: flex;
     justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 25px;
 }
