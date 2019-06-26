@@ -28,7 +28,7 @@ public class ActServiceImpl implements ActService {
     //ToDo: moved general part to method
 
     @Override
-    public void createActFromCompanyToDriver(CompanyToDriverActForm form, User user) {
+    public Act createActFromCompanyToDriver(CompanyToDriverActForm form, User user) {
         Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
         // ToDo: exceptions
@@ -39,10 +39,12 @@ public class ActServiceImpl implements ActService {
         } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
+
+        return act;
     }
 
     @Override
-    public void createActFromDriverToDriver(DriverToDriverActForm actForm, User user) {
+    public Act createActFromDriverToDriver(DriverToDriverActForm actForm, User user) {
         Act act = fillBasicData(actForm);
 
         act.setDriverRenter(actForm.getRenter());
@@ -58,10 +60,12 @@ public class ActServiceImpl implements ActService {
                 IOException | DocumentException e) {
             e.printStackTrace();
         }
+
+        return act;
     }
 
     @Override
-    public void createActFromDriverToCompany(DriverToCompanyActForm form, User user) {
+    public Act createActFromDriverToCompany(DriverToCompanyActForm form, User user) {
         Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
 
@@ -74,6 +78,8 @@ public class ActServiceImpl implements ActService {
         } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
+
+        return act;
     }
 
     @Override

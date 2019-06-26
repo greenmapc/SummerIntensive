@@ -1,5 +1,6 @@
 package com.simbirsoft.taxi_service.service.impl;
 
+import com.simbirsoft.taxi_service.form.ActForm;
 import com.simbirsoft.taxi_service.form.CompanyToDriverActForm;
 import com.simbirsoft.taxi_service.form.DriverToCompanyActForm;
 import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
@@ -26,16 +27,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class PdfActCreationServiceImplTest_TestSavingPdfToDisk {
-
     @Autowired
     private PdfActCreatorService pdfActCreatorService;
-
     @Autowired
     private AutoService autoService;
-
     @Autowired
     private DriverService driverService;
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -43,12 +40,9 @@ public class PdfActCreationServiceImplTest_TestSavingPdfToDisk {
     @WithMockUser(username = "admin@admin.com", password = "123456", roles = "ADMIN")
     public void TestCompanyToDriverPdfCreation() throws Exception {
         CompanyToDriverActForm actForm = new CompanyToDriverActForm();
-        actForm.setDrafter("Анна Кузьменко");
-        actForm.setConditions("Не указано");
-        actForm.setAuto(autoService.findAllFree().get(0));
-        actForm.setRenter(driverService.getAllWithoutRentSorted().get(0));
+        fillForm(actForm);
+        actForm.setRenter(driverService.getAll().get(0));
         actForm.setLeaseStartDate(LocalDateTime.now());
-        actForm.setLeaseEndDate(LocalDateTime.of(LocalDate.now(), LocalTime.of(19, 0)));
 
         String resultPdfName = pdfActCreatorService.createPdfActFromCompanyToDriver(actForm);
         this.mockMvc.perform(get("/download/pdf/" + resultPdfName + ".pdf"))
@@ -60,13 +54,11 @@ public class PdfActCreationServiceImplTest_TestSavingPdfToDisk {
     @WithMockUser(username = "admin@admin.com", password = "123456", roles = "ADMIN")
     public void createPdfFromDriverToDriver() throws Exception {
         DriverToDriverActForm actForm = new DriverToDriverActForm();
-        actForm.setDrafter("Анна Кузьменко");
-        actForm.setConditions("Не указано");
-        actForm.setAuto(autoService.getAll().get(0));
-        actForm.setRenter(driverService.getAll().get(0));
+
+        fillForm(actForm);
         actForm.setLessor(driverService.getAll().get(0));
         actForm.setLeaseStartDate(LocalDateTime.now());
-        actForm.setLeaseEndDate(LocalDateTime.of(LocalDate.now(), LocalTime.of(19, 0)));
+        actForm.setRenter(driverService.getAllWithoutRentSorted().get(0));
 
         String resultPdfName = pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
         this.mockMvc.perform(get("/download/pdf/" + resultPdfName + ".pdf"))
@@ -78,15 +70,19 @@ public class PdfActCreationServiceImplTest_TestSavingPdfToDisk {
     @WithMockUser(username = "admin@admin.com", password = "123456", roles = "ADMIN")
     public void createPdfFromDriverToCompany() throws Exception {
         DriverToCompanyActForm actForm = new DriverToCompanyActForm();
-        actForm.setDrafter("Анна Кузьменко");
-        actForm.setConditions("Не указано");
-        actForm.setAuto(autoService.getAll().get(0));
-        actForm.setRenter(driverService.getAll().get(0));
-        actForm.setLeaseEndDate(LocalDateTime.of(LocalDate.now(), LocalTime.of(19, 0)));
 
+        fillForm(actForm);
+        actForm.setRenter(driverService.getAll().get(0));
         String resultPdfName = pdfActCreatorService.createPdfActFromDriverToCompany(actForm);
         this.mockMvc.perform(get("/download/pdf/" + resultPdfName + ".pdf"))
                 .andExpect(status().isOk());
 
+    }
+
+    private void fillForm(ActForm actForm) {
+        actForm.setDrafter("Анна Кузьменко");
+        actForm.setConditions("Не указано");
+        actForm.setAuto(autoService.findAllFree().get(0));
+        actForm.setLeaseEndDate(LocalDateTime.of(LocalDate.now(), LocalTime.of(19, 0)));
     }
 }

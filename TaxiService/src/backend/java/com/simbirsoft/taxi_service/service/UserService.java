@@ -11,8 +11,9 @@ public interface UserService {
     void addAction(User user, OperatorActionEnum action);
 
     User createOperator(UserForm form);
-
     User updateInfo(User user, UserForm form);
+    User findOneById(Long id);
 
     List<OperatorAction> getAllActionsSortedByDateDesc();
+
 }
