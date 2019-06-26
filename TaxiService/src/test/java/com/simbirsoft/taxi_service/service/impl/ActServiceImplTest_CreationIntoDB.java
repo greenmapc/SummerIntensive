@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ActServiceImplTest {
+public class ActServiceImplTest_CreationIntoDB {
     @Autowired
     private ActServiceImpl actService;
     @Autowired
