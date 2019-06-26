@@ -186,13 +186,18 @@ public class UserController {
     public String actFromDriverToDriverPage(@AuthenticationPrincipal User user,
                                             Model model) {
         model.addAttribute("formDD", new DriverToDriverActForm());
+        model.addAttribute("user", user);
+
+        List<Driver> driversWithRent = driverService.getAllWithRentSorted();
         model.addAttribute("lessor",
-                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithRentSorted()));
+                ActSelectCreator.fillDriverSelectFields(driversWithRent));
         model.addAttribute("renter",
                 ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+
+        List<Auto> autosByUser = new ArrayList<>();
+        autosByUser.add(autoService.findAllRentedByUser(driversWithRent.get(0).getId()));
         model.addAttribute("autos",
-                ActSelectCreator.fillAutoSelectFields(autoService.findAllRented()));
-        model.addAttribute("user", user);
+                ActSelectCreator.fillAutoSelectFields(autosByUser));
         return "acts/driver_to_driver";
     }
 

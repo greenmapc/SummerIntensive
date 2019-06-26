@@ -13,11 +13,11 @@
             <@spring.bind "formDD"/>
 
             <label for="document__auto">Автомобиль (что передают)*</label><br>
-            <@spring.formSingleSelect "formDD.auto" autos 'class="form-container__form--input flex__element" id="document__auto" required'/>
+            <@spring.formSingleSelect "formDD.auto" autos 'class="auto_select form-container__form--input flex__element" id="document__auto" required'/>
             <br>
 
             <label for="document__lessor">Водитель 1 (кто передаёт)*</label><br>
-            <@spring.formSingleSelect "formDD.lessor" lessor 'class="form-container__form--input flex__element" id="document__lessor" required' />
+            <@spring.formSingleSelect "formDD.lessor" lessor 'class="driver_select form-container__form--input flex__element" id="document__lessor" required' />
             <br>
 
             <label for="document__renter">Водитель 2 (кому передают)*</label><br>
