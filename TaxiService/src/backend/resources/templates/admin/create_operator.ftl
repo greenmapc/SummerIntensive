@@ -7,7 +7,6 @@
         <h1 class="form-container__h1 flex__element">Создание нового оператора</h1>
 
         <form class="form-container__form" action="/admin/create_operator" method="post">
-            <h2>Оператор</h2>
             <@spring.bind "form"/>
 
             <label for="operator__first_name">Имя</label><br>

@@ -8,11 +8,7 @@
         <h1 class="form-container__h1 flex__element">Создание нового автомобиля</h1>
 
         <form class="form-container__form" action="/user/create_auto" method="post" enctype="multipart/form-data">
-
             <@spring.bind "form"/>
-
-            <h2>Добавление автомобиля</h2>
-
             <label for="auto__brand">Марка автомобиля</label><br>
             <@spring.formInput "form.brand" 'class="form-container__form--input flex__element"
                             id="auto__brand" placeholder="Введите марку автомобиля" required'/><br>
@@ -78,7 +74,8 @@
                             id="auto__description" placeholder="Введите описание автомобиля"'/><br>
             <@spring.showErrors "form.description"/><br>
 
-            <input class="form-container__form--input flex__element" type="file" name="docs" multiple accept="image/*"/> <br>
+            <input class="form-container__form--input flex__element" type="file" name="docs" multiple accept="image/*"/>
+            <br>
 
             <button class="form-container__form--button flex__element" type="submit">Добавить автомобиль</button>
         </form>

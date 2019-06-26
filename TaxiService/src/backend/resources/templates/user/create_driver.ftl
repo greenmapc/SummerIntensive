@@ -8,7 +8,6 @@
         <h1 class="form-container__h1 flex__element">Создание нового водителя</h1>
 
         <form class="form-container__form" action="/user/create_driver" method="post" enctype="multipart/form-data">
-            <h2>Добавление водителя</h2>
             <@spring.bind "driverForm"/>
 
             <label for="driver__last_name">Фамилия *</label><br>
