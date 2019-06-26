@@ -4,25 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <title>TaxiService. Список водителей</title>
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link href="../../../src/css/bootstrap__site-header.css" rel="stylesheet">
     <link href="../../../src/css/app.css" rel="stylesheet">
     <link href="../../../src/css/site-header.css" rel="stylesheet">
     <link href="../../../src/css/data__flex.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/form-flex.css" rel="stylesheet">
 </head>
-<body class="site">
-    <header class="site-header">
-        <div class="layout-positioner">
-            <div class="flex__header--container">
-                <a href=""><img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип"></a>
-                <nav class="flex__header--button">
-                    <button class="site-header__button site-header__button--admin  flex__element">Панель администратора</button>
-                    <button class="site-header__button site-header__button--driver flex__element">База водителей</button>
-                    <button class="site-header__button site-header__button--auto flex__element">База автомобилей</button>
-                    <button class="site-header__button site-header__button--login flex__element">Вход/выход</button>
-                </nav>
+<body class="site over-bootstrap__site">
+    <header class="site-header bootstrap__site-header">
+        <nav class="bootstrap__nav navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"><img class="site-header__logo" src="../../../src/img/logo.png" alt="Логотип"></a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class=" nav-item active">
+                        <a class="nav-link" href="#"><p class="bootstrap__p">Панель администратора</p> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><p class="bootstrap__p">База водителей</p></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><p class="bootstrap__p">База автомобилей</p></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><p class="bootstrap__p">Вход/выход</p></a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="bootstrap__input form-control mr-sm-2" type="search" placeholder="Я ищу..." aria-label="Поиск">
+                    <button class="bootstrap__button btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+                </form>
             </div>
-        </div>
+        </nav>
     </header>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
@@ -30,7 +58,22 @@
             <img class="banner_img" src="img/driver.svg" alt="Иконка водителя">
         </div>
     </div>
-    <div class="form-container flex__container layout-positioner">
+    <div class="form-container flex__container layout-positioner over-bootstrap__form">
+        <div class="form-container__filter">
+            <div class="form-container__filter--black-list">
+                <label for="efficiency">Водитель в черном списке:</label>
+                <input type="checkbox" id="efficiency" name="scales"><br>
+            </div>
+            <div class="form-container__filter--driver-rating">
+                <label for="driver-rating">Рейтинг водителя:</label>
+                <select class="driver-rating__variants" id="driver-rating">
+                    <option value="choice">Выберите рейтинг</option>
+                    <option value="element-1">От 7 до 10 баллов</option>
+                    <option value="element-2">От 4 до 6 баллов</option>
+                    <option value="element-3">От 1 до 3 баллов</option>
+                </select>
+            </div>
+        </div>
 
         <h2>Водитель 1</h2>
         <div class="data__flex">
@@ -62,5 +105,14 @@
             <p>2,1</p>
         </div>
     </div>
+    <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Назад</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
+        </ul>
+    </nav>
 </body>
 </html>

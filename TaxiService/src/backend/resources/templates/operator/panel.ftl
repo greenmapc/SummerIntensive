@@ -5,14 +5,14 @@
     <div class="operator-screen layout-positioner">
         <h1 class="operator-screen__h1 form-container__h1 flex__element">Экран оператора</h1>
         <div class="operator-screen__flex form-container__form">
-            <a class="operator-screen__a" href="/operator/create_auto">
+            <a class="operator-screen__a" href="/user/create_auto">
                 <div class="operator-screen__flex--bar operator-screen__flex--bar-create">
                     <p class="operator-screen__p">Создать автомобиль</p>
                     <img class="operator-screen__svg--car" src="${springMacroRequestContext.contextPath}/img/car.svg"
                          alt="Иконка автомобиля">
                 </div>
             </a>
-            <a class="operator-screen__a" href="/operator/create_driver">
+            <a class="operator-screen__a" href="/user/create_driver">
                 <div class="operator-screen__flex--bar operator-screen__flex--bar-create">
                     <p class="operator-screen__p">Создать водителя</p>
                     <img class="operator-screen__svg--driver"

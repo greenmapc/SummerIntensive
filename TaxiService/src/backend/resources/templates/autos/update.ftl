@@ -1,14 +1,16 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
-
-<@l.layout "Создание карты авто | TaxiService">
+<@l.layout "Обновление данных авто | TaxiService" 'style.css'>
     <@n.navbar/>
     <div class="form-container flex__form layout-positioner">
-        <h1 class="form-container__h1 flex__element">Создание нового автомобиля</h1>
+        <h1 class="form-container__h1 flex__element">Обновление данных автомобиля</h1>
 
-        <form class="form-container__form" action="/user/create_auto" method="post" enctype="multipart/form-data">
+        <form class="form-container__form" action="/autos/${auto.id}/update" method="post">
             <@spring.bind "form"/>
+
+            <h2>Изменение данных</h2>
+
             <label for="auto__brand">Марка автомобиля</label><br>
             <@spring.formInput "form.brand" 'class="form-container__form--input flex__element"
                             id="auto__brand" placeholder="Введите марку автомобиля" required'/><br>
@@ -69,15 +71,16 @@
                             id="auto__kilometrage" placeholder="Введите пробег автомобиля" required'/><br>
             <@spring.showErrors "form.kilometrage"/><br>
 
+            <@spring.formCheckbox "form.state" 'class=""
+                            id="auto__state" placeholder="Машина на ходу" '/>
+            <label for="auto__state">Состояние</label><br><br>
+
             <label for="auto__description">Описание</label><br>
             <@spring.formTextarea "form.description" 'class="form-container__form--input flex__element"
                             id="auto__description" placeholder="Введите описание автомобиля"'/><br>
             <@spring.showErrors "form.description"/><br>
 
-            <input class="form-container__form--input flex__element" type="file" name="docs" multiple accept="image/*"/>
-            <br>
-
-            <button class="form-container__form--button flex__element" type="submit">Добавить автомобиль</button>
+            <button class="form-container__form--button flex__element" type="submit">Изменить</button>
         </form>
     </div>
 </@l.layout>

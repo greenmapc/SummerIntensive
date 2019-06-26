@@ -19,12 +19,11 @@ public class DownloadDocController {
     @GetMapping("/download/pdf/{file}")
     public ResponseEntity<InputStreamResource> downloadPdfFile(
             @PathVariable("file") String file) {
-        DownloadFileDto dto = null;
+        DownloadFileDto dto;
         try {
             dto = downloadDocService.downloadPdf(file);
         } catch (FileNotFoundException e) {
-            // ToDo: handle
-            e.printStackTrace();
+            return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok()
@@ -34,14 +33,15 @@ public class DownloadDocController {
                 .body(dto.getIsr());
 
     }
+
     @GetMapping("/download/doc/{file}")
     public ResponseEntity<InputStreamResource> downloadDocFile(
             @PathVariable("file") String file) {
-        DownloadFileDto dto = null;
+        DownloadFileDto dto;
         try {
             dto = downloadDocService.downloadDoc(file);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok()

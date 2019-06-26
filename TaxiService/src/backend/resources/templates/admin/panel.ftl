@@ -15,14 +15,14 @@
                          src="${springMacroRequestContext.contextPath}/img/operator.svg" alt="Иконка оператора">
                 </div>
             </a>
-            <a class="admin-screen__a" href="/operator/create_auto">
+            <a class="admin-screen__a" href="/user/create_auto">
                 <div class="admin-screen__flex--bar admin-screen__flex--bar-create">
                     <p class="admin-screen__p">Создать автомобиль</p>
                     <img class="admin-screen__svg--car" src="${springMacroRequestContext.contextPath}/img/car.svg"
                          alt="Иконка автомобиля">
                 </div>
             </a>
-            <a class="admin-screen__a" href="/operator/create_driver">
+            <a class="admin-screen__a" href="/user/create_driver">
                 <div class="admin-screen__flex--bar admin-screen__flex--bar-create">
                     <p class="admin-screen__p">Создать водителя</p>
                     <img class="admin-screen__svg--driver"
@@ -44,7 +44,7 @@
                          src="${springMacroRequestContext.contextPath}/img/document.svg" alt="Иконка акта">
                 </div>
             </a>
-            <a class="admin-screen__a" href="">
+            <a class="admin-screen__a" href="/admin/operator_actions">
                 <div class="admin-screen__flex--bar">
                     <p class="admin-screen__p">Действия операторов</p>
                     <img class="admin-screen__svg--statistic"

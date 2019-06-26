@@ -9,7 +9,22 @@
             <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/driver.svg" alt="Иконка водителя">
         </div>
     </div>
-    <div class="layout-positioner">
+    <div class="form-container layout-positioner over-bootstrap__form">
+        <div class="form-container__filter">
+            <div class="form-container__filter--black-list">
+                <label for="efficiency">Водитель в черном списке:</label>
+                <input type="checkbox" id="efficiency" name="scales"><br>
+            </div>
+            <div class="form-container__filter--driver-rating">
+                <label for="driver-rating">Рейтинг водителя:</label>
+                <select class="driver-rating__variants" id="driver-rating">
+                    <option value="choice">Выберите рейтинг</option>
+                    <option value="element-1">От 7 до 10 баллов</option>
+                    <option value="element-2">От 4 до 6 баллов</option>
+                    <option value="element-3">От 1 до 3 баллов</option>
+                </select>
+            </div>
+        </div>
         <#if drivers??>
             <#list drivers as driver>
                 <h2>Водитель 1</h2>
@@ -26,7 +41,13 @@
             <h3>Нет Водителей</h3>
         </#if>
     </div>
-    <form action="/operator/create_driver" method="get">
-        <button class="form-container__form--button flex__element" type="submit">Добавить водителя</button>
-    </form>
+    <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Назад</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
+        </ul>
+    </nav>
 </@l.layout>
