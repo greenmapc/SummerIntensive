@@ -19,7 +19,7 @@
                          src="${springMacroRequestContext.contextPath}/img/driver.svg" alt="Иконка водителя">
                 </div>
             </a>
-            <a class="operator-screen__a" href="">
+            <a class="operator-screen__a" href="/user/update">
                 <div class="operator-screen__flex--bar">
                     <p class="operator-screen__p">Изменить данные</p>
                     <img class="operator-screen__svg--data" src="${springMacroRequestContext.contextPath}/img/data.svg"
