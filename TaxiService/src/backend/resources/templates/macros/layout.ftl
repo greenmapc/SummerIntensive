@@ -12,24 +12,7 @@
               crossorigin="anonymous">
         <link type="text/css" href="${springMacroRequestContext.contextPath}/css/app.css" rel="stylesheet">
         <#if style??>
-            <#if style = "admin_screen">
-                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/admin_screen.css" rel="stylesheet">
-            <#elseif style = "create_operator">
-                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/create_operator.css" rel="stylesheet">
-            <#elseif style = "auto_card">
-                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/auto_card.css" rel="stylesheet">
-            <#elseif style = "auto_list">
-                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/auto_list.css" rel="stylesheet">
-            <#elseif style = "login">
-                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/login.css" rel="stylesheet">
-            <#elseif style = "driver_card">
-                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/driver_card.css" rel="stylesheet">
-            <#elseif style = "driver_list">
-                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/driver_list.css" rel="stylesheet">
-            <#elseif style = "operator_screen">
-                <link type="text/css" href="${springMacroRequestContext.contextPath}/css/operator_screen.css" rel="stylesheet">
-            <#else>
-            </#if>
+            <link type="text/css" rel="stylesheet" href="${springMacroRequestContext.contextPath}/css/${style}.css">
         </#if>
         <title>${title}</title>
 
