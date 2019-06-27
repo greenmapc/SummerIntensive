@@ -8,7 +8,6 @@
 
         <div class="flex__container">
             <form class="form-container__form" action="/user/create_act_from_driver_to_company" method="post">
-                <h2>Акт 1</h2>
                 <@spring.bind "formDC"/>
 
                 <label for="document__auto">Автомобиль (что передают)*</label><br>
