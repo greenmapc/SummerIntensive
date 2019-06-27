@@ -56,6 +56,13 @@ public class UserController {
         binder.addValidators(new UserFormValidator());
     }
 
+    @GetMapping("/choose_act")
+    public String choosingActsPage(@AuthenticationPrincipal User user,
+                                   Model model) {
+        model.addAttribute("user", user);
+        return "acts/choosing_acts";
+    }
+
     @GetMapping("/create_auto")
     public String createAutoPage(@AuthenticationPrincipal User user,
                                  Model model) {

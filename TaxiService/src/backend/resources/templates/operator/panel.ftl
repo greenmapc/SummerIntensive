@@ -26,7 +26,7 @@
                          alt="Иконка базы данных">
                 </div>
             </a>
-            <a class="operator-screen__a" href="">
+            <a class="operator-screen__a" href="/user/choose_act">
                 <div class="operator-screen__flex--bar">
                     <p class="operator-screen__p">Создание акта приема-<br>передачи автомобиля</p>
                     <img class="operator-screen__svg--document"

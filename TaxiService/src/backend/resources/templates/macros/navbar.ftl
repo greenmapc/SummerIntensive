@@ -23,10 +23,17 @@
                                         class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/drivers"><p class="site-header__menu-item">База водителей</p></a>
+                            <a class="nav-link" href="/drivers"><p class="site-header__menu-item">Водители</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/autos"><p class="site-header__menu-item">База автомобилей</p></a>
+                            <a class="nav-link" href="/autos"><p class="site-header__menu-item">Автомобили</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/acts"><p class="site-header__menu-item">Акты</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/choose_act"><p class="site-header__menu-item">Создать
+                                    акт</p></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/logout"><p class="site-header__menu-item">Выход</p></a>

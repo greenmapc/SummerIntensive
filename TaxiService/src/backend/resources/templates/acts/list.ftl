@@ -19,15 +19,15 @@
                         <h2 class="documents__bar--title">Акт ${act_index + 1}</h2>
 
                         <h3 class="documents__bar--full-name">ФИО водителя</h3>
-                        <p>${act.driverRenter.lastName}${act.driverRenter.firstName}${act.driverRenter.patronymic}</p>
+                        <p>${act.driverRenter.lastName} ${act.driverRenter.firstName} ${act.driverRenter.patronymic}</p>
 
                         <h3 class="documents__bar--brand-and-model">Марка и модель авто</h3>
                         <p>${act.auto.brand} ${act.auto.model}</p>
 
                         <h3 class="documents__bar--release-year">Срок действия акта</h3>
-                        <p>${act.leaseStartDate.dayOfMonth+"."+ act.leaseStartDate.monthValue+"."+(act.leaseStartDate.year?replace(' ',''))+" "+act.leaseStartDate.hour+":"+act.leaseStartDate.minute}
+                        <p>${act.leaseStartDate.dayOfMonth+"."+ act.leaseStartDate.monthValue+"."+act.leaseStartDate.year+" "+act.leaseStartDate.hour+":"+act.leaseStartDate.minute}
                             -
-                            ${act.leaseEndDate.dayOfMonth+"."+ act.leaseEndDate.monthValue+"."+(act.leaseEndDate.year?replace(' ',''))+" "+act.leaseEndDate.hour+":"+act.leaseEndDate.minute}
+                            ${act.leaseEndDate.dayOfMonth+"."+ act.leaseEndDate.monthValue+"."+act.leaseEndDate.year+" "+act.leaseEndDate.hour+":"+act.leaseEndDate.minute}
                         </p>
 
                         <div class="details__container">
