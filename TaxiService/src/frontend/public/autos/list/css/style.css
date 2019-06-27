@@ -37,14 +37,14 @@
     font-family: "ProximaNova-Light", Arial, sans-serif;
 }
 
-.drivers {
+.autos {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 25px;
 }
 
-.drivers__bar {
+.autos__bar {
     padding: 0 20px;
     margin: 0 10px 20px 10px;
     width: 318px;
@@ -84,7 +84,7 @@
 }
 
 .over-bootstrap__form button {
-    margin-top: -5px;
+    margin-top: 5px;
     margin-bottom: 20px;
     padding: 5px 10px;
     font-size: 16px;
@@ -100,7 +100,7 @@
     border: 3px solid limegreen;
 }
 
-.drivers__bar--title,
+.autos__bar--title,
 .details__container {
     display: flex;
     justify-content: center;
