@@ -1,0 +1,18 @@
+.over-bootstrap__form h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.operator__actions {
+    justify-content: flex-end;
+    margin: 20px 0 25px 0;
+}
+
+.over-bootstrap__form .operator__actions--change-data {
+    padding: 8px 16px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    border: 3px dashed limegreen;
+    background-color: transparent;
+    border-radius: 15px;
+}

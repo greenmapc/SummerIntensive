@@ -87,3 +87,7 @@
 .over-bootstrap__site-content .admin-screen__a:hover {
     text-decoration: none;
 }
+
+.admin-screen__flex--bar:hover {
+    background-color: gold;
+}

@@ -48,15 +48,16 @@
             </div>
         </nav>
     </header>
+
     <div class="banner">
-        <div class="banner_div data__flex layout-positioner">
-            <h1 class="banner_h1">База данных водителей</h1>
-            <img class="banner_img" src="img/driver.svg" alt="Иконка водителя">
+        <div class="banner__div data__flex layout-positioner">
+            <h1 class="banner__h1">База данных водителей</h1>
+            <img class="banner__img" src="img/driver.svg" alt="Иконка водителя">
         </div>
     </div>
+
     <div class="data layout-positioner over-bootstrap__form">
         <h2>Водитель 1</h2>
-
         <div class="data__flex">
             <h3>Имя водителя</h3>
             <p class="p-as-input">Иван</p>
@@ -106,8 +107,9 @@
             <p class="p-as-input">8</p>
         </div>
 
-        <h3>Генератор акта передачи на  текущую дату данному водителю</h3>
-        <button type="button">Создать акт передачи</button>
+        <div class="driver__actions data__flex">
+            <button class="driver__actions--button" type="button">Изменить данные</button>
+        </div>
     </div>
 </body>
 </html>
