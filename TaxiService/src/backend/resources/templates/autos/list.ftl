@@ -24,23 +24,23 @@
                 </select>
             </div>
         </div>
-        <div class="drivers">
+        <div class="autos">
             <#list autos as auto>
-                <div class="drivers__bar">
-                    <h2 class="drivers__bar--title">Автомобиль ${auto_index + 1}</h2>
+                <div class="autos__bar">
+                    <h2 class="autos__bar--title">Автомобиль ${auto_index + 1}</h2>
 
-                    <h3 class="drivers__bar--brand">Марка/бренд</h3>
+                    <h3 class="autos__bar--brand">Марка/бренд</h3>
                     <p>${auto.brand}</p>
 
-                    <h3 class="drivers__bar--model-row">Модельный ряд</h3>
+                    <h3 class="autos__bar--model-row">Модельный ряд</h3>
                     <p>${auto.model}</p>
 
-                    <h3 class="drivers__bar--release-year">Год выпуска</h3>
+                    <h3 class="autos__bar--release-year">Год выпуска</h3>
                     <p>${auto.year}</p>
 
                     <div class="details__container">
                         <form action="/autos/${auto.id}" method="get">
-                            <button class="drivers__bar--details" type="submit">Подробнее</button>
+                            <button class="autos__bar--details" type="submit">Подробнее</button>
                         </form>
                     </div>
                 </div>

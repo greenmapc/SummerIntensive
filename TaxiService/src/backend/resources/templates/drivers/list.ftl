@@ -25,17 +25,28 @@
                 </select>
             </div>
         </div>
-        <#list drivers as driver>
-            <h2>Водитель ${driver_index + 1}</h2>
-            <div class="data__flex">
-                <h3>ФИО</h3>
-                <p class="p-as-input">Иванов Иван Иванович</p>
-            </div>
-            <div class="data__flex">
-                <h3>Рейтинг из 5 баллов</h3>
-                <p class="p-as-input">4,7</p>
-            </div>
-        </#list>
+        <div class="drivers">
+            <#list drivers as driver>
+                <div class="drivers__bar over-bootstrap__form">
+                    <h2 class="drivers__bar--title">Водитель ${driver_index + 1}</h2>
+
+                    <h3 class="drivers__bar--full-name">ФИО</h3>
+                    <p>${driver.lastName} ${driver.firstName} ${driver.patronymic}</p>
+
+                    <h3 class="drivers__bar--model-rating">Рейтинг из 10 баллов</h3>
+                    <p>${driver.rating}</p>
+
+                    <h3 class="drivers__bar--black-list">Есть в чёрном списке?</h3>
+                    <#if driver.blackList><p style="color: darkred">Есть</p><#else >Нет</#if>
+
+                    <div class="details__container">
+                        <form action="/drivers/${driver.id}" method="get">
+                            <button class="drivers__bar--details" type="submit">Подробнее</button>
+                        </form>
+                    </div>
+                </div>
+            </#list>
+        </div>
     </div>
     <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
         <ul class="pagination">

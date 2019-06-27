@@ -6,10 +6,9 @@
 
 .banner_div {
     justify-content: space-between;
-
 }
 
-.over-bootstrap__site-content .banner_h1 {
+.banner_h1 {
     padding-top: 120px;
     font-size: 36px;
     text-align: left;
@@ -18,40 +17,17 @@
 }
 
 .banner_img {
-    width: 400px;
+    width: 460px;
 }
 
-.form-container__filter {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: -10px;
-    padding: 20px 0 0 20px;
-}
-
-.form-container__filter--black-list,
-.form-container__filter--driver-rating {
-    margin-left: 20px;
-}
-
-.driver-rating__variants {
-    font-family: "ProximaNova-Light", Arial, sans-serif;
-}
-
-.pagination-position {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 25px;
-}
-
-.drivers {
+.documents {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 25px;
+    margin-top: 35px;
 }
 
-.drivers__bar {
+.documents__bar {
     padding: 0 20px;
     margin: 0 10px 20px 10px;
     width: 318px;
@@ -91,7 +67,7 @@
 }
 
 .over-bootstrap__form button {
-    margin-top: 5px;
+    margin-top: 15px;
     margin-bottom: 20px;
     padding: 5px 10px;
     font-size: 16px;
@@ -107,7 +83,7 @@
     border: 3px solid limegreen;
 }
 
-.drivers__bar--title,
+.documents__bar--title,
 .details__container {
     display: flex;
     justify-content: center;
