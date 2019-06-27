@@ -25,6 +25,6 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
     @Query("FROM Auto WHERE id IN (SELECT " +
             "a.auto.id FROM Act as a JOIN a.auto " +
             "WHERE a.leaseEndDate >= current_timestamp AND a.driverRenter.id = :id)")
-    Auto findAllRentByUser(@Param("id") Long id);
+    Auto findAutoRentByDriver(@Param("id") Long id);
 
 }

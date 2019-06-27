@@ -167,7 +167,7 @@ public class UserController {
                 ActSelectCreator.fillDriverSelectFields(drivers));
 
         List<Auto> autos = new ArrayList<>();
-        autos.add(autoService.findAllRentedByUser(drivers.get(0).getId()));
+        autos.add(autoService.findAutoRentedByDriver(drivers.get(0).getId()));
         model.addAttribute("autos",
                 ActSelectCreator.fillAutoSelectFields(autos));
         return "acts/driver_to_company";
@@ -195,7 +195,7 @@ public class UserController {
                 ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
 
         List<Auto> autosByUser = new ArrayList<>();
-        autosByUser.add(autoService.findAllRentedByUser(driversWithRent.get(0).getId()));
+        autosByUser.add(autoService.findAutoRentedByDriver(driversWithRent.get(0).getId()));
         model.addAttribute("autos",
                 ActSelectCreator.fillAutoSelectFields(autosByUser));
         return "acts/driver_to_driver";

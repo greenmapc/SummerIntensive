@@ -79,7 +79,7 @@ public class AutoController {
     @ResponseBody
     public AutoSelectDto getAutoFromUser(@RequestParam("id") Long id) {
         AutoSelectDto dto = new AutoSelectDto();
-        dto = dto.createByAuto(autoService.findAllRentedByUser(id)) ;
+        dto = dto.createByAuto(autoService.findAutoRentedByDriver(id)) ;
         return dto;
     }
 }
