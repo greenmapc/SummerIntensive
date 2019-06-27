@@ -5,9 +5,10 @@
 <@l.layout "Карта водителя | TaxiService" "driver_card">
     <@n.navbar/>
     <div class="banner">
-        <div class="banner_div data__flex layout-positioner">
-            <h1 class="banner_h1">База данных водителей</h1>
-            <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/driver.svg" alt="Иконка водителя">
+        <div class="banner__div data__flex layout-positioner">
+            <h1 class="banner__h1">База данных водителей</h1>
+            <img class="banner__img" src="${springMacroRequestContext.contextPath}/img/driver.svg"
+                 alt="Иконка водителя">
         </div>
     </div>
     <div class="data layout-positioner over-bootstrap__form">
@@ -70,8 +71,14 @@
             <h3>Рейтинг водителя (от 1 до 10)</h3>
             <p class="p-as-input">${driver.rating?c}</p>
         </div>
+        <div class="driver__actions data__flex">
+            <form action="/drivers/${driver.id}/update" method="get">
+                <button class="driver__actions--button" type="submit">Изменить данные</button>
+            </form>
+        </div>
         <#list driver.documents as doc>
-            <a class="data__flex" style="color: lightgreen;" href="/show/doc/${doc.generatedName}.${doc.extension}"> Документ водителя ${doc_id} </a>
+            <a class="data__flex" style="color: lightgreen;" href="/show/doc/${doc.generatedName}.${doc.extension}">
+                Документ водителя ${doc_id} </a>
             <#assign doc_id++>
             <br>
         </#list>

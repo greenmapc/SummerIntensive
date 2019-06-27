@@ -4,12 +4,11 @@
     background-color: lightgreen;
 }
 
-.banner_div {
+.banner__div {
     justify-content: space-between;
-
 }
 
-.banner_h1 {
+.banner__h1 {
     padding-top: 120px;
     font-size: 36px;
     text-align: left;
@@ -17,7 +16,7 @@
     color: white;
 }
 
-.banner_img {
+.banner__img {
     width: 460px;
 }
 
@@ -35,6 +34,8 @@
 
 .auto-brand__variants {
     font-family: "ProximaNova-Light", Arial, sans-serif;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: white;
 }
 
 .autos {
@@ -106,7 +107,59 @@
     justify-content: center;
 }
 
-.show-doc {
-    color: lightgreen;
-    font-size: 20px ;
+
+
+/* Styles for mobile (320-768px) and tablet (768-1024px) app's versions */
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .banner__h1 {
+        padding: 110px 20px 0 20px;
+        text-align: center;
+        color: white;
+    }
+
+    .banner__img {
+        display: none;
+    }
+
+    .form-container__filter {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 20px 0 0 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .form-container__filter--auto-efficiency,
+    .form-container__filter--auto-brand {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .banner__h1 {
+        padding-left: 20px;
+    }
+
+    .banner__img {
+        padding-bottom: 20px;
+    }
+
+    .form-container__filter {
+        display: flex;
+        justify-content: center;
+        margin-right: 20px;
+    }
+
+    .form-container__filter--auto-brand {
+        margin-left: 20px;
+    }
+}
+
+@media (min-width: 458px) and (max-width: 768px) {
+    .form-container__filter--auto-brand {
+        margin-left: 20px;
+    }
 }

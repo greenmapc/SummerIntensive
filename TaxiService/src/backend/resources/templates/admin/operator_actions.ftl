@@ -1,10 +1,10 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
-<@l.layout "Действия операторов | TaxiService" "">
+<@l.layout "Действия операторов | TaxiService" "operator_actions">
     <@n.navbar/>
     <div class="form-container layout-positioner over-bootstrap__form">
-        <h1 class="form-container__h1 flex__element">История действий операторов</h1>
+        <h1 class="form-container__h1 flex__element title__left">История действий операторов</h1>
 
         <#list actions as action>
             <div>

@@ -4,11 +4,10 @@
 <@l.layout "Передача автомобиля. Водитель -> Компания" "">
     <@n.navbar/>
     <div class="form-container flex__form layout-positioner">
-        <h1 class="form-container__h1 flex__element">Создание акта передачи автомобиля от водителя к компании</h1>
+        <h1 class="form-container__h1 flex__element">Акт приёма-передачи автомобиля <br>от водителя к компании</h1>
 
         <div class="flex__container">
             <form class="form-container__form" action="/user/create_act_from_driver_to_company" method="post">
-                <h2>Акт 1</h2>
                 <@spring.bind "formDC"/>
 
                 <label for="document__auto">Автомобиль (что передают)*</label><br>
@@ -26,7 +25,7 @@
                                     id="document__date-reception" required' 'datetime-local'/>
                 <br>
 
-                <button class="form-container__form--button flex__element" type="submit">Создать</button>
+                <button class="form-container__form--button flex__element accept__change" type="submit">Создать</button>
             </form>
         </div>
     </div>

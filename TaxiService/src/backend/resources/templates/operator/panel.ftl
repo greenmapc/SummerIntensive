@@ -3,7 +3,7 @@
 <@l.layout "Панель оператора" "operator_screen">
     <@n.navbar/>
     <div class="operator-screen layout-positioner over-bootstrap__form">
-        <h1 class="operator-screen__h1 form-container__h1 flex__element">Экран оператора</h1>
+        <h1 class="operator-screen__h1 form-container__h1 flex__element title__left">Экран оператора</h1>
         <div class="operator-screen__flex form-container__form">
             <a class="operator-screen__a" href="/user/create_auto">
                 <div class="operator-screen__flex--bar operator-screen__flex--bar-create">
