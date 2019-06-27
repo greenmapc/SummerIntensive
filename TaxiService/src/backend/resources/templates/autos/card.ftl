@@ -68,9 +68,15 @@
             <h3>Автомобиль на ходу</h3>
             <p class="data__p p-as-input"><#if auto.state>Да<#else>Нет</#if></p>
         </div>
+        <div class="auto__actions data__flex">
+            <form action="/autos/${auto.id}/update" method="get">
+                <button class="auto__actions--button" type="submit">Изменить данные</button>
+            </form>
+        </div>
         <h3>Фотографии</h3>
         <#list auto.documents as doc>
-            <a class="data__flex" style="color: lightgreen;" href="/show/doc/${doc.generatedName}.${doc.extension}"> Документ автомобиля ${doc_id} </a>
+            <a class="data__flex" style="color: lightgreen;" href="/show/doc/${doc.generatedName}.${doc.extension}">
+                Документ автомобиля ${doc_id} </a>
             <#assign doc_id++>
             <br>
         </#list>

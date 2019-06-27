@@ -4,8 +4,7 @@
 <@l.layout "Передача автомобиля. Компания -> Водитель" "">
     <@n.navbar/>
     <div class="form-container flex__form layout-positioner">
-        <h1 class="form-container__h1 flex__element">Создание акта приема-передачи автомобиля от компании к
-            водителю</h1>
+        <h1 class="form-container__h1 flex__element">Акт приёма-передачи автомобиля <br>от компании к водителю</h1>
 
         <form class="form-container__form" action="/user/create_act_from_company_to_driver" method="post">
             <@spring.bind "formCD"/>
@@ -34,7 +33,7 @@
             <@spring.formTextarea "formCD.conditions" 'class="document__more" id="document__more"'/>
             <br>
 
-            <button class="form-container__form--button flex__element" type="submit">Создать</button>
+            <button class="form-container__form--button flex__element accept__change" type="submit">Создать</button>
         </form>
     </div>
 </@l.layout>

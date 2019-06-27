@@ -83,3 +83,7 @@
     width: 130px;
     height: 130px;
 }
+
+.operator-screen__flex--bar:hover {
+    background-color: gold;
+}

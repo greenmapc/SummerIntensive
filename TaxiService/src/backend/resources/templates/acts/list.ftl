@@ -6,9 +6,9 @@
 <@l.layout "Список актов передачи" "act_list">
     <@n.navbar/>
     <div class="banner">
-        <div class="banner_div data__flex layout-positioner">
-            <h1 class="banner_h1">База данных актов</h1>
-            <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/document.svg"
+        <div class="banner__div data__flex layout-positioner over-bootstrap__site-content">
+            <h1 class="banner__h1">База данных актов</h1>
+            <img class="banner__img" src="${springMacroRequestContext.contextPath}/img/document.svg"
                  alt="Иконка автомобиля">
         </div>
     </div>
