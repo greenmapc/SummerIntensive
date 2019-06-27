@@ -11,6 +11,5 @@ public interface AutoService {
     Auto findOneById(Long id);
     Auto createAuto(AutoForm form);
     List<Auto> findAllFree();
-    List<Auto> getPage(int number);
-    List<Auto> getPage(int number, Specification<Auto> specification);
+    List<Auto> getPage(Integer number, String[] conditions);
 }

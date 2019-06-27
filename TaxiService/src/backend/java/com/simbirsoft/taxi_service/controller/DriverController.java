@@ -1,17 +1,25 @@
 package com.simbirsoft.taxi_service.controller;
 
+import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.User;
+import com.simbirsoft.taxi_service.repository.filters.Condition;
 import com.simbirsoft.taxi_service.service.DriverService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 @RequestMapping("/drivers")
 @Controller
@@ -41,4 +49,23 @@ public class DriverController {
 
         return "drivers/card";
     }
+
+    @GetMapping("/a")
+    public String getPage(@AuthenticationPrincipal User user,
+                          @RequestParam(value = "f", required = false) String[] conditionItems,
+                          @RequestParam(value = "p", required = false) Integer pageNumber,
+                          ModelMap model) {
+        model.addAttribute("drivers", driverService.getPage(pageNumber, conditionItems));
+        return "testRustemSorry/drivers";
+    }
+    @GetMapping("/s")
+    public String search(@AuthenticationPrincipal User user,
+                         @RequestParam(value = "s") String searchString,
+                         ModelMap model) {
+        model.addAttribute("drivers",driverService.search(searchString));
+        return "drivers/search";
+    }
+
+    
+
 }

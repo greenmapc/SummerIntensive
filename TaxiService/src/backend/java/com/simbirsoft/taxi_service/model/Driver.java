@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.search.annotations.*;
+
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,17 +17,19 @@ import java.util.List;
 @Entity
 @Table(name = "driver")
 @Data
+@Indexed
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Field
     @Column(name = "first_name", nullable = false, length = 64)
     private String firstName;
-
+    @Field
     @Column(name = "last_name", nullable = false, length = 64)
     private String lastName;
-
+    @Field
     @Column(name = "patronymic", nullable = false, length = 64)
     private String patronymic;
 
@@ -47,7 +50,6 @@ public class Driver {
 
     @Column(name = "passport_number", nullable = false)
     private Integer passportNumber;
-
     @Column(name = "place_of_passport_issue", nullable = false, length = 128)
     private String placeOfPassportIssue;
 
@@ -59,7 +61,7 @@ public class Driver {
 
     @Column(name = "actual_address", nullable = false, length = 256)
     private String actualAddress;
-
+    @Field
     @Column(name = "phone_number", nullable = false, length = 11)
     private String phoneNumber;
 
@@ -71,13 +73,13 @@ public class Driver {
 
     @Column(name = "rating")
     private Integer rating;
-
+    @Field
     @Column(name = "birth_date", nullable = false, columnDefinition = "date")
     private LocalDate birthDate;
-
+    @IndexedEmbedded
     @OneToMany(mappedBy = "driverRenter")
     private List<Act> rentList;
-
+    @IndexedEmbedded
     @OneToMany(mappedBy = "driver")
     private List<Document> documents;
 
