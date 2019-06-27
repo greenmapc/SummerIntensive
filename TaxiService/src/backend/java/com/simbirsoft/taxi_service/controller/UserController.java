@@ -165,11 +165,8 @@ public class UserController {
         List<Driver> drivers = driverService.getAllWithRentSorted();
         model.addAttribute("drivers",
                 ActSelectCreator.fillDriverSelectFields(drivers));
-
-        List<Auto> autos = new ArrayList<>();
-        autos.add(autoService.findAllRentedByUser(drivers.get(0).getId()));
         model.addAttribute("autos",
-                ActSelectCreator.fillAutoSelectFields(autos));
+                ActSelectCreator.fillAutoSelectFields(listDriversWithRent(drivers)));
         return "acts/driver_to_company";
     }
 
@@ -193,11 +190,8 @@ public class UserController {
                 ActSelectCreator.fillDriverSelectFields(driversWithRent));
         model.addAttribute("renter",
                 ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
-
-        List<Auto> autosByUser = new ArrayList<>();
-        autosByUser.add(autoService.findAllRentedByUser(driversWithRent.get(0).getId()));
         model.addAttribute("autos",
-                ActSelectCreator.fillAutoSelectFields(autosByUser));
+                ActSelectCreator.fillAutoSelectFields(listDriversWithRent(driversWithRent)));
         return "acts/driver_to_driver";
     }
 
@@ -246,5 +240,14 @@ public class UserController {
         model.addAttribute("bodyType", AutoSelectCreator.bodyTypeCreate());
         model.addAttribute("driveType", AutoSelectCreator.driveTypeCreate());
         model.addAttribute("transmissionType", AutoSelectCreator.transmissionType());
+    }
+    
+    private List<Auto> listDriversWithRent(List<Driver> driversWithRent) {
+        List<Auto> autosByUser = new ArrayList<>();
+        if(!driversWithRent.isEmpty()) {
+            autosByUser.add(autoService.findAllRentedByUser(driversWithRent.get(0).getId()));
+            
+        }
+        return autosByUser;
     }
 }
