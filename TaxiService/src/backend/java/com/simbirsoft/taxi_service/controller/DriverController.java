@@ -52,15 +52,15 @@ public class DriverController {
 
     @GetMapping("/a")
     public String getPage(@AuthenticationPrincipal User user,
-                          @RequestParam(value = "f", required = false) String[] conditionItems,
-                          @RequestParam(value = "p", required = false) Integer pageNumber,
+                          @RequestParam(value = "filter", required = false) String[] conditionItems,
+                          @RequestParam(value = "page", required = false) Integer pageNumber,
                           ModelMap model) {
         model.addAttribute("drivers", driverService.getPage(pageNumber, conditionItems));
         return "testRustemSorry/drivers";
     }
-    @GetMapping("/s")
+    @GetMapping
     public String search(@AuthenticationPrincipal User user,
-                         @RequestParam(value = "s") String searchString,
+                         @RequestParam(value = "search") String searchString,
                          ModelMap model) {
         model.addAttribute("drivers",driverService.search(searchString));
         return "drivers/search";

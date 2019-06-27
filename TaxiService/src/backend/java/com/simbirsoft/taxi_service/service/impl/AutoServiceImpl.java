@@ -1,7 +1,9 @@
 package com.simbirsoft.taxi_service.service.impl;
 
+import com.simbirsoft.taxi_service.dao.AutoSearchDao;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.model.Auto;
+import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.repository.AutoRepository;
 import com.simbirsoft.taxi_service.repository.filters.AutoFilter;
 import com.simbirsoft.taxi_service.repository.filters.Condition;
@@ -24,6 +26,7 @@ import java.util.Optional;
 public class AutoServiceImpl implements AutoService {
     private final AutoRepository repository;
     private final ConditionParser conditionParser;
+    private final AutoSearchDao autoSearchDao;
     private static final int pageSize = 10;
 
     @Override
@@ -76,5 +79,10 @@ public class AutoServiceImpl implements AutoService {
         List<Condition> conditions = conditionParser.getConditions(Arrays.asList(conditionsList));
         AutoFilter autoFilter = new AutoFilter(conditions);
         return repository.findAll(autoFilter.getComplexSpecification(),PageRequest.of(number - 1,pageSize)).getContent();
+    }
+
+    @Override
+    public List<Auto> search(String searchString) {
+        return autoSearchDao.fuzzySearch(searchString.toLowerCase());
     }
 }

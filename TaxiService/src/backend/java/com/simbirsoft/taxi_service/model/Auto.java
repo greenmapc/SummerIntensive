@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,20 +16,21 @@ import java.util.List;
 @Entity
 @Table(name = "auto")
 @Data
+@Indexed
 public class Auto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Field
     @Column(name = "brand", nullable = false, length = 64)
     private String brand;
-
+    @Field
     @Column(name = "model", nullable = false, length = 128)
     private String model;
-
+    @Field
     @Column(name = "gos_number", nullable = false, length = 10, unique = true)
     private String gosNumber;
-
+    @Field
     @Column(name = "vin_number", nullable = false, length = 17, unique = true)
     private String vinNumber;
 

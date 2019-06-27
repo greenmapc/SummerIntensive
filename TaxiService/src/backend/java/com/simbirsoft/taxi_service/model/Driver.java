@@ -73,13 +73,13 @@ public class Driver {
 
     @Column(name = "rating")
     private Integer rating;
-    @Field
+
     @Column(name = "birth_date", nullable = false, columnDefinition = "date")
     private LocalDate birthDate;
-    @IndexedEmbedded
+
     @OneToMany(mappedBy = "driverRenter")
     private List<Act> rentList;
-    @IndexedEmbedded
+
     @OneToMany(mappedBy = "driver")
     private List<Document> documents;
 

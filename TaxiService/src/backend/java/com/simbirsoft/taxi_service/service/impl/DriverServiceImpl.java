@@ -1,10 +1,9 @@
 package com.simbirsoft.taxi_service.service.impl;
 
-import com.simbirsoft.taxi_service.dao.DriverSerchDao;
+import com.simbirsoft.taxi_service.dao.DriverSearchDao;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.repository.DriverRepository;
-import com.simbirsoft.taxi_service.repository.filters.AutoFilter;
 import com.simbirsoft.taxi_service.repository.filters.Condition;
 import com.simbirsoft.taxi_service.repository.filters.DriverFilter;
 import com.simbirsoft.taxi_service.service.DriverService;
@@ -26,7 +25,7 @@ public class DriverServiceImpl implements DriverService {
     private final DriverFullNameComparator driverFullNameComparator;
     private static final int pageSize = 10;
     private final ConditionParser conditionParser;
-    private final DriverSerchDao driverSerchDao;
+    private final DriverSearchDao driverSearchDao;
 
 
     @Override
@@ -97,8 +96,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<Driver> search(String searchString) {
-
-        return driverSerchDao.fuzzySearch(searchString);
+        return driverSearchDao.fuzzySearch(searchString.toLowerCase());
     }
 
 }
