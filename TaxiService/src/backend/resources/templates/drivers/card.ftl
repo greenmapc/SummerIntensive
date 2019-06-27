@@ -27,9 +27,6 @@
             <h3>Дата рождения</h3>
             <p class="p-as-input">
                 ${driver.birthDate}
-                <#--${driver.birthDate.dayOfMonth}-->
-                <#--.${driver.birthDate.monthValue}-->
-                <#--.${driver.birthDate.year?c}-->
             </p>
         </div>
         <div class="data__flex">
@@ -44,18 +41,12 @@
             <h3>Дата выдачи в/у</h3>
             <p class="p-as-input">
                 ${driver.dateOfLicenseIssue}
-                <#--${driver.dateOfLicenseIssue.dayOfMonth}-->
-                <#--.${driver.dateOfLicenseIssue.monthValue}-->
-                <#--.${driver.dateOfLicenseIssue.year?c}-->
             </p>
         </div>
         <div class="data__flex">
             <h3>Дата окончания в/у</h3>
             <p class="p-as-input">
                 ${driver.dateOfLicenseExpiry}
-                <#--${driver.dateOfLicenseExpiry.dayOfMonth}-->
-                <#--.${driver.dateOfLicenseExpiry.monthValue}-->
-                <#--.${driver.dateOfLicenseExpiry.year?c}</p>-->
         </div>
         <div class="data__flex">
             <h3>Серия паспорта</h3>
