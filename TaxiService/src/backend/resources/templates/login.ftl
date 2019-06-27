@@ -1,5 +1,6 @@
 <#import "macros/layout.ftl" as l>
 <#import "macros/navbar.ftl" as n>
+<#import "/spring.ftl" as spring>
 <@l.layout "Вход | TaxiService" "login">
     <@n.navbar/>
     <div class="position">
@@ -17,7 +18,9 @@
                        id="operator__contact--password"
                        name="password"
                        placeholder="Введите пароль" required><br>
-
+                <#if error??>
+                    <p style="color: darkred;margin-bottom: 10px">${error}</p>
+                </#if>
                 <button class="form-container__form--button flex__element" type="submit">Войти</button>
             </form>
         </div>

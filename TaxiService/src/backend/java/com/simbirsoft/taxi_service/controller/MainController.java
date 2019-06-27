@@ -5,7 +5,10 @@ import com.simbirsoft.taxi_service.model.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
@@ -16,7 +19,11 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(HttpServletRequest request,
+                            Model model) {
+        if (request.getParameterMap().containsKey("error")) {
+            model.addAttribute("error", "Некорректные данные");
+        }
         return "login";
     }
 
