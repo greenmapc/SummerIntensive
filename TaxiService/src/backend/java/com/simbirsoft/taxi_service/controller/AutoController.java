@@ -35,6 +35,7 @@ public class AutoController {
                          ModelMap model) {
         model.addAttribute("user", user);
         model.addAttribute("autos", autoService.getAll());
+
         return "autos/list";
     }
 
@@ -47,6 +48,7 @@ public class AutoController {
             // ToDo: handle not found
         }
         model.addAttribute("user", user);
+
         return "autos/card";
     }
 

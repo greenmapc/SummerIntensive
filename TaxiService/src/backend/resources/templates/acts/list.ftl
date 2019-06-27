@@ -1,6 +1,8 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 
+<#setting date_format="MM/dd/yyyy">
+
 <@l.layout "Список актов передачи" "act_list">
     <@n.navbar/>
     <div class="banner">
@@ -25,9 +27,10 @@
                         <p>${act.auto.brand} ${act.auto.model}</p>
 
                         <h3 class="documents__bar--release-year">Срок действия акта</h3>
-                        <p>${act.leaseStartDate.dayOfMonth+"."+ act.leaseStartDate.monthValue+"."+act.leaseStartDate.year?c+" "+act.leaseStartDate.hour+":"+act.leaseStartDate.minute}
+                        <#--<p>${act.leaseStartDate.dayOfMonth+"."+ act.leaseStartDate.monthValue+"."+act.leaseStartDate.year?c+" "+act.leaseStartDate.hour+":"+act.leaseStartDate.minute}-->
+                        <p>${act.leaseStartDate.format(parser)}
                             -
-                            ${act.leaseEndDate.dayOfMonth+"."+ act.leaseEndDate.monthValue+"."+act.leaseEndDate.year?c+" "+act.leaseEndDate.hour+":"+act.leaseEndDate.minute}
+                            ${act.leaseEndDate.format(parser)}
                         </p>
 
                         <div class="details__container">

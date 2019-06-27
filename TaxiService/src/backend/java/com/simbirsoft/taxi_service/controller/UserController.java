@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -210,6 +211,7 @@ public class UserController {
                               Model model) {
         model.addAttribute("user", user);
         model.addAttribute("acts", actService.getAll());
+        model.addAttribute("parser", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         return "acts/list";
     }
 
