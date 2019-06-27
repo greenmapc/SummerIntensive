@@ -40,7 +40,7 @@ public class AutoController {
 
     @GetMapping("/{id}")
     public String getOne(@AuthenticationPrincipal User user,
-                         @PathVariable Long id, ModelMap model) {
+                         @PathVariable("id") Long id, ModelMap model) {
         try {
             model.addAttribute("auto", autoService.findOneById(id));
         } catch (EntityNotFoundException e) {

@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 
 @Controller
 @RequiredArgsConstructor
-public class DownloadDocController {
+public class GetDocController {
     private final DownloadDocService downloadDocService;
 
     @GetMapping("/download/pdf/{file}")
@@ -35,7 +35,7 @@ public class DownloadDocController {
 
     }
 
-    @GetMapping("/download/doc/{file}")
+    @GetMapping("/show/doc/{file}")
     public ResponseEntity<InputStreamResource> downloadDocFile(
             @PathVariable("file") String file) {
         DownloadFileDto dto;
@@ -47,9 +47,8 @@ public class DownloadDocController {
 
         return ResponseEntity.ok()
                 .contentType(dto.getMediaType())
-                .header("Content-Disposition", "attachment; filename=" + file)
+                .header("Content-Disposition", "inline; filename=" + file)
                 .contentLength(dto.getFile().length())
                 .body(dto.getIsr());
-
     }
 }

@@ -1,6 +1,7 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 
+<#assign doc_id = 1>
 <@l.layout "Карта водителя | TaxiService" "driver_card">
     <@n.navbar/>
     <div class="banner">
@@ -72,5 +73,10 @@
             <h3>Рейтинг водителя (от 1 до 10)</h3>
             <p class="p-as-input">${driver.rating?c}</p>
         </div>
+        <#list driver.documents as doc>
+            <a class="data__flex" style="color: lightgreen;" href="/show/doc/${doc.generatedName}.${doc.extension}"> Документ водителя ${doc_id} </a>
+            <#assign doc_id++>
+            <br>
+        </#list>
     </div>
 </@l.layout>

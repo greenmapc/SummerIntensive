@@ -1,5 +1,8 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
+
+
+<#assign doc_id = 1>
 <@l.layout "Карта авто | TaxiService" "auto_card">
     <@n.navbar/>
     <div class="banner">
@@ -66,8 +69,10 @@
             <p class="data__p p-as-input"><#if auto.state>Да<#else>Нет</#if></p>
         </div>
         <h3>Фотографии</h3>
-        <img src="" alt="Фотография автомобиля 1">
-        <img src="" alt="Фотография автомобиля 2">
-        <img src="" alt="Фотография автомобиля 3">
+        <#list auto.documents as doc>
+            <a class="data__flex" style="color: lightgreen;" href="/show/doc/${doc.generatedName}.${doc.extension}"> Документ автомобиля ${doc_id} </a>
+            <#assign doc_id++>
+            <br>
+        </#list>
     </div>
 </@l.layout>
