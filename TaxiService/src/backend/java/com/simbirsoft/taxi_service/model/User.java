@@ -1,6 +1,7 @@
 package com.simbirsoft.taxi_service.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +36,7 @@ public class User implements UserDetails {
     @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
+    @EqualsAndHashCode.Exclude
     private Set<Roles> roles = new HashSet<>();
 
     @Override

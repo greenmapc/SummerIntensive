@@ -52,13 +52,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addAction(User user, OperatorActionEnum action) {
+    public OperatorAction addAction(User user, OperatorActionEnum action) {
         OperatorAction operatorAction = new OperatorAction();
         operatorAction.setAction(action.toString());
         operatorAction.setDate(LocalDateTime.now());
         operatorAction.setOperator(user);
 
-        operatorActionRepository.save(operatorAction);
+        return operatorActionRepository.save(operatorAction);
     }
 
     public User updateInfo(User user, UserForm form) {

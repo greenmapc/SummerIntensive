@@ -1,6 +1,7 @@
 package com.simbirsoft.taxi_service.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

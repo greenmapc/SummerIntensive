@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SortedDriverDataTest {
+public class DriverServiceSortedMethodsTest {
     @Autowired
     private DriverService driverService;
     @Autowired
