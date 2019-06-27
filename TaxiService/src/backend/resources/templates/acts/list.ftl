@@ -25,9 +25,9 @@
                         <p>${act.auto.brand} ${act.auto.model}</p>
 
                         <h3 class="documents__bar--release-year">Срок действия акта</h3>
-                        <p>${act.leaseStartDate.dayOfMonth+"."+ act.leaseStartDate.monthValue+"."+act.leaseStartDate.year+" "+act.leaseStartDate.hour+":"+act.leaseStartDate.minute}
+                        <p>${act.leaseStartDate.dayOfMonth+"."+ act.leaseStartDate.monthValue+"."+act.leaseStartDate.year?c+" "+act.leaseStartDate.hour+":"+act.leaseStartDate.minute}
                             -
-                            ${act.leaseEndDate.dayOfMonth+"."+ act.leaseEndDate.monthValue+"."+act.leaseEndDate.year+" "+act.leaseEndDate.hour+":"+act.leaseEndDate.minute}
+                            ${act.leaseEndDate.dayOfMonth+"."+ act.leaseEndDate.monthValue+"."+act.leaseEndDate.year?c+" "+act.leaseEndDate.hour+":"+act.leaseEndDate.minute}
                         </p>
 
                         <div class="details__container">

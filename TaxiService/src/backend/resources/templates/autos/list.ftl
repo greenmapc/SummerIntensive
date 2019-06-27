@@ -36,7 +36,7 @@
                     <p>${auto.model}</p>
 
                     <h3 class="autos__bar--release-year">Год выпуска</h3>
-                    <p>${auto.year}</p>
+                    <p>${auto.year?c}</p>
 
                     <div class="details__container">
                         <form action="/autos/${auto.id}" method="get">

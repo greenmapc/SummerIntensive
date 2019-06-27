@@ -27,15 +27,15 @@
         </div>
         <div class="data__flex">
             <h3>Год выпуска (г.)</h3>
-            <p class="data__p p-as-input">${auto.year}</p>
+            <p class="data__p p-as-input">${auto.year?c}</p>
         </div>
         <div class="data__flex">
             <h3>Объем двигателя (л.с.)</h3>
-            <p class="data__p p-as-input">${auto.volume}</p>
+            <p class="data__p p-as-input">${auto.volume?c}</p>
         </div>
         <div class="data__flex">
             <h3>Мощность автомобиля (кВт./ч.)</h3>
-            <p class="data__p p-as-input">${auto.enginePower}</p>
+            <p class="data__p p-as-input">${auto.enginePower?c}</p>
         </div>
         <div class="data__flex">
             <h3>КПП</h3>
@@ -59,10 +59,10 @@
         </div>
         <div class="data__flex">
             <h3>Пробег (км.)</h3>
-            <p class="data__p p-as-input">${auto.kilometrage}</p>
+            <p class="data__p p-as-input">${auto.kilometrage?c}</p>
         </div>
         <div class="data__flex">
-            <h3>Автомобиль работает</h3>
+            <h3>Автомобиль на ходу</h3>
             <p class="data__p p-as-input"><#if auto.state>Да<#else>Нет</#if></p>
         </div>
         <h3>Фотографии</h3>
