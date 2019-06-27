@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -82,6 +83,11 @@ public class ActServiceImpl implements ActService {
     @Override
     public void rentEnd(Driver driver) {
         actRepository.setRentEnd(driver);
+    }
+
+    @Override
+    public List<Act> getAll() {
+        return actRepository.findAll();
     }
 
     private Act fillBasicData(ActForm form) {

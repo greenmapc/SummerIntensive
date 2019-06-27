@@ -18,7 +18,9 @@
                 </div>
                 <div class="data__flex">
                     <h3>Дата действия</h3>
-                    <p class="p-as-input">${action.date.toString()}</p>
+                    <p class="p-as-input">
+                        ${action.date.dayOfMonth+"."+ action.date.monthValue+"."+(action.date.year?replace(' ',''))+" "+action.date.hour+":"+action.date.minute}
+                    </p>
                 </div>
             </div>
             <br>

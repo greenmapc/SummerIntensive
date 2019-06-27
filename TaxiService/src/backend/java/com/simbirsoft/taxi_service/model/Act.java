@@ -44,5 +44,4 @@ public class Act {
 
     @Column(name = "pdf_file_name")
     private String pdfFileName;
-
 }

@@ -25,10 +25,13 @@
                         <p>${act.auto.brand} ${act.auto.model}</p>
 
                         <h3 class="documents__bar--release-year">Срок действия акта</h3>
-                        <p>01.01.2018-01.01.2019</p>
+                        <p>${act.leaseStartDate.dayOfMonth+"."+ act.leaseStartDate.monthValue+"."+(act.leaseStartDate.year?replace(' ',''))+" "+act.leaseStartDate.hour+":"+act.leaseStartDate.minute}
+                            -
+                            ${act.leaseEndDate.dayOfMonth+"."+ act.leaseEndDate.monthValue+"."+(act.leaseEndDate.year?replace(' ',''))+" "+act.leaseEndDate.hour+":"+act.leaseEndDate.minute}
+                        </p>
 
                         <div class="details__container">
-                            <form action="/download/pdf/${act.id}" method="get">
+                            <form action="/download/pdf/${act.pdfFileName}" method="get">
                                 <button class="documents__bar--validity-of-act" type="submit">Скачать акт</button>
                             </form>
                         </div>

@@ -62,10 +62,10 @@
             <h3>Черный список</h3>
             <p class="p-as-input"><#if driver.blackList>Да<#else>Нет</#if></p>
         </div>
-        <#if driver.telegramLogin??>
+        <#if driver.telegramLogin?? && !(driver.telegramLogin?length = 0)>
             <div class="data__flex">
                 <h3>Telegram водителя</h3>
-                <p class="p-as-input">{driver.telegramLogin}</p>
+                <p class="p-as-input">${driver.telegramLogin}</p>
             </div>
         </#if>
         <div class="data__flex">

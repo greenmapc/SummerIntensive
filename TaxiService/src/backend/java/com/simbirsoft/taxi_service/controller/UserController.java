@@ -125,13 +125,6 @@ public class UserController {
         return "redirect:/drivers";
     }
 
-    @GetMapping("/acts")
-    public String actsPage(@AuthenticationPrincipal User user,
-                           Model model) {
-        model.addAttribute("user", user);
-        return "acts/list";
-    }
-
     @GetMapping("/create_act_from_company_to_driver")
     public String actFromCompanyToDriverPage(@AuthenticationPrincipal User user,
                                              Model model) {
@@ -209,6 +202,14 @@ public class UserController {
 
         actService.createActFromDriverToDriver(form, user);
         return "redirect:/user/acts";
+    }
+
+    @GetMapping("/acts")
+    public String allActsPage(@AuthenticationPrincipal User user,
+                              Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("acts", actService.getAll());
+        return "acts/list";
     }
 
     @GetMapping("/update")

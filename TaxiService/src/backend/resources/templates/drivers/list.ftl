@@ -37,7 +37,7 @@
                     <p>${driver.rating}</p>
 
                     <h3 class="drivers__bar--black-list">Есть в чёрном списке?</h3>
-                    <#if driver.blackList><p style="color: darkred">Есть</p><#else >Нет</#if>
+                    <#if driver.blackList><p style="color: red">Есть</p><#else >Нет</#if>
 
                     <div class="details__container">
                         <form action="/drivers/${driver.id}" method="get">
