@@ -2,6 +2,11 @@ package com.simbirsoft.taxi_service.repository.filters;
 
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.Driver;
+import com.simbirsoft.taxi_service.repository.filters.strategy.AutoTransStrategy;
+import com.simbirsoft.taxi_service.repository.filters.strategy.DriverTransStrategy;
+import com.simbirsoft.taxi_service.repository.filters.strategy.TransCondToSpecStrategy;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,11 +16,20 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecificatiomBuilder<T> {
+@AllArgsConstructor
+@Data
+public class SpecificationBuilder<T> {
     private List<Condition> conditions;
 
-    public Specification getComplexSpecification() {
-        List<Specification<T>> specifications= buildSpecifications();
+    public Specification getComplexSpecification(Class clazz) {
+        TransCondToSpecStrategy<T> strategy = null;
+        try {
+            strategy = (TransCondToSpecStrategy) Class.forName(TransCondToSpecStrategy.class.getPackage().getName() + "."
+                    + clazz.getSimpleName() + "TransStrategy").newInstance();
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+            throw new IllegalArgumentException("Class is not supported", e);
+        }
+        List<Specification<T>> specifications = buildSpecifications(strategy);
         Specification<T> result = specifications.get(0);
         for (int i = 1; i < specifications.size(); i++) {
             result = Specification.where(result).and(specifications.get(i));
@@ -23,9 +37,9 @@ public class SpecificatiomBuilder<T> {
         return result;
     }
 
-    private List<Specification<T>> buildSpecifications() {
+    private List<Specification<T>> buildSpecifications(TransCondToSpecStrategy<T> strategy) {
         List<Specification<T>> specifications = new ArrayList<>();
-        conditions.forEach(condition -> specifications.add(buildSpecification(condition)));
+        conditions.forEach(condition -> specifications.add(strategy.transform(condition, this)));
         return specifications;
     }
 

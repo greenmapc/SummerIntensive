@@ -3,11 +3,10 @@ package com.simbirsoft.taxi_service.service.impl;
 import com.simbirsoft.taxi_service.dao.DriverSearchDao;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.Driver;
-import com.simbirsoft.taxi_service.model.OperatorAction;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.DriverRepository;
 import com.simbirsoft.taxi_service.repository.filters.Condition;
-import com.simbirsoft.taxi_service.repository.filters.DriverFilter;
+import com.simbirsoft.taxi_service.repository.filters.SpecificationBuilder;
 import com.simbirsoft.taxi_service.service.DriverService;
 import com.simbirsoft.taxi_service.service.UserService;
 import com.simbirsoft.taxi_service.util.OperatorActionEnum;
@@ -130,8 +129,8 @@ public class DriverServiceImpl implements DriverService {
             return repository.findAll(PageRequest.of(number - 1,pageSize)); //-1 because start point for user is 1
         }
         List<Condition> conditions = conditionParser.getConditions(Arrays.asList(conditionsList));
-        DriverFilter driverFilter = new DriverFilter(conditions);
-        return repository.findAll(driverFilter.getComplexSpecification(),PageRequest.of(number - 1,pageSize, Sort.by("id").descending()));
+        SpecificationBuilder<Driver> specificationBuilder = new SpecificationBuilder<>(conditions);
+        return repository.findAll(specificationBuilder.getComplexSpecification(Driver.class),PageRequest.of(number - 1,pageSize, Sort.by("id").descending()));
     }
 
     @Override
