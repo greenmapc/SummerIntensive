@@ -1,7 +1,6 @@
 package com.simbirsoft.taxi_service.util.validator;
 
 
-import com.itextpdf.text.PageSize;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -13,8 +12,6 @@ import java.util.regex.Pattern;
 
 @Component
 public class AutoFormValidator implements Validator {
-    private final Pattern patternTaxi = Pattern.compile("[АВЕКМНОРСТУХ]{2}\\d{3}(?<!000)\\d{2,3}");
-    private final Pattern patternAuto = Pattern.compile("[АВЕКМНОРСТУХ]\\d{3}(?<!000)[АВЕКМНОРСТУХ]{2}\\d{2,3}");
     private final Pattern pattern = Pattern.compile("[АВЕКМНОРСТУХ]\\d{3}[АВЕКМНОРСТУХ]{2}\\d{2,3}");
 
     @Override
@@ -69,8 +66,6 @@ public class AutoFormValidator implements Validator {
     }
 
     private boolean checkGosNumber(String gosNumber) {
-        Matcher matcherTaxi = patternTaxi.matcher(gosNumber);
-        Matcher matcherAuto = patternAuto.matcher(gosNumber);
         Matcher matcher = pattern.matcher(gosNumber);
         return matcher.lookingAt();
     }

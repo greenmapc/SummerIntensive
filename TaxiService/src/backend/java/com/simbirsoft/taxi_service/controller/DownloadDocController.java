@@ -4,6 +4,7 @@ import com.simbirsoft.taxi_service.dto.DownloadFileDto;
 import com.simbirsoft.taxi_service.service.DownloadDocService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class DownloadDocController {
         try {
             dto = downloadDocService.downloadPdf(file);
         } catch (FileNotFoundException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
         return ResponseEntity.ok()
