@@ -8,7 +8,6 @@
             водителю</h1>
 
         <form class="form-container__form" action="/user/create_act_from_company_to_driver" method="post">
-            <h2>Акт 1</h2>
             <@spring.bind "formCD"/>
 
             <label for="document__auto">Автомобиль (что передают)*</label><br>

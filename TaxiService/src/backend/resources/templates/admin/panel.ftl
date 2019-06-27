@@ -30,7 +30,7 @@
                          alt="Иконка водителя">
                 </div>
             </a>
-            <a class="admin-screen__a" href="">
+            <a class="admin-screen__a" href="/user/update">
                 <div class="admin-screen__flex--bar">
                     <p class="admin-screen__p">Изменить данные</p>
                     <img class="admin-screen__svg--data" src="${springMacroRequestContext.contextPath}/img/data.svg"
