@@ -102,11 +102,11 @@ public class UserController {
 
     @PostMapping("/create_driver")
     @Transactional
-    public String createDriver(@Validated @ModelAttribute("driverForm") DriverForm form,
+    public String createDriver(@RequestParam("docs") List<MultipartFile> docs,
+                               @Validated @ModelAttribute("driverForm") DriverForm form,
                                BindingResult bindingResult,
                                Model model,
-                               @AuthenticationPrincipal User user,
-                               @RequestParam("docs") List<MultipartFile> docs) {
+                               @AuthenticationPrincipal User user) {
         if (bindingResult.hasErrors()) {
             return "user/create_driver";
         }

@@ -75,7 +75,8 @@ public class DriverServiceImpl implements DriverService {
                 .placeOfPassportIssue(form.getPlaceOfPassportIssue())
                 .rating(0)
                 .residenceAddress(form.getResidenceAddress())
-                .telegramLogin(form.getTelegramLogin().isEmpty() ? null : form.getTelegramLogin())
+                //ToDo: problem with null
+                .telegramLogin(form.getTelegramLogin())
                 .birthDate(form.getBirthDate())
                 .build();
 
