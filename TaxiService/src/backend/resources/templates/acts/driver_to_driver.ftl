@@ -1,27 +1,27 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
-<@l.layout "Передача автомобиля. Водитель -> Водитель">
+<@l.layout "Передача автомобиля. Водитель -> Водитель" "">
     <@n.navbar/>
     <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">
             Создание акта приема-передачи автомобиля от водителя к водителю
         </h1>
 
-        <form class="form-container__form" action="/operator/create_act_from_driver_to_driver" method="post">
+        <form class="form-container__form" action="/user/create_act_from_driver_to_driver" method="post">
             <h2>Акт 1</h2>
             <@spring.bind "formDD"/>
 
             <label for="document__auto">Автомобиль (что передают)*</label><br>
-            <@spring.formSingleSelect "formDD.auto" autos 'class="form-container__form--input flex__element" id="document__auto" required'/>
+            <@spring.formSingleSelect "formDD.auto" autos 'class="auto_select form-container__form--input flex__element" id="document__auto" required'/>
             <br>
 
             <label for="document__lessor">Водитель 1 (кто передаёт)*</label><br>
-            <@spring.formSingleSelect "formDD.lessor" drivers 'class="form-container__form--input flex__element" id="document__lessor" required' />
+            <@spring.formSingleSelect "formDD.lessor" lessor 'class="driver_select form-container__form--input flex__element" id="document__lessor" required' />
             <br>
 
             <label for="document__renter">Водитель 2 (кому передают)*</label><br>
-            <@spring.formSingleSelect "formDD.renter" drivers 'class="form-container__form--input flex__element" id="document__renter" required'/>
+            <@spring.formSingleSelect "formDD.renter" renter 'class="form-container__form--input flex__element" id="document__renter" required'/>
             <br>
 
             <label for="document__date-transfer">Дата передачи*</label><br>

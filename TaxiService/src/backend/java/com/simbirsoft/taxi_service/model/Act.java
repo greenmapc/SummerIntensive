@@ -42,4 +42,6 @@ public class Act {
     @Column(name = "act_type")
     private Long type;
 
+    @Column(name = "pdf_file_name")
+    private String pdfFileName;
 }

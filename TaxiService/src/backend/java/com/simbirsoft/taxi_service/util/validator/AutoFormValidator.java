@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class AutoFormValidator implements Validator {
-    private final Pattern patternTaxi = Pattern.compile("[АВЕКМНОРСТУХ]{2}\\d{3}(?<!000)\\d{2,3}");
-    private final Pattern patternAuto = Pattern.compile("[АВЕКМНОРСТУХ]\\d{3}(?<!000)[АВЕКМНОРСТУХ]{2}\\d{2,3}");
+    private final Pattern pattern = Pattern.compile("[АВЕКМНОРСТУХ]\\d{3}[АВЕКМНОРСТУХ]{2}\\d{2,3}");
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -67,9 +66,7 @@ public class AutoFormValidator implements Validator {
     }
 
     private boolean checkGosNumber(String gosNumber) {
-        Matcher matcherTaxi = patternTaxi.matcher(gosNumber);
-        Matcher matcherAuto = patternAuto.matcher(gosNumber);
-
-        return matcherTaxi.lookingAt() || matcherAuto.lookingAt();
+        Matcher matcher = pattern.matcher(gosNumber);
+        return matcher.lookingAt();
     }
 }

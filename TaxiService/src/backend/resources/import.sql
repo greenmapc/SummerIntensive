@@ -28,4 +28,3 @@ ALTER TABLE acts ADD CONSTRAINT CHECK_ACT_TYPE CHECK (act_type IN (1, 2, 3));
 
 -- custom's constraints for document entity
 ALTER TABLE document ADD CONSTRAINT CHECK_DOCUMENT_OWNER CHECK ((driver IS NULL AND auto IS NOT NULL) OR (driver IS NOT NULL AND auto IS NULL));
-ALTER TABLE document ADD CONSTRAINT CHECK_DOCUMENT_TYPE CHECK (doc_type IN ('паспорт', 'стс', 'в/у', 'фото'));

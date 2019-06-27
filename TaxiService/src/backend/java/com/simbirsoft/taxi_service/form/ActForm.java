@@ -11,13 +11,15 @@ import java.time.LocalDateTime;
 
 @Data
 public abstract class ActForm {
-    private Auto auto;
-    private Driver renter;
+    protected Auto auto;
+    protected Driver renter;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime leaseStartDate;
+    protected LocalDateTime leaseStartDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime leaseEndDate;
-    private String conditions;
-    private String drafter;
-    private Long type;
+    protected LocalDateTime leaseEndDate;
+    protected String drafter;
+    protected Long type;
+    protected String conditions = "Не указано";
+
+    public abstract Long getType();
 }

@@ -1,18 +1,18 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
-<@l.layout "Панель оператора">
+<@l.layout "Панель оператора" "operator_screen">
     <@n.navbar/>
-    <div class="operator-screen layout-positioner">
+    <div class="operator-screen layout-positioner over-bootstrap__form">
         <h1 class="operator-screen__h1 form-container__h1 flex__element">Экран оператора</h1>
         <div class="operator-screen__flex form-container__form">
-            <a class="operator-screen__a" href="/operator/create_auto">
+            <a class="operator-screen__a" href="/user/create_auto">
                 <div class="operator-screen__flex--bar operator-screen__flex--bar-create">
                     <p class="operator-screen__p">Создать автомобиль</p>
                     <img class="operator-screen__svg--car" src="${springMacroRequestContext.contextPath}/img/car.svg"
                          alt="Иконка автомобиля">
                 </div>
             </a>
-            <a class="operator-screen__a" href="/operator/create_driver">
+            <a class="operator-screen__a" href="/user/create_driver">
                 <div class="operator-screen__flex--bar operator-screen__flex--bar-create">
                     <p class="operator-screen__p">Создать водителя</p>
                     <img class="operator-screen__svg--driver"
@@ -26,7 +26,7 @@
                          alt="Иконка базы данных">
                 </div>
             </a>
-            <a class="operator-screen__a" href="">
+            <a class="operator-screen__a" href="/user/choose_act">
                 <div class="operator-screen__flex--bar">
                     <p class="operator-screen__p">Создание акта приема-<br>передачи автомобиля</p>
                     <img class="operator-screen__svg--document"

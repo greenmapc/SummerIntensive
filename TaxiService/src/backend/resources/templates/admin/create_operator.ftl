@@ -1,13 +1,12 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
-<@l.layout "Зарегистрировать нового оператора | TaxiService">
+<@l.layout "Зарегистрировать нового оператора | TaxiService" "create_operator">
     <@n.navbar/>
     <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание нового оператора</h1>
 
         <form class="form-container__form" action="/admin/create_operator" method="post">
-            <h2>Оператор</h2>
             <@spring.bind "form"/>
 
             <label for="operator__first_name">Имя</label><br>

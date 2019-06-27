@@ -2,13 +2,12 @@
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
 
-<@l.layout "Создание карты водителя | TaxiService">
+<@l.layout "Создание карты водителя | TaxiService" "">
     <@n.navbar/>
-    <div class="form-container flex__form layout-positioner">
+    <div class="form-container flex__form layout-positioner over-bootstrap__form">
         <h1 class="form-container__h1 flex__element">Создание нового водителя</h1>
 
-        <form class="form-container__form" action="/operator/create_driver" method="post">
-            <h2>Добавление водителя</h2>
+        <form class="form-container__form" action="/user/create_driver" method="post" enctype="multipart/form-data">
             <@spring.bind "driverForm"/>
 
             <label for="driver__last_name">Фамилия *</label><br>
@@ -118,6 +117,9 @@
                             id="driver__telegram_login" placeholder="Введите логин Telegram" '/>
             <br>
             <@spring.showErrors "driverForm.telegramLogin"/>
+            <br>
+
+            <input class="form-container__form--input flex__element" type="file" name="docs" multiple accept="image/*"/>
             <br>
 
             <button class="form-container__form--button flex__element" type="submit">Добавить водителя</button>

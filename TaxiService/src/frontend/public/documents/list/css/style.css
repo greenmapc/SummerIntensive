@@ -1,0 +1,90 @@
+.banner {
+    margin: 0;
+    height: 300px;
+    background-color: lightgreen;
+}
+
+.banner_div {
+    justify-content: space-between;
+}
+
+.banner_h1 {
+    padding-top: 120px;
+    font-size: 36px;
+    text-align: left;
+    font-weight: bold;
+    color: white;
+}
+
+.banner_img {
+    width: 460px;
+}
+
+.documents {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.documents__bar {
+    padding: 0 20px;
+    margin: 0 10px 20px 10px;
+    width: 318px;
+    min-height: 250px;
+    color: white;
+    background-color: lightskyblue;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.over-bootstrap__form h2,
+.over-bootstrap__form h3 {
+    font-family: "ProximaNova-Light", Arial, sans-serif;
+    font-weight: bold;
+}
+
+.bootstrap__site-header h1 {
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.over-bootstrap__form h2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: white;
+}
+
+.over-bootstrap__form h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+.over-bootstrap__form p {
+    color: white;
+}
+
+.over-bootstrap__form button {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: lightskyblue;
+    background-color: white;
+    border: 3px solid white;
+    border-radius: 15px;
+}
+
+.over-bootstrap__form button:hover{
+    color: limegreen;
+    background-color: white;
+    border: 3px solid limegreen;
+}
+
+.documents__bar--title,
+.details__container {
+    display: flex;
+    justify-content: center;
+}

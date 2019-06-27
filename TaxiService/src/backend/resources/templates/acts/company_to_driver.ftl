@@ -1,19 +1,19 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring/>
-<@l.layout "Передача автомобиля. Компания -> Водитель">
+<@l.layout "Передача автомобиля. Компания -> Водитель" "">
     <@n.navbar/>
     <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Создание акта приема-передачи автомобиля от компании к
             водителю</h1>
 
-        <form class="form-container__form" action="/operator/create_act_from_company_to_driver" method="post">
+        <form class="form-container__form" action="/user/create_act_from_company_to_driver" method="post">
             <h2>Акт 1</h2>
             <@spring.bind "formCD"/>
 
             <label for="document__auto">Автомобиль (что передают)*</label><br>
             <@spring.formSingleSelect "formCD.auto" autos 'class="form-container__form--input flex__element"
-                        id="document_auto" placeholder="Выберите авто"'/>
+                        id="document__auto" placeholder="Выберите авто"'/>
             <br>
 
             <label for="document__driver">Водитель (кому передают)*</label><br>

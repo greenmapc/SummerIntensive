@@ -1,57 +1,38 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
 <#import "/spring.ftl" as spring>
-<@l.layout "Действия операторов | TaxiService">
+<@l.layout "Действия операторов | TaxiService" "">
     <@n.navbar/>
-    <div class="form-container layout-positioner">
+    <div class="form-container layout-positioner over-bootstrap__form">
         <h1 class="form-container__h1 flex__element">История действий операторов</h1>
 
-        <div>
-            <h2>Оператор 1</h2>
-            <div class="data__flex">
-                <h3>ФИО</h3>
-                <p>Иванов Иван Иванович</p>
+        <#list actions as action>
+            <div>
+                <div class="data__flex">
+                    <h3>ФИО</h3>
+                    <p class="p-as-input">${action.operator.lastName} ${action.operator.firstName}</p>
+                </div>
+                <div class="data__flex">
+                    <h3>Действие</h3>
+                    <p class="p-as-input">${action.action}</p>
+                </div>
+                <div class="data__flex">
+                    <h3>Дата действия</h3>
+                    <p class="p-as-input">
+                        ${action.date.dayOfMonth+"."+ action.date.monthValue+"."+(action.date.year?replace(' ',''))+" "+action.date.hour+":"+action.date.minute}
+                    </p>
+                </div>
             </div>
-            <div class="data__flex">
-                <h3>Действие</h3>
-                <p>Заключил новый договор с водителем 1</p>
-            </div>
-            <div class="data__flex">
-                <h3>Дата действия</h3>
-                <p>01.06.2019</p>
-            </div>
-        </div>
-
-        <div>
-            <h2>Оператор 2</h2>
-            <div class="data__flex">
-                <h3>ФИО</h3>
-                <p>Иванов Иван Иванович</p>
-            </div>
-            <div class="data__flex">
-                <h3>Действие</h3>
-                <p>Заключил новый договор с водителем 1</p>
-            </div>
-            <div class="data__flex">
-                <h3>Дата действия</h3>
-                <p>01.06.2019</p>
-            </div>
-        </div>
-
-        <div>
-            <h2>Оператор 3</h2>
-            <div class="data__flex">
-                <h3>ФИО</h3>
-                <p>Иванов Иван Иванович</p>
-            </div>
-            <div class="data__flex">
-                <h3>Действие</h3>
-                <p>Заключил новый договор с водителем 1</p>
-            </div>
-            <div class="data__flex">
-                <h3>Дата действия</h3>
-                <p>01.06.2019</p>
-            </div>
-        </div>
+            <br>
+        </#list>
     </div>
+    <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Назад</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
+        </ul>
+    </nav>
 </@l.layout>

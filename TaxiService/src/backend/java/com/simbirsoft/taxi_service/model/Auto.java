@@ -67,7 +67,6 @@ public class Auto {
     @Column(name = "state")
     private Boolean state;
 
-
     @OneToMany(mappedBy = "auto")
     private List<Act> actList;
 

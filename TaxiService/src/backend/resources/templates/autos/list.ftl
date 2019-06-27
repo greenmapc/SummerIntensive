@@ -1,6 +1,6 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
-<@l.layout "База данных авто | TaxiService" 'style.css'>
+<@l.layout "База данных авто | TaxiService" "auto_list">
     <@n.navbar/>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
@@ -8,47 +8,52 @@
             <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/car.svg" alt="Иконка автомобиля">
         </div>
     </div>
-    <div class="layout-positioner">
-        <h2>Автомобиль 1</h2>
-        <div class="data__flex">
-            <h3>Марка/бренд</h3>
-            <p>Opel</p>
+    <div class="form-container layout-positioner over-bootstrap__form">
+        <div class="form-container__filter">
+            <div class="form-container__filter--auto-efficiency">
+                <label for="efficiency">Автомобиль на ходу:</label>
+                <input type="checkbox" id="efficiency" name="scales"><br>
+            </div>
+            <div class="form-container__filter--auto-brand">
+                <label for="auto-brand">Марка автомобиля:</label>
+                <select class="auto-brand__variants" id="auto-brand">
+                    <option value="choice">Выберите марку</option>
+                    <option value="element-1">Opel</option>
+                    <option value="element-2">Nissan</option>
+                    <option value="element-3">Lada</option>
+                </select>
+            </div>
         </div>
-        <div class="data__flex">
-            <h3>Модельный ряд</h3>
-            <p>Atra</p>
-        </div>
-        <div class="data__flex">
-            <h3>Год выпуска</h3>
-            <p>2011</p>
-        </div>
+        <div class="autos">
+            <#list autos as auto>
+                <div class="autos__bar">
+                    <h2 class="autos__bar--title">Автомобиль ${auto_index + 1}</h2>
 
-        <h2>Автомобиль 2</h2>
-        <div class="data__flex">
-            <h3>Марка/бренд</h3>
-            <p>Lada</p>
-        </div>
-        <div class="data__flex">
-            <h3>Модельный ряд</h3>
-            <p>Kalina</p>
-        </div>
-        <div class="data__flex">
-            <h3>Год выпуска</h3>
-            <p>2015</p>
-        </div>
+                    <h3 class="autos__bar--brand">Марка/бренд</h3>
+                    <p>${auto.brand}</p>
 
-        <h2>Автомобиль 3</h2>
-        <div class="data__flex">
-            <h3>Марка/бренд</h3>
-            <p>Nissan</p>
-        </div>
-        <div class="data__flex">
-            <h3>Модельный ряд</h3>
-            <p>Almera</p>
-        </div>
-        <div class="data__flex">
-            <h3>Год выпуска</h3>
-            <p>2005</p>
+                    <h3 class="autos__bar--model-row">Модельный ряд</h3>
+                    <p>${auto.model}</p>
+
+                    <h3 class="autos__bar--release-year">Год выпуска</h3>
+                    <p>${auto.year?c}</p>
+
+                    <div class="details__container">
+                        <form action="/autos/${auto.id}" method="get">
+                            <button class="autos__bar--details" type="submit">Подробнее</button>
+                        </form>
+                    </div>
+                </div>
+            </#list>
         </div>
     </div>
+    <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Назад</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
+        </ul>
+    </nav>
 </@l.layout>

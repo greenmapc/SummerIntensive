@@ -1,75 +1,69 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
-<@l.layout "Карта авто | TaxiService">
+<@l.layout "Карта авто | TaxiService" "auto_card">
     <@n.navbar/>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
             <h1 class="banner_h1">База данных автомобилей</h1>
-            <img class="banner_img" src="img/car.svg" alt="Иконка автомобиля">
+            <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/car.svg" alt="Иконка автомобиля">
         </div>
     </div>
-    <div class="layout-positioner">
-        <h2>Автомобиль 1</h2>
-
+    <div class="layout-positioner over-bootstrap__form">
         <div class="data__flex">
             <h3>Марка/бренд</h3>
-            <p class="data__p">Opel</p>
+            <p class="data__p p-as-input">${auto.brand}</p>
         </div>
         <div class="data__flex">
             <h3>Модель</h3>
-            <p class="data__p">Astra</p>
+            <p class="data__p p-as-input">${auto.model}</p>
         </div>
         <div class="data__flex">
             <h3>Государственный номер</h3>
-            <p class="data__p">XXXXXXXXXXXXXXXXX</p>
+            <p class="data__p p-as-input">${auto.gosNumber}</p>
         </div>
         <div class="data__flex">
             <h3>VIN</h3>
-            <p class="data__p">XXXXXXXXXXXXXXXXX</p>
+            <p class="data__p p-as-input">${auto.vinNumber}</p>
         </div>
         <div class="data__flex">
             <h3>Год выпуска (г.)</h3>
-            <p class="data__p">2011</p>
+            <p class="data__p p-as-input">${auto.year?c}</p>
         </div>
         <div class="data__flex">
             <h3>Объем двигателя (л.с.)</h3>
-            <p class="data__p">115</p>
+            <p class="data__p p-as-input">${auto.volume?c}</p>
         </div>
         <div class="data__flex">
             <h3>Мощность автомобиля (кВт./ч.)</h3>
-            <p class="data__p">85</p>
+            <p class="data__p p-as-input">${auto.enginePower?c}</p>
         </div>
         <div class="data__flex">
             <h3>КПП</h3>
-            <p class="data__p">Робот</p>
+            <p class="data__p p-as-input">${auto.transmission}</p>
         </div>
         <div class="data__flex">
             <h3>Привод</h3>
-            <p class="data__p">Передний</p>
+            <p class="data__p p-as-input">${auto.drive}</p>
         </div>
         <div class="data__flex">
             <h3>Тип кузова</h3>
-            <p class="data__p">Седан</p>
+            <p class="data__p p-as-input">${auto.bodyType}</p>
         </div>
         <div class="data__flex">
             <h3>Цвет автомобиля</h3>
-            <p class="data__p">Красный</p>
+            <p class="data__p p-as-input">${auto.color}</p>
         </div>
         <div class="data__flex">
             <h3>Внешний вид (описание)</h3>
-            <p class="data__p">Имеется 2 царапины на левом кузове</p>
+            <p class="data__p p-as-input">${auto.description}</p>
         </div>
         <div class="data__flex">
             <h3>Пробег (км.)</h3>
-            <p class="data__p">10 000</p>
+            <p class="data__p p-as-input">${auto.kilometrage?c}</p>
         </div>
         <div class="data__flex">
-            <h3>Автомобиль работает</h3>
-            <p class="data__p">Да</p>
-        </div>
-        <div class="data__flex">
-            <h3>Номер ID текущего водителя</h3>
-            <p class="data__p">131</p>
+            <h3>Автомобиль на ходу</h3>
+            <p class="data__p p-as-input"><#if auto.state>Да<#else>Нет</#if></p>
         </div>
         <h3>Фотографии</h3>
         <img src="" alt="Фотография автомобиля 1">

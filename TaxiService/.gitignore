@@ -30,3 +30,5 @@ target/
 
 uploads/
 *.pdf
+
+*.DS_Store

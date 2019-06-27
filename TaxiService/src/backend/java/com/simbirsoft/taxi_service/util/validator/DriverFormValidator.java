@@ -44,10 +44,10 @@ public class DriverFormValidator implements Validator {
             errors.rejectValue("driversLicenseNumber", "driverform.license.number");
         }
         if (form.getDateOfDriverLicenseIssue().isAfter(LocalDate.now())) {
-            errors.rejectValue("dateOdDriverLicenseIssue", "driverform.date.license.issue");
+            errors.rejectValue("dateOаDriverLicenseIssue", "driverform.date.license.issue");
         }
         if (form.getDateOfDriverLicenseExpiry().isBefore(LocalDate.now())) {
-            errors.rejectValue("dateOdDriverLicenseExpiry", "driverform.date.license.expiry");
+            errors.rejectValue("dateOаDriverLicenseExpiry", "driverform.date.license.expiry");
         }
         if (form.getDateOfPassportIssue().isAfter(LocalDate.now())) {
             errors.rejectValue("dateOfPassportIssue", "driverform.date.passport.issue");
