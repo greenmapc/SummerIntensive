@@ -47,7 +47,7 @@ public abstract class PdfActCreator {
         document.add(createFooter(actForm));
         document.close();
 
-        return fileName;
+        return fileName + ".pdf";
     }
 
     private void init() throws IOException, DocumentException {

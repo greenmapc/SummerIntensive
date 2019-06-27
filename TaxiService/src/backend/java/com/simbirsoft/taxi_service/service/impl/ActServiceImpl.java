@@ -33,7 +33,8 @@ public class ActServiceImpl implements ActService {
         act.setDriverRenter(form.getRenter());
         // ToDo: exceptions
         try {
-            pdfActCreatorService.createPdfActFromCompanyToDriver(form);
+            String fileName = pdfActCreatorService.createPdfActFromCompanyToDriver(form);
+            act.setPdfFileName(fileName);
             actRepository.save(act);
             userService.addAction(user, OperatorActionEnum.CREATE_ACT);
         } catch (IOException | DocumentException e) {
@@ -50,7 +51,8 @@ public class ActServiceImpl implements ActService {
 
         // ToDo: exceptions
         try {
-            pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
+            String fileName = pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
+            act.setPdfFileName(fileName);
             actRepository.save(act);
             userService.addAction(user, OperatorActionEnum.CREATE_ACT);
             rentEnd(actForm.getLessor());
@@ -67,7 +69,8 @@ public class ActServiceImpl implements ActService {
 
         // ToDo: exceptions
         try {
-            pdfActCreatorService.createPdfActFromDriverToCompany(form);
+            String fileName = pdfActCreatorService.createPdfActFromDriverToCompany(form);
+            act.setPdfFileName(fileName);
             actRepository.save(act);
             userService.addAction(user, OperatorActionEnum.CREATE_ACT);
             rentEnd(form.getRenter());
