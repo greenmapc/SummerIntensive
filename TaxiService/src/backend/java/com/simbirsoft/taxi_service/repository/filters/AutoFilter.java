@@ -21,20 +21,6 @@ import java.util.List;
 public class AutoFilter {
     private List<Condition> conditions;
 
-    public Specification getComplexSpecification() {
-        List<Specification<Auto>> specifications= buildSpecifications();
-        Specification<Auto> result = specifications.get(0);
-        for (int i = 1; i < specifications.size(); i++) {
-            result = Specification.where(result).and(specifications.get(i));
-        }
-        return result;
-    }
-
-    private List<Specification<Auto>> buildSpecifications() {
-        List<Specification<Auto>> specifications = new ArrayList<>();
-        conditions.forEach(condition -> specifications.add(buildSpecification(condition)));
-        return specifications;
-    }
 
     private Specification<Auto> buildSpecification(Condition condition) {
         switch (condition.getKey()) {
@@ -60,17 +46,4 @@ public class AutoFilter {
             }
         };
     }
-    private Specification<Auto> buildIsNullSpecifiation(Condition condition) {
-        return new Specification<Auto>() {
-            @Override
-            public Predicate toPredicate(Root<Auto> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.isNull(root.get(condition.getKey()));
-            }
-        };
-    }
-
-
-
-
-
 }

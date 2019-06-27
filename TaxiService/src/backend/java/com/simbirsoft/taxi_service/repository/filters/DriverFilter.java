@@ -18,22 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class DriverFilter {
-    private List<Condition> conditions;
 
-    public Specification getComplexSpecification() {
-        List<Specification<Driver>> specifications= buildSpecifications();
-        Specification<Driver> result = specifications.get(0);
-        for (int i = 1; i < specifications.size(); i++) {
-            result = Specification.where(result).and(specifications.get(i));
-        }
-        return result;
-    }
-
-    private List<Specification<Driver>> buildSpecifications() {
-        List<Specification<Driver>> specifications = new ArrayList<>();
-        conditions.forEach(condition -> specifications.add(buildSpecification(condition)));
-        return specifications;
-    }
 
     private Specification<Driver> buildSpecification(Condition condition) {
         switch (condition.getKey()) {
@@ -51,22 +36,7 @@ public class DriverFilter {
         throw new IllegalArgumentException();
     }
 
-    private Specification<Driver> buildEqualsSpecifiation(Condition condition) {
-        return new Specification<Driver>() {
-            @Override
-            public Predicate toPredicate(Root<Driver> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.equal(root.get(condition.getKey()), condition.getValue());
-            }
-        };
-    }
-    private Specification<Driver> buildIsNullSpecifiation(Condition condition) {
-        return new Specification<Driver>() {
-            @Override
-            public Predicate toPredicate(Root<Driver> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.isNull(root.get(condition.getKey()));
-            }
-        };
-    }
+
 
 
 

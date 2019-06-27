@@ -6,6 +6,7 @@ import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.DriverService;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,14 +33,7 @@ public class DriverController {
         binder.addValidators(new DriverFormValidator());
     }
 
-    @GetMapping
-    public String getAll(@AuthenticationPrincipal User user,
-                         Model model) {
-        model.addAttribute("drivers", driverService.getAll());
-        model.addAttribute("user", user);
 
-        return "drivers/list";
-    }
 
     @GetMapping("/{id}")
     public String getOne(@AuthenticationPrincipal User user,
@@ -50,23 +44,27 @@ public class DriverController {
             // ToDo: handle not found
         }
         model.addAttribute("user", user);
-
         return "drivers/card";
     }
 
-    @GetMapping("/a")
+    @GetMapping
     public String getPage(@AuthenticationPrincipal User user,
                           @RequestParam(value = "filter", required = false) String[] conditionItems,
                           @RequestParam(value = "page", required = false) Integer pageNumber,
                           ModelMap model) {
-        model.addAttribute("drivers", driverService.getPage(pageNumber, conditionItems));
-        return "testRustemSorry/drivers";
+        Page<Driver> page =driverService.getPage(pageNumber, conditionItems);
+        model.addAttribute("drivers", page.getContent());
+        model.addAttribute("user",user);
+        model.addAttribute("pageNumber",page.getNumber()+1);
+        model.addAttribute("lastPageNumber",page.getTotalPages());
+        return "drivers/list";
     }
-    @GetMapping
+    @GetMapping("/search")
     public String search(@AuthenticationPrincipal User user,
                          @RequestParam(value = "search") String searchString,
                          ModelMap model) {
         model.addAttribute("drivers",driverService.search(searchString));
+        model.addAttribute("user",user);
         return "drivers/search";
     }
 

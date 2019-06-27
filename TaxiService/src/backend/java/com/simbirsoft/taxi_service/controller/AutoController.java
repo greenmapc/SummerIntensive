@@ -8,6 +8,7 @@ import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.util.select.AutoSelectCreator;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,14 +35,6 @@ public class AutoController {
         binder.addValidators(new AutoFormValidator());
     }
 
-    @GetMapping
-    public String getAll(@AuthenticationPrincipal User user,
-                         ModelMap model) {
-        model.addAttribute("user", user);
-        model.addAttribute("autos", autoService.getAll());
-        return "autos/list";
-    }
-
     @GetMapping("/{id}")
     public String getOne(@AuthenticationPrincipal User user,
                          @PathVariable Long id, ModelMap model) {
@@ -54,20 +47,25 @@ public class AutoController {
         return "autos/card";
     }
 
-    @GetMapping("/a")
+    @GetMapping
     public String getPage(@AuthenticationPrincipal User user,
                           @RequestParam(value = "filter", required = false) String[] conditionItems,
                           @RequestParam(value = "page", required = false) Integer pageNumber,
                           ModelMap model) {
-        model.addAttribute("autos", autoService.getPage(pageNumber, conditionItems));
-        return "testRustemSorry/autos";
+        Page<Auto> page = autoService.getPage(pageNumber, conditionItems);
+        model.addAttribute("autos", page.getContent());
+        model.addAttribute("user",user);
+        model.addAttribute("pageNumber",page.getNumber()+1);
+        model.addAttribute("lastPageNumber",page.getTotalPages());
+        return "autos/list";
     }
 
-    @GetMapping
+    @GetMapping("/search")
     public String search(@AuthenticationPrincipal User user,
                          @RequestParam(value = "search") String searchString,
                          ModelMap model) {
         model.addAttribute("autos", autoService.search(searchString));
+        model.addAttribute("user",user);
         return "autos/search";
     }
 

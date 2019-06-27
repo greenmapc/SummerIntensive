@@ -1,7 +1,7 @@
 <#import "../macros/layout.ftl" as l>
-<#import "../macros/navbar.ftl" as n>
+<#import "../macros/navbarWithSearch.ftl" as n>
 <@l.layout "База данных авто | TaxiService" "auto_list">
-    <@n.navbar/>
+    <@n.navbar "/autos/search"/>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
             <h1 class="banner_h1">База данных автомобилей</h1>
@@ -12,15 +12,15 @@
         <div class="form-container__filter">
             <div class="form-container__filter--auto-efficiency">
                 <label for="efficiency">Автомобиль на ходу:</label>
-                <input type="checkbox" id="efficiency" name="scales"><br>
+                <input type="checkbox" id="efficiency" name="state"><br>
             </div>
             <div class="form-container__filter--auto-brand">
                 <label for="auto-brand">Марка автомобиля:</label>
-                <select class="auto-brand__variants" id="auto-brand">
+                <select class="auto-brand__variants" name="brand" id="auto-brand">
                     <option value="choice">Выберите марку</option>
-                    <option value="element-1">Opel</option>
-                    <option value="element-2">Nissan</option>
-                    <option value="element-3">Lada</option>
+                    <option value="opel">Opel</option>
+                    <option value="nissan">Nissan</option>
+                    <option value="lada">Lada</option>
                 </select>
             </div>
         </div>
@@ -47,13 +47,23 @@
             </#list>
         </div>
     </div>
-    <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Назад</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
-        </ul>
-    </nav>
+    <#if lastPageNumber gt 0 >
+        <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Назад</a></li>
+
+                <#if pageNumber gt 1 >
+                    <li class="page-item"><a class="page-link" href="#">${pageNumber-1}</a></li>
+                </#if>
+
+                <li class="page-item"><a class="page-link" href="#">${pageNumber}</a></li>
+
+                <#if lastPageNumber - pageNumber gt 0 >
+                    <li class="page-item"><a class="page-link" href="#">${pageNumber+1}</a></li>
+                </#if>
+
+                <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
+            </ul>
+        </nav>
+    </#if>
 </@l.layout>

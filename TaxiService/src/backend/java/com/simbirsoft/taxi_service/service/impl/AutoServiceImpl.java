@@ -10,9 +10,11 @@ import com.simbirsoft.taxi_service.repository.filters.Condition;
 import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.util.condition.ConditionParser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import com.simbirsoft.taxi_service.service.UserService;
 import com.simbirsoft.taxi_service.util.OperatorActionEnum;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -28,7 +30,7 @@ public class AutoServiceImpl implements AutoService {
     private final AutoSearchDao autoSearchDao;
     private final UserService userService;
 
-    private static final int pageSize = 10;
+    private static final int pageSize = 12;
 
     @Override
     public List<Auto> getAll() {
@@ -73,16 +75,16 @@ public class AutoServiceImpl implements AutoService {
     }
 
     @Override
-    public List<Auto> getPage(Integer number,String[] conditionsList) {
+    public Page<Auto> getPage(Integer number, String[] conditionsList) {
         if (number == null || number < 1) {
             number = 1;
         }
         if (conditionsList==null || conditionsList.length == 0) {
-            return repository.findAll(PageRequest.of(number - 1,pageSize)).getContent(); //-1 because start point for user is 1
+            return repository.findAll(PageRequest.of(number - 1,pageSize)); //-1 because start point for user is 1
         }
         List<Condition> conditions = conditionParser.getConditions(Arrays.asList(conditionsList));
         AutoFilter autoFilter = new AutoFilter(conditions);
-        return repository.findAll(autoFilter.getComplexSpecification(),PageRequest.of(number - 1,pageSize)).getContent();
+        return repository.findAll(autoFilter.getComplexSpecification(),PageRequest.of(number - 1,pageSize, Sort.by("id").descending()));
     }
 
     @Override

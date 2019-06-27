@@ -1,8 +1,8 @@
 <#import "../macros/layout.ftl" as l>
-<#import "../macros/navbar.ftl" as n>
+<#import "../macros/navbarWithSearch.ftl" as n>
 <#import "/spring.ftl" as spring>
 <@l.layout "Обновление данных водителя | TaxiService" "">
-    <@n.navbar/>
+    <@n.navbar "/drivers/search"/>
     <div class="form-container flex__form layout-positioner">
         <h1 class="form-container__h1 flex__element">Изменение данных водителя</h1>
 

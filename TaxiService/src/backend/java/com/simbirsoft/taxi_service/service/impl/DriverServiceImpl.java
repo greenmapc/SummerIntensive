@@ -14,7 +14,9 @@ import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import com.simbirsoft.taxi_service.util.comparator.DriverFullNameComparator;
 import com.simbirsoft.taxi_service.util.condition.ConditionParser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -31,7 +33,7 @@ public class DriverServiceImpl implements DriverService {
     private final DriverSearchDao driverSearchDao;
     private final UserService userService;
 
-    private static final int pageSize = 10;
+    private static final int pageSize = 12;
 
     @Override
     public List<Driver> getAll() {
@@ -120,16 +122,16 @@ public class DriverServiceImpl implements DriverService {
 
 
     @Override
-    public List<Driver> getPage(Integer number, String[] conditionsList) {
+    public Page<Driver> getPage(Integer number, String[] conditionsList) {
         if (number == null || number < 1) {
             number = 1;
         }
         if (conditionsList==null || conditionsList.length == 0) {
-            return repository.findAll(PageRequest.of(number - 1,pageSize)).getContent(); //-1 because start point for user is 1
+            return repository.findAll(PageRequest.of(number - 1,pageSize)); //-1 because start point for user is 1
         }
         List<Condition> conditions = conditionParser.getConditions(Arrays.asList(conditionsList));
         DriverFilter driverFilter = new DriverFilter(conditions);
-        return repository.findAll(driverFilter.getComplexSpecification(),PageRequest.of(number - 1,pageSize)).getContent();
+        return repository.findAll(driverFilter.getComplexSpecification(),PageRequest.of(number - 1,pageSize, Sort.by("id").descending()));
     }
 
     @Override
