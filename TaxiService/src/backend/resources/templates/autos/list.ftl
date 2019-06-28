@@ -54,19 +54,17 @@
     <#if lastPageNumber gt 0 >
         <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Назад</a></li>
-
                 <#if pageNumber gt 1 >
-                    <li class="page-item"><a class="page-link" href="#">${pageNumber-1}</a></li>
+                    <li class="page-item"><a class="page-link" href="?page=${pageNumber-1}">Назад</a></li>
+                    <li class="page-item"><a class="page-link" href="?page=${pageNumber-1}">${pageNumber-1}</a></li>
                 </#if>
 
-                <li class="page-item"><a class="page-link" href="#">${pageNumber}</a></li>
+                <li class="page-item"><a class="page-link" href="?page=${pageNumber}">${pageNumber}</a></li>
 
                 <#if lastPageNumber - pageNumber gt 0 >
-                    <li class="page-item"><a class="page-link" href="#">${pageNumber+1}</a></li>
+                    <li class="page-item"><a class="page-link" href="?page=${pageNumber+1}">${pageNumber+1}</a></li>
+                    <li class="page-item"><a class="page-link" href="?page=${pageNumber+1}">Вперёд</a></li>
                 </#if>
-
-                <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
             </ul>
         </nav>
     </#if>
