@@ -1,8 +1,8 @@
 <#import "../macros/layout.ftl" as l>
-<#import "../macros/navbar.ftl" as n>
+<#import "../macros/navbarWithSearch.ftl" as n>
 
 <@l.layout "База данных водителей | TaxiService" "driver_list">
-    <@n.navbar/>
+    <@n.navbar "/drivers/search"/>
     <div class="banner">
         <div class="banner__div data__flex layout-positioner">
             <h1 class="banner__h1">База данных водителей</h1>
@@ -13,15 +13,23 @@
         <div class="form-container__filter">
             <div class="form-container__filter--black-list">
                 <label for="efficiency">Водитель в черном списке:</label>
-                <input type="checkbox" id="efficiency" name="scales"><br>
+                <input type="checkbox" id="efficiency" name="blackList"><br>
             </div>
             <div class="form-container__filter--driver-rating">
                 <label for="driver-rating">Рейтинг водителя:</label>
-                <select class="driver-rating__variants" id="driver-rating">
+                <select class="driver-rating__variants" name="raiting" id="driver-rating">
                     <option value="choice">Выберите рейтинг</option>
-                    <option value="element-1">От 7 до 10 баллов</option>
-                    <option value="element-2">От 4 до 6 баллов</option>
-                    <option value="element-3">От 1 до 3 баллов</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+
                 </select>
             </div>
         </div>
@@ -37,7 +45,7 @@
                     <p>${driver.rating}</p>
 
                     <h3 class="drivers__bar--black-list">Есть в чёрном списке?</h3>
-                    <#if driver.blackList><p style="color: red">Есть</p><#else >Нет</#if>
+                    <#if driver.blackList?? && driver.blackList><p style="color: red">Есть</p><#else >Нет</#if>
 
                     <div class="details__container">
                         <form action="/drivers/${driver.id}" method="get">
@@ -48,13 +56,23 @@
             </#list>
         </div>
     </div>
-    <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Назад</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
-        </ul>
-    </nav>
+    <#if lastPageNumber gt 0 >
+        <nav class="pagination-position layout-positioner" aria-label="Страницы навигации по сайту">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Назад</a></li>
+
+                <#if pageNumber gt 1 >
+                    <li class="page-item"><a class="page-link" href="#">${pageNumber-1}</a></li>
+                </#if>
+
+                <li class="page-item"><a class="page-link" href="#">${pageNumber}</a></li>
+
+                <#if lastPageNumber - pageNumber gt 0 >
+                <li class="page-item"><a class="page-link" href="#">${pageNumber+1}</a></li>
+                </#if>
+
+                <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>
+            </ul>
+        </nav>
+    </#if>
 </@l.layout>

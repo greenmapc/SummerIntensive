@@ -1,5 +1,6 @@
 package com.simbirsoft.taxi_service.controller;
 
+import com.simbirsoft.taxi_service.exception.NotFoundException;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
@@ -9,6 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.data.domain.Page;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -28,14 +35,7 @@ public class DriverController {
         binder.addValidators(driverFormValidator);
     }
 
-    @GetMapping
-    public String getAll(@AuthenticationPrincipal User user,
-                         Model model) {
-        model.addAttribute("drivers", driverService.getAll());
-        model.addAttribute("user", user);
 
-        return "drivers/list";
-    }
 
     @GetMapping("/{id}")
     public String getOne(@AuthenticationPrincipal User user,
@@ -43,11 +43,31 @@ public class DriverController {
         try {
             model.addAttribute("driver", driverService.findOneById(id));
         } catch (EntityNotFoundException e) {
-            // ToDo: handle not found
+            throw new NotFoundException();
         }
         model.addAttribute("user", user);
-
         return "drivers/card";
+    }
+
+    @GetMapping
+    public String getPage(@AuthenticationPrincipal User user,
+                          @RequestParam(value = "filter", required = false) String[] conditionItems,
+                          @RequestParam(value = "page", required = false) Integer pageNumber,
+                          ModelMap model) {
+        Page<Driver> page =driverService.getPage(pageNumber, conditionItems);
+        model.addAttribute("drivers", page.getContent());
+        model.addAttribute("user",user);
+        model.addAttribute("pageNumber",page.getNumber()+1);
+        model.addAttribute("lastPageNumber",page.getTotalPages());
+        return "drivers/list";
+    }
+    @GetMapping("/search")
+    public String search(@AuthenticationPrincipal User user,
+                         @RequestParam(value = "search") String searchString,
+                         ModelMap model) {
+        model.addAttribute("drivers",driverService.search(searchString));
+        model.addAttribute("user",user);
+        return "drivers/search";
     }
 
     @GetMapping("/{id}/update")

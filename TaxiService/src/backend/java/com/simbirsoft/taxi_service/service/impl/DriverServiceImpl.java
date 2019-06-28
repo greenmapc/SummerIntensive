@@ -1,18 +1,25 @@
 package com.simbirsoft.taxi_service.service.impl;
 
+import com.simbirsoft.taxi_service.dao.DriverSearchDao;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.Driver;
-import com.simbirsoft.taxi_service.model.OperatorAction;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.DriverRepository;
+import com.simbirsoft.taxi_service.repository.filters.Condition;
+import com.simbirsoft.taxi_service.repository.filters.SpecificationBuilder;
 import com.simbirsoft.taxi_service.service.DriverService;
 import com.simbirsoft.taxi_service.service.UserService;
 import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import com.simbirsoft.taxi_service.util.comparator.DriverFullNameComparator;
+import com.simbirsoft.taxi_service.util.condition.ConditionParser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +28,11 @@ import java.util.Optional;
 public class DriverServiceImpl implements DriverService {
     private final DriverRepository repository;
     private final DriverFullNameComparator driverFullNameComparator;
+    private final ConditionParser conditionParser;
+    private final DriverSearchDao driverSearchDao;
     private final UserService userService;
+
+    private static final int pageSize = 12;
 
     @Override
     public List<Driver> getAll() {
@@ -105,6 +116,26 @@ public class DriverServiceImpl implements DriverService {
         driver.setBirthDate(form.getBirthDate());
         driver.setRating(form.getRating());
         return repository.save(driver);
+    }
+
+
+
+    @Override
+    public Page<Driver> getPage(Integer number, String[] conditionsList) {
+        if (number == null || number < 1) {
+            number = 1;
+        }
+        if (conditionsList==null || conditionsList.length == 0) {
+            return repository.findAll(PageRequest.of(number - 1,pageSize)); //-1 because start point for user is 1
+        }
+        List<Condition> conditions = conditionParser.getConditions(Arrays.asList(conditionsList));
+        SpecificationBuilder<Driver> specificationBuilder = new SpecificationBuilder<>(conditions);
+        return repository.findAll(specificationBuilder.getComplexSpecification(Driver.class),PageRequest.of(number - 1,pageSize, Sort.by("id")));
+    }
+
+    @Override
+    public List<Driver> search(String searchString) {
+        return driverSearchDao.fuzzySearch(searchString.toLowerCase());
     }
 
 }

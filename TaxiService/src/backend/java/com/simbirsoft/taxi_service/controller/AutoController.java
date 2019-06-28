@@ -1,6 +1,7 @@
 package com.simbirsoft.taxi_service.controller;
 
 import com.simbirsoft.taxi_service.dto.AutoSelectDto;
+import com.simbirsoft.taxi_service.exception.NotFoundException;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.User;
@@ -8,6 +9,7 @@ import com.simbirsoft.taxi_service.service.AutoService;
 import com.simbirsoft.taxi_service.util.select.AutoSelectCreator;
 import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,26 +33,40 @@ public class AutoController {
         binder.addValidators(autoFormValidator);
     }
 
-    @GetMapping
-    public String getAll(@AuthenticationPrincipal User user,
-                         ModelMap model) {
-        model.addAttribute("user", user);
-        model.addAttribute("autos", autoService.getAll());
-
-        return "autos/list";
-    }
 
     @GetMapping("/{id}")
     public String getOne(@AuthenticationPrincipal User user,
-                         @PathVariable("id") Long id, ModelMap model) {
+                                 @PathVariable Long id, ModelMap model) {
         try {
             model.addAttribute("auto", autoService.findOneById(id));
         } catch (EntityNotFoundException e) {
-            // ToDo: handle not found
+            throw new NotFoundException();
         }
         model.addAttribute("user", user);
 
         return "autos/card";
+    }
+
+    @GetMapping
+    public String getPage(@AuthenticationPrincipal User user,
+                          @RequestParam(value = "filter", required = false) String[] conditionItems,
+                          @RequestParam(value = "page", required = false) Integer pageNumber,
+                          ModelMap model) {
+        Page<Auto> page = autoService.getPage(pageNumber, conditionItems);
+        model.addAttribute("autos", page.getContent());
+        model.addAttribute("user",user);
+        model.addAttribute("pageNumber",page.getNumber()+1);
+        model.addAttribute("lastPageNumber",page.getTotalPages());
+        return "autos/list";
+    }
+
+    @GetMapping("/search")
+    public String search(@AuthenticationPrincipal User user,
+                         @RequestParam(value = "search") String searchString,
+                         ModelMap model) {
+        model.addAttribute("autos", autoService.search(searchString));
+        model.addAttribute("user",user);
+        return "autos/search";
     }
 
     @GetMapping("/{id}/update")
@@ -66,10 +82,10 @@ public class AutoController {
     }
 
     @PostMapping("/{id}/update")
-    public String updateAuto(@PathVariable Long id,
-                             @Validated @ModelAttribute("form") AutoForm form,
-                             BindingResult bindingResult,
-                             Model model) {
+    public String updateAuto (@PathVariable Long id,
+                              @Validated @ModelAttribute("form") AutoForm form,
+                              BindingResult bindingResult,
+                              Model model){
         if (bindingResult.hasErrors()) {
             model.addAttribute("auto", autoService.findOneById(id));
             return "autos/update";
@@ -78,11 +94,11 @@ public class AutoController {
         return "redirect:/autos/" + id;
     }
 
-    @GetMapping(value="/getRentedAuto", produces = "application/json")
+    @GetMapping(value = "/getRentedAuto", produces = "application/json")
     @ResponseBody
-    public AutoSelectDto getAutoFromUser(@RequestParam("id") Long id) {
+    public AutoSelectDto getAutoFromUser (@RequestParam("id") Long id){
         AutoSelectDto dto = new AutoSelectDto();
-        dto = dto.createByAuto(autoService.findAllRentedByUser(id)) ;
+        dto = dto.createByAuto(autoService.findAllRentedByUser(id));
         return dto;
     }
 }

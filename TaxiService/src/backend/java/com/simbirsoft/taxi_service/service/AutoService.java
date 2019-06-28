@@ -3,6 +3,7 @@ package com.simbirsoft.taxi_service.service;
 import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.User;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 public interface AutoService {
     List<Auto> getAll();
     List<Auto> findAllFree();
+    Page<Auto> getPage(Integer number, String[] conditions);
+    List<Auto> search(String searchString);
     List<Auto> findAllRented();
 
     Auto findAllRentedByUser(Long id);

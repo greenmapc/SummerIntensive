@@ -82,6 +82,26 @@
             <artifactId>pdfbox</artifactId>
             <version>2.0.15</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>5.10.6.Final</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.logging</groupId>
+                    <artifactId>jboss-logging-processor</artifactId>
+                </exclusion>
+                <!--<exclusion>-->
+                    <!--<groupId>org.hibernate</groupId>-->
+                    <!--<artifactId>hibernate-core</artifactId>-->
+                <!--</exclusion>-->
+            </exclusions>
+        </dependency>
+
+
+
+
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>

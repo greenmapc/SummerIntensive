@@ -271,6 +271,11 @@ a {
     border: 1px solid lightskyblue;
 }
 
+.page-link-current {
+    color: rgba(0, 0, 0, 0.5);
+    border: 1px solid blue;
+}
+
 .page-link:hover {
     color: limegreen;
     background-color: white;

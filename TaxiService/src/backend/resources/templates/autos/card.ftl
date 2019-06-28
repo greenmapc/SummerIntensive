@@ -1,10 +1,10 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbar.ftl" as n>
-
+<#import "../macros/navbarWithSearch.ftl" as n>
 
 <#assign doc_id = 1>
 <@l.layout "Карта авто | TaxiService" "auto_card">
-    <@n.navbar/>
+    <@n.navbar "/autos/search"/>
     <div class="banner">
         <div class="banner_div data__flex layout-positioner">
             <h1 class="banner_h1">База данных автомобилей</h1>

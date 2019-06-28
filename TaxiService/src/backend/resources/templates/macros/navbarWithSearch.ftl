@@ -1,4 +1,4 @@
-<#macro navbar>
+<#macro navbar link>
     <header class="site-header bootstrap__site-header">
         <nav class="bootstrap__nav navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="/panel">
@@ -44,6 +44,11 @@
                         </li>
                     </#if>
                 </ul>
+                <form class="form-inline my-2 my-lg-0" method="get" action="${link}">
+                    <input class="bootstrap__input form-control mr-sm-2" type="search" name="search" placeholder="Я ищу..."
+                           aria-label="Поиск">
+                    <button class="bootstrap__button btn btn-outline-success my-2 my-sm-0" type="submit" >Найти</button>
+                </form>
             </div>
         </nav>
     </header>
