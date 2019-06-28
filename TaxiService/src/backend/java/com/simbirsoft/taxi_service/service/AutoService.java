@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 public interface AutoService {
     List<Auto> getAll();
@@ -19,4 +20,6 @@ public interface AutoService {
     Auto createAuto(AutoForm form, User user);
     Auto findOneById(@NotNull Long id);
     Auto updateInfo(Auto auto, AutoForm newForm);
+
+    Set<String> getAllBrands();
 }

@@ -22,6 +22,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Arrays;
 
 @RequestMapping("/drivers")
 @Controller
@@ -59,6 +60,10 @@ public class DriverController {
         model.addAttribute("user",user);
         model.addAttribute("pageNumber",page.getNumber()+1);
         model.addAttribute("lastPageNumber",page.getTotalPages());
+        if(conditionItems != null && Arrays.asList(conditionItems).contains("banned")) {
+            model.addAttribute("banned", true);
+        }
+
         return "drivers/list";
     }
     @GetMapping("/search")

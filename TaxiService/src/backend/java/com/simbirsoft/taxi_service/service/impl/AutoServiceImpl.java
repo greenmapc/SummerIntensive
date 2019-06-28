@@ -18,9 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -95,6 +93,18 @@ public class AutoServiceImpl implements AutoService {
     @Override
     public List<Auto> findAllRented() {
         return repository.findAllRent();
+    }
+
+    @Override
+    public Set<String> getAllBrands() {
+        Set<String> brands = new HashSet<>();
+        List<Auto> autos = repository.findAll();
+
+        for(Auto auto : autos) {
+            brands.add(auto.getBrand());
+        }
+
+        return brands;
     }
 
     @Override

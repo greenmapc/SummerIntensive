@@ -20,6 +20,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Arrays;
 
 @Controller
 @RequiredArgsConstructor
@@ -54,9 +55,16 @@ public class AutoController {
                           ModelMap model) {
         Page<Auto> page = autoService.getPage(pageNumber, conditionItems);
         model.addAttribute("autos", page.getContent());
-        model.addAttribute("user",user);
-        model.addAttribute("pageNumber",page.getNumber()+1);
-        model.addAttribute("lastPageNumber",page.getTotalPages());
+        model.addAttribute("user", user);
+        model.addAttribute("pageNumber", page.getNumber()+1);
+        model.addAttribute("lastPageNumber", page.getTotalPages());
+        model.addAttribute("brandList", autoService.getAllBrands());
+        if(conditionItems != null) {
+            if(Arrays.asList(conditionItems).contains("state")) {
+                model.addAttribute("state", true);
+            }
+        }
+
         return "autos/list";
     }
 
