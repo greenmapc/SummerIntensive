@@ -90,13 +90,15 @@ public class UserController {
         }
         Auto auto = autoService.createAuto(form, user);
 
-        try {
-            for (MultipartFile doc : docs) {
-                imageUploadService.saveAutoDocument(auto, doc);
+        if (docs.size() != 0) {
+            try {
+                for (MultipartFile doc : docs) {
+                    imageUploadService.saveAutoDocument(auto, doc);
+                }
+            } catch (IOException e) {
+                // ToDo: handle
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            // ToDo: handle
-            e.printStackTrace();
         }
         model.addAttribute("user", user);
         return "redirect:/autos";
@@ -121,16 +123,17 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "user/create_driver";
         }
-        driverService.createDriver(form, user);
         Driver driver = driverService.createDriver(form, user);
 
-        try {
-            for (MultipartFile doc : docs) {
-                imageUploadService.saveDriverDocument(driver, doc);
+        if (docs.size() != 0) {
+            try {
+                for (MultipartFile doc : docs) {
+                    imageUploadService.saveDriverDocument(driver, doc);
+                }
+            } catch (IOException e) {
+                // ToDo: handle
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            // ToDo: handle
-            e.printStackTrace();
         }
         model.addAttribute("user", user);
         return "redirect:/drivers";
