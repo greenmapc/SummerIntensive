@@ -15,8 +15,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public class DriverSearchDao {
-
     private final EntityManager entityManager;
+    private FullTextEntityManager fullTextEntityManager;
+    private QueryBuilder queryBuilder;
 
     @Autowired
     public DriverSearchDao(EntityManagerFactory factory) {
@@ -26,8 +27,12 @@ public class DriverSearchDao {
     @Transactional
     public void initializeHibernateSearch() {
         try {
-            FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+            fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
             fullTextEntityManager.createIndexer(Driver.class).startAndWait();
+            queryBuilder = fullTextEntityManager.getSearchFactory()
+                    .buildQueryBuilder()
+                    .forEntity(Driver.class)
+                    .get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -35,11 +40,6 @@ public class DriverSearchDao {
 
     @Transactional
     public List<Driver> fuzzySearch(String searchTerm) {
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-        QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
-                .buildQueryBuilder()
-                .forEntity(Driver.class)
-                .get();
         String simpleQueryString = SearchRequestParser.getSimpleQueryString(searchTerm);
         Query luceneQuery = queryBuilder
                 .simpleQueryString()
