@@ -10,7 +10,9 @@ public class AutoForm {
     private String brand;
     private String model;
     private String gosNumber;
+    private String gosNumberOld;
     private String vinNumber;
+    private String vinNumberOld;
     private Integer year;
     private Double volume;
     private Integer enginePower;
@@ -28,10 +30,11 @@ public class AutoForm {
         form.setBrand(auto.getBrand());
         form.setModel(auto.getModel());
         form.setGosNumber(auto.getGosNumber());
+        form.setGosNumberOld(auto.getGosNumber());
         form.setVinNumber(auto.getVinNumber());
+        form.setVinNumberOld(auto.getVinNumber());
         form.setYear(auto.getYear());
         form.setVolume(auto.getVolume());
-        form.setEnginePower(auto.getEnginePower());
         form.setEnginePower(auto.getEnginePower());
         form.setTransmissionType(auto.getTransmission());
         form.setDrive(auto.getDrive());

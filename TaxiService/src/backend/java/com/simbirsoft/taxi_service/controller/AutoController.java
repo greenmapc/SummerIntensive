@@ -86,7 +86,11 @@ public class AutoController {
                               @Validated @ModelAttribute("form") AutoForm form,
                               BindingResult bindingResult,
                               Model model){
+        System.out.println(form);
         if (bindingResult.hasErrors()) {
+            model.addAttribute("bodyType", AutoSelectCreator.bodyTypeCreate());
+            model.addAttribute("driveType", AutoSelectCreator.driveTypeCreate());
+            model.addAttribute("transmissionType", AutoSelectCreator.transmissionType());
             model.addAttribute("auto", autoService.findOneById(id));
             return "autos/update";
         }

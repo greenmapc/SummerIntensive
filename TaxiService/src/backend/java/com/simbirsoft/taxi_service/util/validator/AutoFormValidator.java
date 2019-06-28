@@ -33,12 +33,16 @@ public class AutoFormValidator implements Validator {
                 form.getModel().length() > ValidatorConstraints.MAX_FIELD_LENGTH) {
             errors.rejectValue("model", "error.field.empty");
         }
-        if (!checkGosNumber(form.getGosNumber()) || checkDuplicateGosNumber(form.getGosNumber())) {
-            errors.rejectValue("gosNumber", "autoform.gosnumber");
+        if (!form.getGosNumber().equals(form.getGosNumberOld())) {
+            if (!checkGosNumber(form.getGosNumber()) || checkDuplicateGosNumber(form.getGosNumber())) {
+                errors.rejectValue("gosNumber", "autoform.gosnumber");
+            }
         }
-        if (form.getVinNumber().length() != ValidatorConstraints.VIN_NUMBER_LENGTH ||
-                checkDuplicateVinNumber(form.getVinNumber())) {
-            errors.rejectValue("vinNumber", "autoform.vinnumber");
+        if (!form.getVinNumber().equals(form.getVinNumberOld())) {
+            if (form.getVinNumber().length() != ValidatorConstraints.VIN_NUMBER_LENGTH ||
+                    checkDuplicateVinNumber(form.getVinNumber())) {
+                errors.rejectValue("vinNumber", "autoform.vinnumber");
+            }
         }
         if (form.getYear() > LocalDateTime.now().getYear() ||
                 form.getYear() < ValidatorConstraints.MIN_YEAR_OF_CAR_ISSUE) {

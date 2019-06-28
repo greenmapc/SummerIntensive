@@ -24,11 +24,14 @@
             <label for="auto__gos_number">Государственный номер</label><br>
             <@spring.formInput "form.gosNumber"  'class="form-container__form--input flex__element"
                             id="auto__gos_number" placeholder="Введите Гос.номер ТС" required'/><br>
+            <@spring.formInput "form.gosNumberOld" 'hidden' />
+
             <@spring.showErrors "form.gosNumber"/><br>
 
             <label for="auto__vin_number">VIN номер</label><br>
             <@spring.formInput "form.vinNumber" 'class="form-container__form--input flex__element"
                             id="auto__vin_number" placeholder="Введите VIN-номер" required'/><br>
+            <@spring.formInput "form.vinNumberOld" 'hidden' />
             <@spring.showErrors "form.vinNumber"/><br>
 
             <label for="auto__year">Год выпуска ТС</label><br>
