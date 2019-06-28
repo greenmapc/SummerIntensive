@@ -1,8 +1,8 @@
 <#import "../macros/layout.ftl" as l>
-<#import "../macros/navbar.ftl" as n>
+<#import "../macros/navbarWithSearch.ftl" as n>
 
 <@l.layout "База данных авто | TaxiService" "auto_list">
-    <@n.navbar/>
+    <@n.navbar "/autos/search"/>
     <div class="banner over-bootstrap__site-content">
         <div class="banner__div data__flex layout-positioner">
             <h1 class="banner__h1">База данных автомобилей</h1>
