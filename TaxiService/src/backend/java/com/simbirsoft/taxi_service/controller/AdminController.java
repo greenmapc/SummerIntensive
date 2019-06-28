@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -68,6 +69,8 @@ public class AdminController {
         model.addAttribute("user", user);
         List<OperatorAction> operatorActions = userService.getAllActionsSortedByDateDesc();
         model.addAttribute("actions", operatorActions);
+        model.addAttribute("parser", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
         return "admin/operator_actions";
     }
 }
