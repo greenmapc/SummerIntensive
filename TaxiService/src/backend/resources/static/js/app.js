@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     $(".driver_select").change(function () {
         var value = $(this).val();
         $.ajax({
@@ -15,4 +16,29 @@ $(document).ready(function() {
             }
         })
     });
+
+    $("#auto-brand").change(function () {
+        location.href = "/autos?filter=brand_" + $(this).val();
+    });
+
+    $("#driver-rating").change(function () {
+        location.href = "/drivers/?filter=rating_" + $(this).val();
+    });
+
+    $(".checkbox-banned").change(function () {
+        if($(this).is(':checked')) {
+            location.href = "/drivers/?filter=banned";
+        } else {
+            location.href = "/drivers";
+        }
+    });
+
+    $(".checkbox-state").change(function () {
+        if($(this).is(':checked')) {
+            location.href = "/autos/?filter=state"
+        } else {
+            location.href = "/autos";
+        }
+    });
+
 });

@@ -1,12 +1,12 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbarWithSearch.ftl" as n>
 
-<@l.layout "Результаты поиска | База данных водителей | TaxiService" "driver_list">
+<@l.layout "База данных водителей | TaxiService" "driver_list">
     <@n.navbar "/drivers/search"/>
     <div class="banner">
-        <div class="banner_div data__flex layout-positioner">
-            <h1 class="banner_h1">База данных водителей</h1>
-            <img class="banner_img" src="${springMacroRequestContext.contextPath}/img/driver.svg" alt="Иконка водителя">
+        <div class="banner__div data__flex layout-positioner">
+            <h1 class="banner__h1">База данных водителей</h1>
+            <img class="banner__img" src="${springMacroRequestContext.contextPath}/img/driver.svg" alt="Иконка водителя">
         </div>
     </div>
     <div class="form-container layout-positioner over-bootstrap__form">

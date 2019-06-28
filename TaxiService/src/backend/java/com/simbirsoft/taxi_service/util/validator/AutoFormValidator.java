@@ -34,7 +34,8 @@ public class AutoFormValidator implements Validator {
             errors.rejectValue("model", "error.field.empty");
         }
         if (!form.getGosNumber().equals(form.getGosNumberOld())) {
-            if (!checkGosNumber(form.getGosNumber()) || checkDuplicateGosNumber(form.getGosNumber())) {
+            if (!checkGosNumber(form.getGosNumber()) ||
+                    checkDuplicateGosNumber(form.getGosNumber())) {
                 errors.rejectValue("gosNumber", "autoform.gosnumber");
             }
         }

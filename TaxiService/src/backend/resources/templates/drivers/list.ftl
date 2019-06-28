@@ -13,7 +13,10 @@
         <div class="form-container__filter">
             <div class="form-container__filter--black-list">
                 <label for="efficiency">Водитель в черном списке:</label>
-                <input type="checkbox" id="efficiency" name="blackList"><br>
+                <input class="checkbox-banned" type="checkbox" id="efficiency" name="blackList"
+                        <#if banned??>
+                            checked="checked"
+                        </#if>><br>
             </div>
             <div class="form-container__filter--driver-rating">
                 <label for="driver-rating">Рейтинг водителя:</label>
@@ -68,7 +71,7 @@
                 <li class="page-item"><a class="page-link" href="#">${pageNumber}</a></li>
 
                 <#if lastPageNumber - pageNumber gt 0 >
-                <li class="page-item"><a class="page-link" href="#">${pageNumber+1}</a></li>
+                    <li class="page-item"><a class="page-link" href="#">${pageNumber+1}</a></li>
                 </#if>
 
                 <li class="page-item"><a class="page-link" href="#">Вперёд</a></li>

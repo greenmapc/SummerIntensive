@@ -1,8 +1,9 @@
 <#import "../macros/layout.ftl" as l>
 <#import "../macros/navbarWithSearch.ftl" as n>
+
 <@l.layout "База данных авто | TaxiService" "auto_list">
     <@n.navbar "/autos/search"/>
-    <div class="banner">
+    <div class="banner over-bootstrap__site-content">
         <div class="banner__div data__flex layout-positioner">
             <h1 class="banner__h1">База данных автомобилей</h1>
             <img class="banner__img" src="${springMacroRequestContext.contextPath}/img/car.svg" alt="Иконка автомобиля">
@@ -12,15 +13,18 @@
         <div class="form-container__filter">
             <div class="form-container__filter--auto-efficiency">
                 <label for="efficiency">Автомобиль на ходу:</label>
-                <input type="checkbox" id="efficiency" name="state"><br>
+                <input class="checkbox-state" type="checkbox" id="efficiency" name="state"
+                    <#if state??>
+                        checked="checked"
+                    </#if>><br>
             </div>
             <div class="form-container__filter--auto-brand">
                 <label for="auto-brand">Марка автомобиля:</label>
                 <select class="auto-brand__variants" name="brand" id="auto-brand">
                     <option value="choice">Выберите марку</option>
-                    <option value="opel">Opel</option>
-                    <option value="nissan">Nissan</option>
-                    <option value="lada">Lada</option>
+                    <#list brandList as brand>
+                        <option value="${brand}">${brand}</option>
+                    </#list>
                 </select>
             </div>
         </div>

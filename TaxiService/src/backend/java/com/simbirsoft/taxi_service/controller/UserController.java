@@ -15,6 +15,7 @@ import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
 import com.simbirsoft.taxi_service.util.validator.UserFormValidator;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -83,14 +84,14 @@ public class UserController {
                              BindingResult bindingResult,
                              @AuthenticationPrincipal User user,
                              Model model,
-                             @RequestParam(value = "docs", required = false) List<MultipartFile> docs) {
+                             @RequestParam(value = "docs", required = false) List<MultipartFile> docs) throws IOException {
         if (bindingResult.hasErrors()) {
             fillAutoSelectFields(model);
             return "user/create_auto";
         }
         Auto auto = autoService.createAuto(form, user);
 
-        if (docs.size() != 0) {
+        if (!docs.isEmpty()) {
             try {
                 for (MultipartFile doc : docs) {
                     imageUploadService.saveAutoDocument(auto, doc);
@@ -115,6 +116,7 @@ public class UserController {
 
     @PostMapping("/create_driver")
     @Transactional
+    @SneakyThrows
     public String createDriver(@Validated @ModelAttribute("driverForm") DriverForm form,
                                BindingResult bindingResult,
                                Model model,
@@ -125,7 +127,7 @@ public class UserController {
         }
         Driver driver = driverService.createDriver(form, user);
 
-        if (docs.size() != 0) {
+        if (!docs.isEmpty()) {
             try {
                 for (MultipartFile doc : docs) {
                     imageUploadService.saveDriverDocument(driver, doc);
