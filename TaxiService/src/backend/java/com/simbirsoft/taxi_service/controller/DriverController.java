@@ -1,5 +1,6 @@
 package com.simbirsoft.taxi_service.controller;
 
+import com.simbirsoft.taxi_service.exception.NotFoundException;
 import com.simbirsoft.taxi_service.form.DriverForm;
 import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
@@ -41,7 +42,7 @@ public class DriverController {
         try {
             model.addAttribute("driver", driverService.findOneById(id));
         } catch (EntityNotFoundException e) {
-            // ToDo: handle not found
+            throw new NotFoundException();
         }
         model.addAttribute("user", user);
         return "drivers/card";

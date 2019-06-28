@@ -1,9 +1,5 @@
 package com.simbirsoft.taxi_service.repository.filters;
 
-import com.simbirsoft.taxi_service.model.Auto;
-import com.simbirsoft.taxi_service.model.Driver;
-import com.simbirsoft.taxi_service.repository.filters.strategy.AutoTransStrategy;
-import com.simbirsoft.taxi_service.repository.filters.strategy.DriverTransStrategy;
 import com.simbirsoft.taxi_service.repository.filters.strategy.TransCondToSpecStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Data;

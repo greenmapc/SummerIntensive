@@ -16,6 +16,8 @@ import java.util.List;
 
 public class AutoSearchDao {
     private final EntityManager entityManager;
+    private QueryBuilder queryBuilder;
+    private FullTextEntityManager fullTextEntityManager;
 
     @Autowired
     public AutoSearchDao(EntityManagerFactory factory) {
@@ -25,23 +27,23 @@ public class AutoSearchDao {
     @Transactional
     public void initializeHibernateSearch() {
         try {
-            FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+            fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
             fullTextEntityManager.createIndexer(Auto.class).startAndWait();
+            queryBuilder = fullTextEntityManager.getSearchFactory()
+                    .buildQueryBuilder()
+                    .forEntity(Auto.class)
+                    .get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
     @Transactional
     public List<Auto> fuzzySearch(String searchTerm) {
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-        QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
-                .buildQueryBuilder()
-                .forEntity(Auto.class)
-                .get();
         String simpleQueryString = SearchRequestParser.getSimpleQueryString(searchTerm);
         Query luceneQuery = queryBuilder
                 .simpleQueryString()
-                .onFields("brand","model","gosNumber","vinNumber")
+                .onFields("brand", "model", "gosNumber", "vinNumber")
                 .matching(simpleQueryString)
                 .createQuery();
         javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Auto.class);

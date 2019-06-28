@@ -20,7 +20,6 @@ public class AutoSelectDto {
         dto.setYear(auto.getYear());
         dto.setGosNumber(auto.getGosNumber());
         dto.setId(auto.getId());
-
         return dto;
     }
 }

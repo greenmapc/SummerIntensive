@@ -5,16 +5,15 @@ import com.simbirsoft.taxi_service.form.AutoForm;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.repository.AutoRepository;
-
 import com.simbirsoft.taxi_service.repository.filters.Condition;
 import com.simbirsoft.taxi_service.repository.filters.SpecificationBuilder;
 import com.simbirsoft.taxi_service.service.AutoService;
+import com.simbirsoft.taxi_service.service.UserService;
+import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import com.simbirsoft.taxi_service.util.condition.ConditionParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import com.simbirsoft.taxi_service.service.UserService;
-import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -85,7 +84,7 @@ public class AutoServiceImpl implements AutoService {
         }
         List<Condition> conditions = conditionParser.getConditions(Arrays.asList(conditionsList));
         SpecificationBuilder<Auto> specificationBuilder = new SpecificationBuilder<>(conditions);
-        return repository.findAll(specificationBuilder.getComplexSpecification(Auto.class),PageRequest.of(number - 1,pageSize, Sort.by("id").descending()));
+        return repository.findAll(specificationBuilder.getComplexSpecification(Auto.class),PageRequest.of(number - 1,pageSize, Sort.by("id")));
     }
 
     @Override

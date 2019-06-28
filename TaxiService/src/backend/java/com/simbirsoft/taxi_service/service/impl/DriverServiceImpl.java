@@ -130,7 +130,7 @@ public class DriverServiceImpl implements DriverService {
         }
         List<Condition> conditions = conditionParser.getConditions(Arrays.asList(conditionsList));
         SpecificationBuilder<Driver> specificationBuilder = new SpecificationBuilder<>(conditions);
-        return repository.findAll(specificationBuilder.getComplexSpecification(Driver.class),PageRequest.of(number - 1,pageSize, Sort.by("id").descending()));
+        return repository.findAll(specificationBuilder.getComplexSpecification(Driver.class),PageRequest.of(number - 1,pageSize, Sort.by("id")));
     }
 
     @Override
