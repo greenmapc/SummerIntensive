@@ -1,12 +1,14 @@
 package com.simbirsoft.taxi_service.controller;
 
 import com.simbirsoft.taxi_service.form.UserForm;
+import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.OperatorAction;
 import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.UserService;
 import com.simbirsoft.taxi_service.util.validator.UserFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -65,12 +68,14 @@ public class AdminController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/operator_actions")
     public String operatorActionsPage(@AuthenticationPrincipal User user,
+                                      @RequestParam(value = "page", required = false) Integer pageNumber,
                                       Model model) {
+        Page<OperatorAction> page = userService.getPageSortedByDateDesc(pageNumber);
+        model.addAttribute("actions", page.getContent());
         model.addAttribute("user", user);
-        List<OperatorAction> operatorActions = userService.getAllActionsSortedByDateDesc();
-        model.addAttribute("actions", operatorActions);
+        model.addAttribute("pageNumber", page.getNumber()+1);
+        model.addAttribute("lastPageNumber", page.getTotalPages());
         model.addAttribute("parser", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-
         return "admin/operator_actions";
     }
 }

@@ -1,6 +1,7 @@
 package com.simbirsoft.taxi_service.controller;
 
 import com.simbirsoft.taxi_service.form.*;
+import com.simbirsoft.taxi_service.model.Act;
 import com.simbirsoft.taxi_service.model.Auto;
 import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
@@ -16,6 +17,7 @@ import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
 import com.simbirsoft.taxi_service.util.validator.UserFormValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,7 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -216,9 +219,13 @@ public class UserController {
 
     @GetMapping("/acts")
     public String allActsPage(@AuthenticationPrincipal User user,
+                              @RequestParam(value = "page", required = false) Integer pageNumber,
                               Model model) {
+        Page<Act> page = actService.getPage(pageNumber);
+        model.addAttribute("acts", page.getContent());
         model.addAttribute("user", user);
-        model.addAttribute("acts", actService.getAll());
+        model.addAttribute("pageNumber", page.getNumber()+1);
+        model.addAttribute("lastPageNumber", page.getTotalPages());
         model.addAttribute("parser", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         return "acts/list";
     }

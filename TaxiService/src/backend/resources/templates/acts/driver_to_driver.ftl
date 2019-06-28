@@ -28,7 +28,7 @@
                                 value="2019-06-22" min="2019-06-22" max="2020-12-31" required' 'datetime-local'/>
             <br>
 
-            <label for="document__date-reception">Дата передачи*</label><br>
+            <label for="document__date-reception">Дата возвращения*</label><br>
             <@spring.formInput "formDD.leaseEndDate" 'class="form-container__form--input flex__element" id="document__date-reception"
                                 value="2019-06-22" min="2019-06-22" max="2020-12-31" required' 'datetime-local'/>
             <br>

@@ -12,6 +12,8 @@ import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import com.simbirsoft.taxi_service.util.PasswordGeneration;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
     private final OperatorActionRepository operatorActionRepository;
-
+    private static final Integer pageSize = 12;
     @Override
     public User createOperator(UserForm form) {
         String password = PasswordGeneration.generatePassword();
@@ -80,5 +82,13 @@ public class UserServiceImpl implements UserService {
         return operatorActionRepository.findAll(
                 new Sort(Sort.Direction.DESC, "date")
         );
+    }
+
+    @Override
+    public Page<OperatorAction> getPageSortedByDateDesc(Integer number) {
+        if (number == null || number < 1) {
+            number = 1;
+        }
+        return operatorActionRepository.findAll(PageRequest.of(number - 1,pageSize,new Sort(Sort.Direction.DESC,"date"))); //-1 because start point for user is 1
     }
 }

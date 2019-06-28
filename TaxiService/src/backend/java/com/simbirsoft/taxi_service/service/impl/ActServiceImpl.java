@@ -15,6 +15,8 @@ import com.simbirsoft.taxi_service.service.UserService;
 import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -26,6 +28,7 @@ public class ActServiceImpl implements ActService {
     private final PdfActCreatorService pdfActCreatorService;
     private final ActRepository actRepository;
     private final UserService userService;
+    private static final int pageSize = 12;
 
     @Override
     @SneakyThrows
@@ -76,6 +79,14 @@ public class ActServiceImpl implements ActService {
     @Override
     public void rentEnd(Driver driver) {
         actRepository.setRentEnd(driver);
+    }
+
+    @Override
+    public Page<Act> getPage(Integer number) {
+        if (number == null || number < 1) {
+            number = 1;
+        }
+        return actRepository.findAll(PageRequest.of(number - 1,pageSize)); //-1 because start point for user is 1
     }
 
     @Override

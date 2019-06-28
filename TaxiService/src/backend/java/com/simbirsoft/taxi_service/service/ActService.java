@@ -6,6 +6,7 @@ import com.simbirsoft.taxi_service.form.DriverToDriverActForm;
 import com.simbirsoft.taxi_service.model.Act;
 import com.simbirsoft.taxi_service.model.Driver;
 import com.simbirsoft.taxi_service.model.User;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -15,6 +16,6 @@ public interface ActService {
     Act createActFromDriverToCompany(DriverToCompanyActForm form, User user);
 
     void rentEnd(Driver driver);
-
+    Page<Act> getPage(Integer pageNumber);
     List<Act> getAll();
 }
