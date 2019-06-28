@@ -1,6 +1,8 @@
 package com.simbirsoft.taxi_service.util.validator;
 
 import com.simbirsoft.taxi_service.form.DriverForm;
+import com.simbirsoft.taxi_service.repository.DriverRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -9,8 +11,10 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 @Component
+@RequiredArgsConstructor
 public class DriverFormValidator implements Validator {
     private final Pattern pattern = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
+    private final DriverRepository driverRepository;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -18,8 +22,8 @@ public class DriverFormValidator implements Validator {
     }
 
     @Override
-    public void validate(Object o, Errors errors) {
-        DriverForm form = (DriverForm) o;
+    public void validate(Object driverForm, Errors errors) {
+        DriverForm form = (DriverForm) driverForm;
         if (form.getFirstName().isEmpty() ||
                 form.getFirstName().length() > ValidatorConstraints.MAX_FIELD_LENGTH) {
             errors.rejectValue("firstName", "error.field.empty");
@@ -71,9 +75,16 @@ public class DriverFormValidator implements Validator {
         if (!checkPhoneNumber(form.getPhoneNumber())) {
             errors.rejectValue("phoneNumber", "driverform.phonenumber");
         }
+        if (!form.getTelegramLogin().isEmpty() && checkDuplicateTelegramLogin(form.getTelegramLogin())) {
+            errors.rejectValue("telegramLogin", "driverform.telegram");
+        }
     }
 
     private boolean checkPhoneNumber(String phoneNumber) {
         return pattern.matcher(phoneNumber).lookingAt();
+    }
+
+    private boolean checkDuplicateTelegramLogin(String telegramLogin) {
+        return driverRepository.existsDriverByTelegramLogin(telegramLogin);
     }
 }

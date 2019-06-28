@@ -41,20 +41,23 @@ public class UserController {
     private final UserDetailsService userDetailsService;
     private final UserService userService;
     private final ImageUploadService imageUploadService;
+    private final AutoFormValidator autoFormValidator;
+    private final DriverFormValidator driverFormValidator;
+    private final UserFormValidator userFormValidator;
 
     @InitBinder("form")
     public void initAutoFormBinder(WebDataBinder binder) {
-        binder.addValidators(new AutoFormValidator());
+        binder.addValidators(autoFormValidator);
     }
 
     @InitBinder("driverForm")
     public void initDriverFormBinder(WebDataBinder binder) {
-        binder.addValidators(new DriverFormValidator());
+        binder.addValidators(driverFormValidator);
     }
 
     @InitBinder("userForm")
     public void initUserFormBinder(WebDataBinder binder) {
-        binder.addValidators(new UserFormValidator());
+        binder.addValidators(userFormValidator);
     }
 
     @GetMapping("/choose_act")
@@ -243,12 +246,12 @@ public class UserController {
         model.addAttribute("driveType", AutoSelectCreator.driveTypeCreate());
         model.addAttribute("transmissionType", AutoSelectCreator.transmissionType());
     }
-    
+
     private List<Auto> listDriversWithRent(List<Driver> driversWithRent) {
         List<Auto> autosByUser = new ArrayList<>();
-        if(!driversWithRent.isEmpty()) {
+        if (!driversWithRent.isEmpty()) {
             autosByUser.add(autoService.findAllRentedByUser(driversWithRent.get(0).getId()));
-            
+
         }
         return autosByUser;
     }

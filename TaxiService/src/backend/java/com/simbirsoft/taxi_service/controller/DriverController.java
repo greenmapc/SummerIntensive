@@ -21,10 +21,11 @@ import javax.persistence.EntityNotFoundException;
 @RequiredArgsConstructor
 public class DriverController {
     private final DriverService driverService;
+    private final DriverFormValidator driverFormValidator;
 
     @InitBinder("driverForm")
     public void initDriverFormBinder(WebDataBinder binder) {
-        binder.addValidators(new DriverFormValidator());
+        binder.addValidators(driverFormValidator);
     }
 
     @GetMapping

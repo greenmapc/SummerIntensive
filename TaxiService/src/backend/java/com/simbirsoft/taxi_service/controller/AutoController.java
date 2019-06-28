@@ -24,10 +24,11 @@ import javax.persistence.EntityNotFoundException;
 @RequestMapping("/autos")
 public class AutoController {
     private final AutoService autoService;
+    private final AutoFormValidator autoFormValidator;
 
     @InitBinder("form")
     public void initAutoFormBinder(WebDataBinder binder) {
-        binder.addValidators(new AutoFormValidator());
+        binder.addValidators(autoFormValidator);
     }
 
     @GetMapping

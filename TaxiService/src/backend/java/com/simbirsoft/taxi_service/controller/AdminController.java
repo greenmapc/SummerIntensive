@@ -23,10 +23,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final UserService userService;
+    private final UserFormValidator userFormValidator;
 
     @InitBinder("form")
     public void initBinder(WebDataBinder dataBinder) {
-        dataBinder.addValidators(new UserFormValidator());
+        dataBinder.addValidators(userFormValidator);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
