@@ -29,18 +29,21 @@ public class ActServiceImpl implements ActService {
 
     @Override
     @SneakyThrows
-    public void createActFromCompanyToDriver(CompanyToDriverActForm form, User user) {
+    public Act createActFromCompanyToDriver(CompanyToDriverActForm form, User user) {
         Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
         String fileName = pdfActCreatorService.createPdfActFromCompanyToDriver(form);
         act.setPdfFileName(fileName);
         actRepository.save(act);
         userService.addAction(user, OperatorActionEnum.CREATE_ACT);
+
+
+        return act;
     }
 
     @Override
     @SneakyThrows
-    public void createActFromDriverToDriver(DriverToDriverActForm actForm, User user) {
+    public Act createActFromDriverToDriver(DriverToDriverActForm actForm, User user) {
         Act act = fillBasicData(actForm);
 
         act.setDriverRenter(actForm.getRenter());
@@ -51,18 +54,23 @@ public class ActServiceImpl implements ActService {
         actRepository.save(act);
         userService.addAction(user, OperatorActionEnum.CREATE_ACT);
         rentEnd(actForm.getLessor());
+
+        return act;
     }
 
     @Override
     @SneakyThrows
-    public void createActFromDriverToCompany(DriverToCompanyActForm form, User user) {
+    public Act createActFromDriverToCompany(DriverToCompanyActForm form, User user) {
         Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
+
         String fileName = pdfActCreatorService.createPdfActFromDriverToCompany(form);
         act.setPdfFileName(fileName);
         actRepository.save(act);
         userService.addAction(user, OperatorActionEnum.CREATE_ACT);
         rentEnd(form.getRenter());
+
+        return act;
     }
 
     @Override

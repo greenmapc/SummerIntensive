@@ -114,14 +114,27 @@ public class UserController {
         return "user/create_driver";
     }
 
+    @GetMapping("/create_act_from_company_to_driver")
+    public String actFromCompanyToDriverPage(@AuthenticationPrincipal User user,
+                                             Model model) {
+        model.addAttribute("formCD", new CompanyToDriverActForm());
+        model.addAttribute("drivers",
+                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
+        model.addAttribute("autos",
+                ActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
+        model.addAttribute("user", user);
+
+        return "acts/company_to_driver";
+    }
+
     @PostMapping("/create_driver")
     @Transactional
     @SneakyThrows
     public String createDriver(@Validated @ModelAttribute("driverForm") DriverForm form,
                                BindingResult bindingResult,
+                               @RequestParam("docs") List<MultipartFile> docs,
                                Model model,
-                               @AuthenticationPrincipal User user,
-                               @RequestParam("docs") List<MultipartFile> docs) {
+                               @AuthenticationPrincipal User user) {
         if (bindingResult.hasErrors()) {
             return "user/create_driver";
         }
@@ -139,19 +152,6 @@ public class UserController {
         }
         model.addAttribute("user", user);
         return "redirect:/drivers";
-    }
-
-    @GetMapping("/create_act_from_company_to_driver")
-    public String actFromCompanyToDriverPage(@AuthenticationPrincipal User user,
-                                             Model model) {
-        model.addAttribute("formCD", new CompanyToDriverActForm());
-        model.addAttribute("drivers",
-                ActSelectCreator.fillDriverSelectFields(driverService.getAllWithoutRentSorted()));
-        model.addAttribute("autos",
-                ActSelectCreator.fillAutoSelectFields(autoService.findAllFree()));
-        model.addAttribute("user", user);
-
-        return "acts/company_to_driver";
     }
 
     @PostMapping("/create_act_from_company_to_driver")
@@ -255,7 +255,7 @@ public class UserController {
     private List<Auto> listDriversWithRent(List<Driver> driversWithRent) {
         List<Auto> autosByUser = new ArrayList<>();
         if (!driversWithRent.isEmpty()) {
-            autosByUser.add(autoService.findAllRentedByUser(driversWithRent.get(0).getId()));
+            autosByUser.add(autoService.findAutoRentedByDriver(driversWithRent.get(0).getId()));
 
         }
         return autosByUser;

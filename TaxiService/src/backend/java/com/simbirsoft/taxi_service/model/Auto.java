@@ -1,11 +1,8 @@
 package com.simbirsoft.taxi_service.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -67,10 +64,14 @@ public class Auto {
     @Column(name = "state")
     private Boolean state;
 
-    @OneToMany(mappedBy = "auto")
+    @OneToMany(mappedBy = "auto", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Act> actList;
 
-    @OneToMany(mappedBy = "auto")
+    @OneToMany(mappedBy = "auto", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Document> documents;
 
 }

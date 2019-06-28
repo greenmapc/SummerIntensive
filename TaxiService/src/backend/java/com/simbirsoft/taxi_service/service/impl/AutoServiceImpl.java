@@ -107,9 +107,8 @@ public class AutoServiceImpl implements AutoService {
         return brands;
     }
 
-    @Override
-    public Auto findAllRentedByUser(Long id) {
-        return repository.findAllRentByUser(id);
+    public Auto findAutoRentedByDriver(Long id) {
+        return repository.findAutoRentByDriver(id);
     }
 
     @Override

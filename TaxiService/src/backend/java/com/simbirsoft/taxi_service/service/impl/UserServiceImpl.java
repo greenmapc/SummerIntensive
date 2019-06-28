@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,13 +52,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addAction(User user, OperatorActionEnum action) {
+    public OperatorAction addAction(User user, OperatorActionEnum action) {
         OperatorAction operatorAction = new OperatorAction();
         operatorAction.setAction(action.toString());
         operatorAction.setDate(LocalDateTime.now());
         operatorAction.setOperator(user);
 
-        operatorActionRepository.save(operatorAction);
+        return operatorActionRepository.save(operatorAction);
     }
 
     public User updateInfo(User user, UserForm form) {
@@ -67,6 +68,11 @@ public class UserServiceImpl implements UserService {
         user.setPatronymic(form.getPatronymic());
         user.setPassword(passwordEncoder.encode(form.getNewPassword()));
         return repository.save(user);
+    }
+
+    @Override
+    public User findOneById(Long id) {
+        return repository.findById(id).get();
     }
 
     @Override

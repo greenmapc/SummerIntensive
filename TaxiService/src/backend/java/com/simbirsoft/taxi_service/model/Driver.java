@@ -1,11 +1,7 @@
 package com.simbirsoft.taxi_service.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.search.annotations.*;
-
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -78,9 +74,13 @@ public class Driver {
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "driverRenter")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Act> rentList;
 
     @OneToMany(mappedBy = "driver")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Document> documents;
 
 }

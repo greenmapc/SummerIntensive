@@ -10,9 +10,10 @@ import com.simbirsoft.taxi_service.model.User;
 import java.util.List;
 
 public interface ActService {
-    void createActFromCompanyToDriver(CompanyToDriverActForm form, User user);
-    void createActFromDriverToDriver(DriverToDriverActForm form, User user);
-    void createActFromDriverToCompany(DriverToCompanyActForm form, User user);
+    Act createActFromCompanyToDriver(CompanyToDriverActForm form, User user);
+    Act createActFromDriverToDriver(DriverToDriverActForm form, User user);
+    Act createActFromDriverToCompany(DriverToCompanyActForm form, User user);
+
     void rentEnd(Driver driver);
 
     List<Act> getAll();
