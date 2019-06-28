@@ -14,6 +14,7 @@ import com.simbirsoft.taxi_service.service.PdfActCreatorService;
 import com.simbirsoft.taxi_service.service.UserService;
 import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -26,58 +27,42 @@ public class ActServiceImpl implements ActService {
     private final ActRepository actRepository;
     private final UserService userService;
 
-    //ToDo: moved general part to method
-
     @Override
+    @SneakyThrows
     public void createActFromCompanyToDriver(CompanyToDriverActForm form, User user) {
         Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
-        // ToDo: exceptions
-        try {
-            String fileName = pdfActCreatorService.createPdfActFromCompanyToDriver(form);
-            act.setPdfFileName(fileName);
-            actRepository.save(act);
-            userService.addAction(user, OperatorActionEnum.CREATE_ACT);
-        } catch (IOException | DocumentException e) {
-            e.printStackTrace();
-        }
+        String fileName = pdfActCreatorService.createPdfActFromCompanyToDriver(form);
+        act.setPdfFileName(fileName);
+        actRepository.save(act);
+        userService.addAction(user, OperatorActionEnum.CREATE_ACT);
     }
 
     @Override
+    @SneakyThrows
     public void createActFromDriverToDriver(DriverToDriverActForm actForm, User user) {
         Act act = fillBasicData(actForm);
 
         act.setDriverRenter(actForm.getRenter());
         act.setDriverLessor(actForm.getLessor());
 
-        // ToDo: exceptions
-        try {
-            String fileName = pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
-            act.setPdfFileName(fileName);
-            actRepository.save(act);
-            userService.addAction(user, OperatorActionEnum.CREATE_ACT);
-            rentEnd(actForm.getLessor());
-        } catch (
-                IOException | DocumentException e) {
-            e.printStackTrace();
-        }
+        String fileName = pdfActCreatorService.createPdfActFromDriverToDriver(actForm);
+        act.setPdfFileName(fileName);
+        actRepository.save(act);
+        userService.addAction(user, OperatorActionEnum.CREATE_ACT);
+        rentEnd(actForm.getLessor());
     }
 
     @Override
+    @SneakyThrows
     public void createActFromDriverToCompany(DriverToCompanyActForm form, User user) {
         Act act = fillBasicData(form);
         act.setDriverRenter(form.getRenter());
-
-        // ToDo: exceptions
-        try {
-            String fileName = pdfActCreatorService.createPdfActFromDriverToCompany(form);
-            act.setPdfFileName(fileName);
-            actRepository.save(act);
-            userService.addAction(user, OperatorActionEnum.CREATE_ACT);
-            rentEnd(form.getRenter());
-        } catch (IOException | DocumentException e) {
-            e.printStackTrace();
-        }
+        String fileName = pdfActCreatorService.createPdfActFromDriverToCompany(form);
+        act.setPdfFileName(fileName);
+        actRepository.save(act);
+        userService.addAction(user, OperatorActionEnum.CREATE_ACT);
+        rentEnd(form.getRenter());
     }
 
     @Override

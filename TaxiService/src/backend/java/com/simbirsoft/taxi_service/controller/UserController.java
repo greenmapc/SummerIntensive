@@ -15,6 +15,7 @@ import com.simbirsoft.taxi_service.util.validator.AutoFormValidator;
 import com.simbirsoft.taxi_service.util.validator.DriverFormValidator;
 import com.simbirsoft.taxi_service.util.validator.UserFormValidator;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -83,22 +84,18 @@ public class UserController {
                              BindingResult bindingResult,
                              @AuthenticationPrincipal User user,
                              Model model,
-                             @RequestParam(value = "docs", required = false) List<MultipartFile> docs) {
+                             @RequestParam(value = "docs", required = false) List<MultipartFile> docs) throws IOException {
         if (bindingResult.hasErrors()) {
             fillAutoSelectFields(model);
             return "user/create_auto";
         }
         Auto auto = autoService.createAuto(form, user);
 
-        try {
-            for (MultipartFile doc : docs) {
-                imageUploadService.saveAutoDocument(auto, doc);
-            }
-        } catch (IOException e) {
-            // ToDo: handle
-            e.printStackTrace();
+        for (MultipartFile doc : docs) {
+            imageUploadService.saveAutoDocument(auto, doc);
+            model.addAttribute("user", user);
         }
-        model.addAttribute("user", user);
+
         return "redirect:/autos";
     }
 
@@ -113,6 +110,7 @@ public class UserController {
 
     @PostMapping("/create_driver")
     @Transactional
+    @SneakyThrows
     public String createDriver(@Validated @ModelAttribute("driverForm") DriverForm form,
                                BindingResult bindingResult,
                                Model model,
@@ -124,13 +122,8 @@ public class UserController {
         driverService.createDriver(form, user);
         Driver driver = driverService.createDriver(form, user);
 
-        try {
-            for (MultipartFile doc : docs) {
-                imageUploadService.saveDriverDocument(driver, doc);
-            }
-        } catch (IOException e) {
-            // ToDo: handle
-            e.printStackTrace();
+        for (MultipartFile doc : docs) {
+            imageUploadService.saveDriverDocument(driver, doc);
         }
         model.addAttribute("user", user);
         return "redirect:/drivers";

@@ -26,8 +26,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
             messageHelper.setFrom(mailFrom);
             messageHelper.setTo(mailTo);
         };
-
-        // ToDo: Exception without net
         javaMailSender.send(messagePreparator);
     }
 }
