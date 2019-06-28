@@ -35,8 +35,10 @@ public class UserFormValidator implements Validator {
                 form.getPatronymic().length() > ValidatorConstraints.MAX_FIELD_LENGTH) {
             errors.rejectValue("patronymic", "error.field.empty");
         }
-        if (!checkEmail(form.getEmail()) || checkDuplicateEmail(form.getEmail())) {
-            errors.rejectValue("email", "userform.email");
+        if (!form.getEmail().equals(form.getEmailOld())) {
+            if (!checkEmail(form.getEmail()) || checkDuplicateEmail(form.getEmail())) {
+                errors.rejectValue("email", "userform.email");
+            }
         }
         if (!form.getNewPassword().isEmpty() && form.getNewPassword2().isEmpty()) {
             errors.rejectValue("newPassword2", "error.field.empty");

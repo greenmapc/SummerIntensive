@@ -28,6 +28,7 @@
             <label for="user__email">Email</label><br>
             <@spring.formInput "userForm.email" 'class="form-container__form--input flex__element"
                             id="user__email" placeholder="Введите email" required' 'email'/><br>
+            <@spring.formInput "userForm.emailOld" 'hidden'/>
             <@spring.showErrors "userForm.email"/><br>
 
             <label for="user__new_password">Новый пароль</label><br>

@@ -15,12 +15,14 @@ public class UserForm {
     private String lastName;
     private String patronymic;
     private String email;
+    private String emailOld;
     private String newPassword;
     private String newPassword2;
 
     public static UserForm createFromUser(User userFromDb) {
         return UserForm.builder()
                 .email(userFromDb.getEmail())
+                .emailOld(userFromDb.getEmail())
                 .firstName(userFromDb.getFirstName())
                 .lastName(userFromDb.getLastName())
                 .patronymic(userFromDb.getPatronymic())

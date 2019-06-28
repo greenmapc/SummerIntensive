@@ -28,6 +28,7 @@ public class DriverForm {
     private String actualAddress;
     private String phoneNumber;
     private String telegramLogin;
+    private String telegramLoginOld;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
     private boolean blackList;
@@ -50,6 +51,7 @@ public class DriverForm {
         form.setActualAddress(driver.getActualAddress());
         form.setPhoneNumber(driver.getPhoneNumber());
         form.setTelegramLogin(driver.getTelegramLogin());
+        form.setTelegramLoginOld(driver.getTelegramLogin());
         form.setBirthDate(driver.getBirthDate());
         form.setBlackList(driver.getBlackList());
         form.setRating(driver.getRating());

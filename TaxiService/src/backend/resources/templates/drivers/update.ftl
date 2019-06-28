@@ -115,6 +115,7 @@
             <label for="driver__telegram_login">Логин в Telegram </label><br>
             <@spring.formInput "driverForm.telegramLogin" 'class="form-container__form--input flex__element"
                             id="driver__telegram_login" placeholder="Введите логин Telegram" '/>
+            <@spring.formInput "driverForm.telegramLoginOld" 'hidden'/>
             <br>
             <@spring.showErrors "driverForm.telegramLogin"/>
             <br>
