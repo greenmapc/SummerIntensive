@@ -19,6 +19,6 @@ Two-week hackathon. Develop a system for Taxi Service.
     Hibernate
   </li>
   <li>
-    PDF creation libraryu Itextpdf
+    PDF creation library Itextpdf
   </li>
 </ul>
