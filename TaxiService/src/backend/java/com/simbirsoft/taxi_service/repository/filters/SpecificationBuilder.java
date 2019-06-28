@@ -11,18 +11,25 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @AllArgsConstructor
 @Data
 public class SpecificationBuilder<T> {
     private List<Condition> conditions;
+    private static Map<String,TransCondToSpecStrategy> classToStrategyMap = new TreeMap<>();
 
     public Specification getComplexSpecification(Class clazz) {
         TransCondToSpecStrategy<T> strategy = null;
         try {
-            strategy = (TransCondToSpecStrategy) Class.forName(TransCondToSpecStrategy.class.getPackage().getName() + "."
-                    + clazz.getSimpleName() + "TransStrategy").newInstance();
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+            strategy = classToStrategyMap.get(clazz.getName());
+            if (strategy==null) {
+                strategy = (TransCondToSpecStrategy) Class.forName(TransCondToSpecStrategy.class.getPackage().getName() + "."
+                        + clazz.getSimpleName() + "TransStrategy").newInstance();
+                classToStrategyMap.put(clazz.getName(),strategy);
+            }
+        } catch (Exception e) {
             throw new IllegalArgumentException("Class is not supported", e);
         }
         List<Specification<T>> specifications = buildSpecifications(strategy);
