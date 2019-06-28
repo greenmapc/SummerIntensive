@@ -21,4 +21,5 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
             "WHERE act.leaseEndDate >= current_timestamp)")
     List<Driver> findAllWithRent();
 
+    Boolean existsDriverByTelegramLogin(String telegramLogin);
 }

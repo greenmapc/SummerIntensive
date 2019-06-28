@@ -27,4 +27,7 @@ public interface AutoRepository extends JpaRepository<Auto, Long> {
             "WHERE a.leaseEndDate >= current_timestamp AND a.driverRenter.id = :id)")
     Auto findAllRentByUser(@Param("id") Long id);
 
+    Boolean existsAutoByGosNumber(String gosNumber);
+
+    Boolean existsAutoByVinNumber(String vinNumber);
 }
