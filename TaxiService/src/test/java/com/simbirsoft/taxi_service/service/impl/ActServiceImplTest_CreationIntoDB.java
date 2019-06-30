@@ -10,6 +10,7 @@ import com.simbirsoft.taxi_service.model.User;
 import com.simbirsoft.taxi_service.service.*;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -27,6 +28,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class ActServiceImplTest_CreationIntoDB {
     @Autowired
     private ActServiceImpl actService;

@@ -11,6 +11,7 @@ import com.simbirsoft.taxi_service.util.OperatorActionEnum;
 import freemarker.template.TemplateException;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -28,6 +29,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class UserServiceImplTest {
     @Autowired
     private UserService userService;

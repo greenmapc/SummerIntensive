@@ -77,7 +77,7 @@ public class DriverFormValidator implements Validator {
         }
         if (!form.getTelegramLogin().equals(form.getTelegramLoginOld())) {
             if (!form.getTelegramLogin().isEmpty() && checkDuplicateTelegramLogin(form.getTelegramLogin())) {
-                errors.rejectValue("telegramLogin", "driverform.telegram");
+                errors.rejectValue("telegramLogin", "driverform.telegram.login");
             }
         }
     }

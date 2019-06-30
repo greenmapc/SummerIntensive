@@ -8,6 +8,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
@@ -21,11 +22,14 @@ public class EmailServiceImpl implements EmailService {
     private final EmailSenderService emailSenderService;
     private final Configuration freemarkerConfig;
 
+    @Value("${redirect.url}")
+    private String REDIRECT_URL;
+
     @Override
     public void sendPasswordToEmail(User user, String generatePassword) throws IOException, TemplateException {
         Map<String, Object> map = new HashMap<>();
 
-        map.put("link", "http://localhost:8080/login");
+        map.put("link", REDIRECT_URL);
         map.put("user", user);
         map.put("password", generatePassword);
 
