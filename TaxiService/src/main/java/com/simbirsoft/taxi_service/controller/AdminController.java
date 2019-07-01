@@ -59,7 +59,7 @@ public class AdminController {
         model.addAttribute("success", "Оператор успешно добавлен в систему!");
         model.addAttribute("user", user);
 
-        return "admin/create_operator";
+        return "redirect:/panel";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

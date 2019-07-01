@@ -40,16 +40,18 @@ public class UserFormValidator implements Validator {
                 errors.rejectValue("email", "userform.email");
             }
         }
-        if (!form.getNewPassword().isEmpty() && form.getNewPassword2().isEmpty()) {
-            errors.rejectValue("newPassword2", "error.field.empty");
-        }
-        if (form.getNewPassword().isEmpty() && !form.getNewPassword2().isEmpty()) {
-            errors.rejectValue("newPassword", "error.field.empty");
-        }
-        if (!form.getNewPassword().isEmpty() && !form.getNewPassword2().isEmpty()) {
-            if (!form.getNewPassword2().equals(form.getNewPassword())) {
-                errors.rejectValue("newPassword", "userform.password.incorrect");
-                errors.rejectValue("newPassword2", "userform.password.incorrect");
+        if (form.getNewPassword() != null && form.getNewPassword2() != null) {
+            if (!form.getNewPassword().isEmpty() && form.getNewPassword2().isEmpty()) {
+                errors.rejectValue("newPassword2", "error.field.empty");
+            }
+            if (form.getNewPassword().isEmpty() && !form.getNewPassword2().isEmpty()) {
+                errors.rejectValue("newPassword", "error.field.empty");
+            }
+            if (!form.getNewPassword().isEmpty() && !form.getNewPassword2().isEmpty()) {
+                if (!form.getNewPassword2().equals(form.getNewPassword())) {
+                    errors.rejectValue("newPassword", "userform.password.incorrect");
+                    errors.rejectValue("newPassword2", "userform.password.incorrect");
+                }
             }
         }
     }
