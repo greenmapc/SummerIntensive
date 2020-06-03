@@ -1,5 +1,5 @@
 # SummerIntensive
-Two-week hackathon. Develop a system for Taxi Service.
+Two-week hackathon. Development of a system for Taxi Service.
 
 <h1> Stack </h2>
 <ul>
